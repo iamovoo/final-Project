@@ -6,7 +6,7 @@
       <div class="flex flex-col gap-[32px] h-[526px] w-[456px]">
         <div class="flex items-center justify-center">
           <img
-            src="/assets/css/Logo frame.png"
+            src="/assets/icons/Logo frame.png"
             alt=""
             class="w-[142px] h-[40px]"
           />
@@ -37,13 +37,13 @@
                 >
                   <img
                     v-if="showPassword === true"
-                    src="/assets/eye-password-show-svgrepo-com.svg"
+                    src="/assets/icons/eye-password-show-svgrepo-com.svg"
                     alt="Show"
                     class="w-5"
                   />
                   <img
                     v-else
-                    src="/assets/eye-password-hide-svgrepo-com.svg"
+                    src="/assets/icons/eye-password-hide-svgrepo-com.svg"
                     alt="Hide"
                     class="w-5"
                   />
@@ -63,13 +63,13 @@
                 >
                   <img
                     v-if="showConfimPassword === true"
-                    src="/assets/eye-password-show-svgrepo-com.svg"
+                    src="/assets/icons/eye-password-show-svgrepo-com.svg"
                     alt="Show"
                     class="w-5"
                   />
                   <img
                     v-else
-                    src="/assets/eye-password-hide-svgrepo-com.svg"
+                    src="/assets/icons/eye-password-hide-svgrepo-com.svg"
                     alt="Hide"
                     class="w-5"
                   />
@@ -91,7 +91,7 @@
       <div class="h-[436px] w-[375px] flex flex-col gap-[32px]">
         <div class="flex items-center justify-center mt-5">
           <img
-            src="/assets/css/blue.png"
+            src="/assets/icons/blue.png"
             alt=""
             class="w-[83px] h-[24px]"
           />
@@ -121,13 +121,13 @@
               >
                 <img
                   v-if="showPassword === true"
-                  src="/assets/eye-password-show-svgrepo-com.svg"
+                  src="/assets/icons/eye-password-show-svgrepo-com.svg"
                   alt="Show"
                   class="w-5"
                 />
                 <img
                   v-else
-                  src="/assets/eye-password-hide-svgrepo-com.svg"
+                  src="/assets/icons/eye-password-hide-svgrepo-com.svg"
                   alt="Hide"
                   class="w-5"
                 />
@@ -147,13 +147,13 @@
               >
                 <img
                   v-if="showConfimPassword === true"
-                  src="/assets/eye-password-show-svgrepo-com.svg"
+                  src="/assets/icons/eye-password-show-svgrepo-com.svg"
                   alt="Show"
                   class="w-5"
                 />
                 <img
                   v-else
-                  src="/assets/eye-password-hide-svgrepo-com.svg"
+                  src="/assets/icons/eye-password-hide-svgrepo-com.svg"
                   alt="Hide"
                   class="w-5"
                 />

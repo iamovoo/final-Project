@@ -1,220 +1,484 @@
 <template>
-  <!-- <div class="relative w-[1440px] h-[1024px]"> -->
-  <div
-    class="fixed top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 flex justify-center items-center"
-  >
+  <div class="hidden xl:block">
+    <!-- <div class="relative w-[1440px] h-[1024px]"> -->
     <div
-      class="w-[518px] h-[448px] bg-[#FFFFFF] rounded-[8px] p-[20px] flex flex-col gap-[16px]"
+      class="fixed top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 flex justify-center items-center"
     >
       <div
-        class="w-[478px] h-[48px] pb-[12px] flex justify-between items-center border-b border-[#F0F2F5]"
+        class="w-[518px] h-[448px] bg-[#FFFFFF] rounded-[8px] p-[20px] flex flex-col gap-[16px]"
       >
-        <div class="flex items-center h-[28px] gap-[4px] justify-center">
-          <h6
-            class="text-[#1D2739] text-[20px] flex font-semibold items-center"
-          >
-            Members nearing burnout
-          </h6>
+        <div
+          class="w-[478px] h-[48px] pb-[12px] flex justify-between items-center border-b border-[#F0F2F5]"
+        >
+          <div class="flex items-center h-[28px] gap-[4px] justify-center">
+            <h6
+              class="text-[#1D2739] text-[20px] flex font-semibold items-center"
+            >
+              Members nearing burnout
+            </h6>
+            <div
+              class="w-[23px] h-[25px] bg-[#FCEFE9] rounded-[16px] text-[#B34C19] text-[12px] p-[4px]"
+            >
+              20
+            </div>
+          </div>
           <div
-            class="w-[23px] h-[25px] bg-[#FCEFE9] rounded-[16px] text-[#B34C19] text-[12px] p-[4px]"
+            class="w-[36px] h-[36px] flex justify-center items-center border-[#F0F2F5] border"
+            @click="closeModal"
           >
-            20
+            x
           </div>
         </div>
-        <div
-          class="w-[36px] h-[36px] flex justify-center items-center border-[#F0F2F5] border"
-          @click="closeModal"
-        >
-          x
+
+        <div class="overflow-y-auto flex flex-col gap-[16px] h-[344px]">
+          <div
+            class="w-[478px] h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
+          >
+            <p class="text-[#667185] text-[14px] DMSans400">
+              Oluwaseun Adebayo
+            </p>
+            <div
+              class="h-[32px] w-[288px] flex justify-between items-center pr-3"
+            >
+              <div
+                class="text-[#B34C19] text-[12px] bg-[#FCEFE9] py-[2px] pl-[6px] pr-[8px]"
+              >
+                Almost Burnt Out
+              </div>
+              <button
+                class="flex gap-[6px] items-center justify-center text-[#2F7DD0] text-[14px] border border-[#ACCBEC]"
+              >
+                <img
+                  src="/assets/icons/ArrowUpRight.png"
+                  alt=""
+                  class="w-[14px] h-[14px]"
+                />
+                Assign leave
+              </button>
+            </div>
+          </div>
+          <div
+            class="w-[478px] h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
+          >
+            <p class="text-[#667185] text-[14px] DMSans400">
+              Oluwaseun Adebayo
+            </p>
+            <div
+              class="h-[32px] w-[288px] flex justify-between items-center pr-3"
+            >
+              <div
+                class="text-[#B34C19] text-[12px] bg-[#FCEFE9] py-[2px] pl-[6px] pr-[8px]"
+              >
+                Almost Burnt Out
+              </div>
+              <button
+                class="flex gap-[6px] items-center justify-center text-[#2F7DD0] text-[14px] border border-[#ACCBEC]"
+              >
+                <img
+                  src="/assets/icons/ArrowUpRight.png"
+                  alt=""
+                  class="w-[14px] h-[14px]"
+                />
+                Assign leave
+              </button>
+            </div>
+          </div>
+          <div
+            class="w-[478px] h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
+          >
+            <p class="text-[#667185] text-[14px] DMSans400">
+              Oluwaseun Adebayo
+            </p>
+            <div
+              class="h-[32px] w-[288px] flex justify-between items-center pr-3"
+            >
+              <div
+                class="text-[#B34C19] text-[12px] bg-[#FCEFE9] py-[2px] pl-[6px] pr-[8px]"
+              >
+                Almost Burnt Out
+              </div>
+              <button
+                class="flex gap-[6px] items-center justify-center text-[#2F7DD0] text-[14px] border border-[#ACCBEC]"
+              >
+                <img
+                  src="/assets/icons/ArrowUpRight.png"
+                  alt=""
+                  class="w-[14px] h-[14px]"
+                />
+                Assign leave
+              </button>
+            </div>
+          </div>
+          <div
+            class="w-[478px] h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
+          >
+            <p class="text-[#667185] text-[14px] DMSans400">
+              Oluwaseun Adebayo
+            </p>
+            <div
+              class="h-[32px] w-[288px] flex justify-between items-center pr-3"
+            >
+              <div
+                class="text-[#B34C19] text-[12px] bg-[#FCEFE9] py-[2px] pl-[6px] pr-[8px]"
+              >
+                Almost Burnt Out
+              </div>
+              <button
+                class="flex gap-[6px] items-center justify-center text-[#2F7DD0] text-[14px] border border-[#ACCBEC]"
+              >
+                <img
+                  src="/assets/icons/ArrowUpRight.png"
+                  alt=""
+                  class="w-[14px] h-[14px]"
+                />
+                Assign leave
+              </button>
+            </div>
+          </div>
+          <div
+            class="w-[478px] h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
+          >
+            <p class="text-[#667185] text-[14px] DMSans400">
+              Oluwaseun Adebayo
+            </p>
+            <div
+              class="h-[32px] w-[288px] flex justify-between items-center pr-3"
+            >
+              <div
+                class="text-[#B34C19] text-[12px] bg-[#FCEFE9] py-[2px] pl-[6px] pr-[8px]"
+              >
+                Almost Burnt Out
+              </div>
+              <button
+                class="flex gap-[6px] items-center justify-center text-[#2F7DD0] text-[14px] border border-[#ACCBEC]"
+              >
+                <img
+                  src="/assets/icons/ArrowUpRight.png"
+                  alt=""
+                  class="w-[14px] h-[14px]"
+                />
+                Assign leave
+              </button>
+            </div>
+          </div>
+          <div
+            class="w-[478px] h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
+          >
+            <p class="text-[#667185] text-[14px] DMSans400">
+              Oluwaseun Adebayo
+            </p>
+            <div
+              class="h-[32px] w-[288px] flex justify-between items-center pr-3"
+            >
+              <div
+                class="text-[#B34C19] text-[12px] bg-[#FCEFE9] py-[2px] pl-[6px] pr-[8px]"
+              >
+                Almost Burnt Out
+              </div>
+              <button
+                class="flex gap-[6px] items-center justify-center text-[#2F7DD0] text-[14px] border border-[#ACCBEC]"
+              >
+                <img
+                  src="/assets/icons/ArrowUpRight.png"
+                  alt=""
+                  class="w-[14px] h-[14px]"
+                />
+                Assign leave
+              </button>
+            </div>
+          </div>
+          <div
+            class="w-[478px] h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
+          >
+            <p class="text-[#667185] text-[14px] DMSans400">
+              Oluwaseun Adebayo
+            </p>
+            <div
+              class="h-[32px] w-[288px] flex justify-between items-center pr-3"
+            >
+              <div
+                class="text-[#B34C19] text-[12px] bg-[#FCEFE9] py-[2px] pl-[6px] pr-[8px]"
+              >
+                Almost Burnt Out
+              </div>
+              <button
+                class="flex gap-[6px] items-center justify-center text-[#2F7DD0] text-[14px] border border-[#ACCBEC]"
+              >
+                <img
+                  src="/assets/icons/ArrowUpRight.png"
+                  alt=""
+                  class="w-[14px] h-[14px]"
+                />
+                Assign leave
+              </button>
+            </div>
+          </div>
+          <div
+            class="w-[478px] h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
+          >
+            <p class="text-[#667185] text-[14px] DMSans400">
+              Oluwaseun Adebayo
+            </p>
+            <div
+              class="h-[32px] w-[288px] flex justify-between items-center pr-3"
+            >
+              <div
+                class="text-[#B34C19] text-[12px] bg-[#FCEFE9] py-[2px] pl-[6px] pr-[8px]"
+              >
+                Almost Burnt Out
+              </div>
+              <button
+                class="flex gap-[6px] items-center justify-center text-[#2F7DD0] text-[14px] border border-[#ACCBEC]"
+              >
+                <img
+                  src="/assets/icons/ArrowUpRight.png"
+                  alt=""
+                  class="w-[14px] h-[14px]"
+                />
+                Assign leave
+              </button>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+    <!-- </div> -->
+  </div>
+  <div class="block md:hidden">
+    <div
+      class="fixed top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 flex justify-center items-end"
+    >
+      <div
+        class="w-[375px] h-[404px] bg-[#FFFFFF] rounded-t-[12px] p-[20px] flex flex-col gap-[16px]"
+      >
+        <div
+          class="w-[335px] h-[36px] pb-[12px] flex justify-between items-center border-[#F0F2F5]"
+        >
+          <div class="flex items-center h-[28px] gap-[4px] justify-center">
+            <h6
+              class="text-[#1D2739] text-[20px] flex font-semibold items-center"
+            >
+              Members nearing burnout
+            </h6>
+            <div
+              class="w-[23px] h-[25px] bg-[#FCEFE9] rounded-[16px] text-[#B34C19] text-[12px] p-[4px]"
+            >
+              20
+            </div>
+          </div>
+          <div
+            class="w-[36px] h-[36px] flex justify-center items-center border-[#F0F2F5] border"
+            @click="closeModal"
+          >
+            x
+          </div>
+        </div>
 
-      <div class="overflow-y-auto flex flex-col gap-[16px] h-[344px]">
         <div
-          class="w-[478px] h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
+          class="overflow-y-auto flex flex-col gap-[16px] h-[296px] w-[335px]"
         >
-          <p class="text-[#667185] text-[14px] DMSans400">Oluwaseun Adebayo</p>
           <div
-            class="h-[32px] w-[288px] flex justify-between items-center pr-3"
+            class="w-[335px] h-[65px] flex flex-col  gap-[8px] items-center border-b border-[#F0F2F5]"
           >
             <div
-              class="text-[#B34C19] text-[12px] bg-[#FCEFE9] py-[2px] pl-[6px] pr-[8px]"
+              class="h-[25px] w-[335px] flex justify-between items-center"
             >
-              Almost Burnt Out
+              <p class="text-[#667185] text-[14px] DMSans400">
+                Oluwaseun Adebayo
+              </p>
+              <div
+                class="text-[#B34C19] text-[12px] bg-[#FCEFE9] py-[2px] pl-[6px] pr-[8px]"
+              >
+                Almost Burnt Out
+              </div>
             </div>
             <button
-              class="flex gap-[6px] items-center justify-center text-[#2F7DD0] text-[14px] border border-[#ACCBEC]"
+              class="flex gap-[6px] items-center justify-center text-[#2F7DD0] text-[14px] border border-[#ACCBEC] h-[32px] w-[335px] rounded-[4px]"
             >
               <img
-                src="/assets/css/ArrowUpRight.png"
+                src="/assets/icons/ArrowUpRight.png"
                 alt=""
                 class="w-[14px] h-[14px]"
               />
               Assign leave
             </button>
           </div>
-        </div>
-        <div
-          class="w-[478px] h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
-        >
-          <p class="text-[#667185] text-[14px] DMSans400">Oluwaseun Adebayo</p>
           <div
-            class="h-[32px] w-[288px] flex justify-between items-center pr-3"
+            class="w-[335px] h-[65px] flex flex-col  gap-[8px] items-center border-b border-[#F0F2F5]"
           >
             <div
-              class="text-[#B34C19] text-[12px] bg-[#FCEFE9] py-[2px] pl-[6px] pr-[8px]"
+              class="h-[25px] w-[335px] flex justify-between items-center"
             >
-              Almost Burnt Out
+              <p class="text-[#667185] text-[14px] DMSans400">
+                Oluwaseun Adebayo
+              </p>
+              <div
+                class="text-[#B34C19] text-[12px] bg-[#FCEFE9] py-[2px] pl-[6px] pr-[8px]"
+              >
+                Almost Burnt Out
+              </div>
             </div>
             <button
-              class="flex gap-[6px] items-center justify-center text-[#2F7DD0] text-[14px] border border-[#ACCBEC]"
+              class="flex gap-[6px] items-center justify-center text-[#2F7DD0] text-[14px] border border-[#ACCBEC] h-[32px] w-[335px] rounded-[4px]"
             >
               <img
-                src="/assets/css/ArrowUpRight.png"
+                src="/assets/icons/ArrowUpRight.png"
                 alt=""
                 class="w-[14px] h-[14px]"
               />
               Assign leave
             </button>
           </div>
-        </div>
-        <div
-          class="w-[478px] h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
-        >
-          <p class="text-[#667185] text-[14px] DMSans400">Oluwaseun Adebayo</p>
           <div
-            class="h-[32px] w-[288px] flex justify-between items-center pr-3"
+            class="w-[335px] h-[65px] flex flex-col  gap-[8px] items-center border-b border-[#F0F2F5]"
           >
             <div
-              class="text-[#B34C19] text-[12px] bg-[#FCEFE9] py-[2px] pl-[6px] pr-[8px]"
+              class="h-[25px] w-[335px] flex justify-between items-center"
             >
-              Almost Burnt Out
+              <p class="text-[#667185] text-[14px] DMSans400">
+                Oluwaseun Adebayo
+              </p>
+              <div
+                class="text-[#B34C19] text-[12px] bg-[#FCEFE9] py-[2px] pl-[6px] pr-[8px]"
+              >
+                Almost Burnt Out
+              </div>
             </div>
             <button
-              class="flex gap-[6px] items-center justify-center text-[#2F7DD0] text-[14px] border border-[#ACCBEC]"
+              class="flex gap-[6px] items-center justify-center text-[#2F7DD0] text-[14px] border border-[#ACCBEC] h-[32px] w-[335px] rounded-[4px]"
             >
               <img
-                src="/assets/css/ArrowUpRight.png"
+                src="/assets/icons/ArrowUpRight.png"
                 alt=""
                 class="w-[14px] h-[14px]"
               />
               Assign leave
             </button>
           </div>
-        </div>
-        <div
-          class="w-[478px] h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
-        >
-          <p class="text-[#667185] text-[14px] DMSans400">Oluwaseun Adebayo</p>
           <div
-            class="h-[32px] w-[288px] flex justify-between items-center pr-3"
+            class="w-[335px] h-[65px] flex flex-col  gap-[8px] items-center border-b border-[#F0F2F5]"
           >
             <div
-              class="text-[#B34C19] text-[12px] bg-[#FCEFE9] py-[2px] pl-[6px] pr-[8px]"
+              class="h-[25px] w-[335px] flex justify-between items-center"
             >
-              Almost Burnt Out
+              <p class="text-[#667185] text-[14px] DMSans400">
+                Oluwaseun Adebayo
+              </p>
+              <div
+                class="text-[#B34C19] text-[12px] bg-[#FCEFE9] py-[2px] pl-[6px] pr-[8px]"
+              >
+                Almost Burnt Out
+              </div>
             </div>
             <button
-              class="flex gap-[6px] items-center justify-center text-[#2F7DD0] text-[14px] border border-[#ACCBEC]"
+              class="flex gap-[6px] items-center justify-center text-[#2F7DD0] text-[14px] border border-[#ACCBEC] h-[32px] w-[335px] rounded-[4px]"
             >
               <img
-                src="/assets/css/ArrowUpRight.png"
+                src="/assets/icons/ArrowUpRight.png"
                 alt=""
                 class="w-[14px] h-[14px]"
               />
               Assign leave
             </button>
           </div>
-        </div>
-        <div
-          class="w-[478px] h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
-        >
-          <p class="text-[#667185] text-[14px] DMSans400">Oluwaseun Adebayo</p>
           <div
-            class="h-[32px] w-[288px] flex justify-between items-center pr-3"
+            class="w-[335px] h-[65px] flex flex-col  gap-[8px] items-center border-b border-[#F0F2F5]"
           >
             <div
-              class="text-[#B34C19] text-[12px] bg-[#FCEFE9] py-[2px] pl-[6px] pr-[8px]"
+              class="h-[25px] w-[335px] flex justify-between items-center"
             >
-              Almost Burnt Out
+              <p class="text-[#667185] text-[14px] DMSans400">
+                Oluwaseun Adebayo
+              </p>
+              <div
+                class="text-[#B34C19] text-[12px] bg-[#FCEFE9] py-[2px] pl-[6px] pr-[8px]"
+              >
+                Almost Burnt Out
+              </div>
             </div>
             <button
-              class="flex gap-[6px] items-center justify-center text-[#2F7DD0] text-[14px] border border-[#ACCBEC]"
+              class="flex gap-[6px] items-center justify-center text-[#2F7DD0] text-[14px] border border-[#ACCBEC] h-[32px] w-[335px] rounded-[4px]"
             >
               <img
-                src="/assets/css/ArrowUpRight.png"
+                src="/assets/icons/ArrowUpRight.png"
                 alt=""
                 class="w-[14px] h-[14px]"
               />
               Assign leave
             </button>
           </div>
-        </div>
-        <div
-          class="w-[478px] h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
-        >
-          <p class="text-[#667185] text-[14px] DMSans400">Oluwaseun Adebayo</p>
           <div
-            class="h-[32px] w-[288px] flex justify-between items-center pr-3"
+            class="w-[335px] h-[65px] flex flex-col  gap-[8px] items-center border-b border-[#F0F2F5]"
           >
             <div
-              class="text-[#B34C19] text-[12px] bg-[#FCEFE9] py-[2px] pl-[6px] pr-[8px]"
+              class="h-[25px] w-[335px] flex justify-between items-center"
             >
-              Almost Burnt Out
+              <p class="text-[#667185] text-[14px] DMSans400">
+                Oluwaseun Adebayo
+              </p>
+              <div
+                class="text-[#B34C19] text-[12px] bg-[#FCEFE9] py-[2px] pl-[6px] pr-[8px]"
+              >
+                Almost Burnt Out
+              </div>
             </div>
             <button
-              class="flex gap-[6px] items-center justify-center text-[#2F7DD0] text-[14px] border border-[#ACCBEC]"
+              class="flex gap-[6px] items-center justify-center text-[#2F7DD0] text-[14px] border border-[#ACCBEC] h-[32px] w-[335px] rounded-[4px]"
             >
               <img
-                src="/assets/css/ArrowUpRight.png"
+                src="/assets/icons/ArrowUpRight.png"
                 alt=""
                 class="w-[14px] h-[14px]"
               />
               Assign leave
             </button>
           </div>
-        </div>
-        <div
-          class="w-[478px] h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
-        >
-          <p class="text-[#667185] text-[14px] DMSans400">Oluwaseun Adebayo</p>
           <div
-            class="h-[32px] w-[288px] flex justify-between items-center pr-3"
+            class="w-[335px] h-[65px] flex flex-col  gap-[8px] items-center border-b border-[#F0F2F5]"
           >
             <div
-              class="text-[#B34C19] text-[12px] bg-[#FCEFE9] py-[2px] pl-[6px] pr-[8px]"
+              class="h-[25px] w-[335px] flex justify-between items-center"
             >
-              Almost Burnt Out
+              <p class="text-[#667185] text-[14px] DMSans400">
+                Oluwaseun Adebayo
+              </p>
+              <div
+                class="text-[#B34C19] text-[12px] bg-[#FCEFE9] py-[2px] pl-[6px] pr-[8px]"
+              >
+                Almost Burnt Out
+              </div>
             </div>
             <button
-              class="flex gap-[6px] items-center justify-center text-[#2F7DD0] text-[14px] border border-[#ACCBEC]"
+              class="flex gap-[6px] items-center justify-center text-[#2F7DD0] text-[14px] border border-[#ACCBEC] h-[32px] w-[335px] rounded-[4px]"
             >
               <img
-                src="/assets/css/ArrowUpRight.png"
+                src="/assets/icons/ArrowUpRight.png"
                 alt=""
                 class="w-[14px] h-[14px]"
               />
               Assign leave
             </button>
           </div>
-        </div>
-        <div
-          class="w-[478px] h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
-        >
-          <p class="text-[#667185] text-[14px] DMSans400">Oluwaseun Adebayo</p>
           <div
-            class="h-[32px] w-[288px] flex justify-between items-center pr-3"
+            class="w-[335px] h-[65px] flex flex-col  gap-[8px] items-center border-b border-[#F0F2F5]"
           >
             <div
-              class="text-[#B34C19] text-[12px] bg-[#FCEFE9] py-[2px] pl-[6px] pr-[8px]"
+              class="h-[25px] w-[335px] flex justify-between items-center"
             >
-              Almost Burnt Out
+              <p class="text-[#667185] text-[14px] DMSans400">
+                Oluwaseun Adebayo
+              </p>
+              <div
+                class="text-[#B34C19] text-[12px] bg-[#FCEFE9] py-[2px] pl-[6px] pr-[8px]"
+              >
+                Almost Burnt Out
+              </div>
             </div>
             <button
-              class="flex gap-[6px] items-center justify-center text-[#2F7DD0] text-[14px] border border-[#ACCBEC]"
+              class="flex gap-[6px] items-center justify-center text-[#2F7DD0] text-[14px] border border-[#ACCBEC] h-[32px] w-[335px] rounded-[4px]"
             >
               <img
-                src="/assets/css/ArrowUpRight.png"
+                src="/assets/icons/ArrowUpRight.png"
                 alt=""
                 class="w-[14px] h-[14px]"
               />
@@ -225,7 +489,6 @@
       </div>
     </div>
   </div>
-  <!-- </div> -->
 </template>
 
 <script setup>

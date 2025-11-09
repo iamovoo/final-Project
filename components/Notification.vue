@@ -69,6 +69,7 @@
       </div>
     </div>
   </div>
+  
 </template>
 <script setup>
 const emit = defineEmits(['closeNotification'])

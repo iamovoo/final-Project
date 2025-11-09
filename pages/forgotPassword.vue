@@ -6,7 +6,7 @@
       <div class="w-[456px] h-[414px] flex flex-col gap-[32px]">
         <div class="flex items-center justify-center">
           <img
-            src="/assets/css/Logo frame.png"
+            src="/assets/icons/Logo frame.png"
             alt=""
             class="w-[142px] h-[40px]"
           />
@@ -55,7 +55,7 @@
       <div class="h-[324px] w-[375px] flex flex-col gap-[32px] mt-5">
         <div class="flex items-center justify-center">
           <img
-            src="/assets/css/blue.png"
+            src="/assets/icons/blue.png"
             alt=""
             class="w-[83px] h-[24px]"
           />
@@ -95,8 +95,8 @@ definePageMeta({
   layout: false,
 });
 
-const showPassword = ref(false);
-const togglePassword = () => {
-  showPassword.value = !showPassword.value;
-};
+// const showPassword = ref(false);
+// const togglePassword = () => {
+//   showPassword.value = !showPassword.value;
+// };
 </script>

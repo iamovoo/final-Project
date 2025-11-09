@@ -3,7 +3,7 @@
     <div class="backgroundLayout">
       <div class="overflow-hidden w-[600px] h-[1024px]">
         <img
-          src="/assets/css/frame zenly.png"
+          src="/assets/icons/Frame zenly.png"
           alt=""
           class="object-contain w-full h-full"
         />
@@ -75,14 +75,14 @@
                 >
                   <button v-if="showPassword === false">
                     <img
-                      src="/assets/eye-password-hide-svgrepo-com.svg"
+                      src="/assets/icons/eye-password-hide-svgrepo-com.svg"
                       alt=""
                       class="w-5"
                     />
                   </button>
                   <button v-else>
                     <img
-                      src="/assets/eye-password-show-svgrepo-com.svg"
+                      src="/assets/icons/eye-password-show-svgrepo-com.svg"
                       alt=""
                       class="w-5"
                     />
@@ -148,7 +148,7 @@
       <div class="w-[375px] h-[560px] flex flex-col gap-[32px] mx-auto">
         <div class="mt-5 px-[20px]">
           <img
-            src="/assets/css/blue.png"
+            src="/assets/icons/blue.png"
             alt=""
             class="w-[83px] h-[24px]"
           />
@@ -216,14 +216,14 @@
                 >
                   <button v-if="showPassword === false">
                     <img
-                      src="/assets/eye-password-hide-svgrepo-com.svg"
+                      src="/assets/icons/eye-password-hide-svgrepo-com.svg"
                       alt=""
                       class="w-5"
                     />
                   </button>
                   <button v-else>
                     <img
-                      src="/assets/eye-password-show-svgrepo-com.svg"
+                      src="/assets/icons/eye-password-show-svgrepo-com.svg"
                       alt=""
                       class="w-5"
                     />
@@ -251,7 +251,7 @@
       <div class="w-[375px] h-[294px] flex flex-col gap-[32px] mx-auto">
         <div class="mt-5 px-[20px]">
           <img
-            src="/assets/css/blue.png"
+            src="/assets/icons/blue.png"
             alt=""
             class="w-[83px] h-[24px]"
           />

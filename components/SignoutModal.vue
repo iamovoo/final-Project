@@ -1,4 +1,5 @@
 <template>
+<div class="hidden xl:block">
   <div
     class="w-[537px] h-[190px] bg-[#FFFFFF] rounded-[8px] flex flex-col gap-[16px]"
   >
@@ -13,15 +14,35 @@
       <p class=" text-[14px] text-[#667185]">Are you sure you want to sign out?</p>
     </div>
     <div class=" flex pt-[28px] px-[32px] pb-[36px] border-b-2 justify-center items-center gap-[24px]">
-      <div @click=" closeSignoutModal" class=" flex justify-center align-center text-[#2F7DD0] border border-[#ACCBEC] font-semibold text-[16px] DMSans500 h-[40px] w-[224.5px] rounded-[4px]" >Cancel</div>
-      <button class="text-white bg-[#DD524D] font-semibold text-[16px] DMSans500 h-[40px] w-[224.5px] rounded-[4px]">Yes, Sign out</button>
+      <button @click="closeSignoutModal()" class=" text-[#2F7DD0] border border-[#ACCBEC] font-semibold text-[16px] DMSans500 h-[40px] w-[224.5px] rounded-[4px] z-10" >Cancel</button>
+      <button class="text-white bg-[#DD524D] font-semibold text-[16px] DMSans500 h-[40px] w-[224.5px] rounded-[4px] z-10">Yes, Sign out</button>
     </div>
 
   </div>
-    <div class="h-[104px] w-[537px]">
-    
   </div>
+</div>
+<div class="block xl:hidden">
+  <div
+    class="w-[375px] h-[180px] bg-[#FFFFFF] rounded-t-[12px] flex flex-col"
+  >
+  <!-- <div class="h-[86px] w-[537px]  pb-[6px]"> -->
+    <div class="flex flex-col px-[20px] pt-[20px] h-[84px] w-[375px]">
+      <div  class="flex justify-between   h-[36px] w-[335px]">
+        <p class=" text-[20px] text-[#101928] font-medium bricolage">Sign out of your account?</p>
+        <div class=" w-[36px] h-[36px] flex justify-center  font-bold" @click=" closeSignoutModal">
+         x
+        </div>
+      </div>
+      <p class=" text-[14px] text-[#667185]">Are you sure you want to sign out?</p>
+    </div>
+    <div class=" flex py-[28px] px-[20px]  border-b-2 justify-center items-center gap-[24px] h-[96px] w-[375px]">
+      <button @click="closeSignoutModal()" class=" text-[#2F7DD0] border border-[#ACCBEC] font-semibold text-[16px] DMSans500 h-[40px] w-[157.5px] rounded-[4px] z-10" >Cancel</button>
+      <button class="text-white bg-[#DD524D] font-semibold text-[16px] DMSans500 h-[40px] w-[157.5px] rounded-[4px] z-10">Yes, Sign out</button>
+    </div>
+
+  <!-- </div> -->
   </div>
+</div>
 </template>
 <script setup>
 const emit = defineEmits(['closeSignoutModal'])
