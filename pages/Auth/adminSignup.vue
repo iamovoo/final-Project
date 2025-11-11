@@ -1,5 +1,5 @@
 <template>
-  <div class="hidden 2xl:block">
+  <div class="hidden md:block">
     <div class="backgroundLayout">
       <div class="overflow-hidden w-[600px] h-[1024px]">
         <img
@@ -64,6 +64,7 @@
                 <input
                   :type="showPassword ? 'text' : 'password'"
                   required
+                  v-model="password"
                   name=""
                   id=""
                   class="border w-[473px] py-[14px] px-[12px]"
@@ -304,14 +305,16 @@ definePageMeta({
 //     'bg-[#2F7DD0]'
 //   }
 // }
+const baseURL = useRuntimeConfig().public.baseURL
 const detailsSubmitted = ref(false);
 const showPassword = ref(false);
 const email = ref("");
+const password = ref('')
 const emailError = ref("");
 const showPasswordBtn = () => {
   showPassword.value = !showPassword.value;
 };
-const createAccSubmit = () => {
+const createAccSubmit = async () => {
   if (email.value.includes("@")) {
     detailsSubmitted.value = true;
   } else {

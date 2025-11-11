@@ -183,4 +183,9 @@ const togglePassword = () => {
 const toggleConfirmPassword = () => {
   showConfimPassword.value = !showConfimPassword.value;
 };
+
+// const resetPassword = async () =>{
+//   const {data , }
+
+// }
 </script>

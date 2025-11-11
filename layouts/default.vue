@@ -8,6 +8,7 @@
         <div
           class="w-[221px] h-[184px] absolute top-[128px] left-[24px] flex flex-col gap-[10px]"
         >
+        <nuxt-link to="">
           <div
             class="flex w-[221px] h-[40px] rounded-[8px] items-center gap-[10px] active text-center text-[16px] pl-5"
           >
@@ -22,6 +23,8 @@
               <p class="DMSans text-center">Dashboard</p>
             </div>
           </div>
+          </nuxt-link>
+          <nuxt-link to="">
           <div
             class="flex w-[221px] h-[40px] rounded-[8px] items-center gap-[10px] text-center text-[16px] pl-5"
           >
@@ -36,6 +39,8 @@
               <p class="DMSans text-center">Teams</p>
             </div>
           </div>
+          </nuxt-link>
+          <nuxt-link to="">
           <div
             class="flex w-[221px] h-[40px] rounded-[8px] items-center gap-[10px] text-center text-[16px] pl-5"
           >
@@ -46,6 +51,8 @@
               <p class="DMSans text-center">Settings</p>
             </div>
           </div>
+          </nuxt-link>
+          <nuxt-link to="">
           <div
             class="flex w-[221px] h-[40px] rounded-[8px] items-center gap-[10px] text-center text-[16px] pl-5"
           >
@@ -60,6 +67,7 @@
               <p class="DMSans text-center">Help & support</p>
             </div>
           </div>
+          </nuxt-link>
         </div>
         <div class="w-[269px] h-[80px] py-[8px] absolute top-[920px]">
           <div
@@ -98,7 +106,7 @@
           </div>
         </div>
       </div>
-      <div class="h-[1344px]">
+      <!-- <div class="h-[1344px]"> -->
         <div class="w-[1171px] h-[64px] px-[32px] border-b">
           <div class="py-[12px]">
             <div class="w-[1107px] h-[40px] flex justify-between items-center">
@@ -121,7 +129,7 @@
                 />
               </div>
               <div
-                class="w-[40px] h-[40px] overflow-hidden flex items-center"
+                class="w-[40px] h-[40px] overflow-hidden flex items-center justify-center bg-[#F0F2F5] rounded-[20px]"
                 @click="notificationClicked"
               >
                 <img
@@ -133,7 +141,7 @@
             </div>
           </div>
         </div>
-        <div
+        <!-- <div
           class="h-[64px] w-[1171px] py-[16px] px-[32px] flex gap-[20px] border-b items-center"
         >
           <p class="text-[24px] bricolage">Dashboard</p>
@@ -182,8 +190,8 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </div> -->
+      <!-- </div> -->
       <div
         class="absolute top-[56px] left-[301px] z-10 shadow-sm bg-[#FFFFFF]"
         v-if="false"
@@ -204,7 +212,7 @@
         </div>
       </div>
       <div
-        class="absolute top-[160px] left-[301px]"
+        class="absolute top-[65px] left-[301px]"
         @click="isDateClicked = false"
       >
         <slot />
@@ -213,9 +221,9 @@
   </div>
   <div class="block md:hidden">
     <div class="relative">
-      <div class="h-[172px] w-[375px] absolute top-[35px]">
-        <div class="h-[112px] w-[375px]">
-          <div class="flex justify-between items-center">
+      <div class="h-[112px] w-[375px] absolute top-[35px]">
+        <div class="h-[112px] w-[375px] flex flex-col gap-[8px]">
+          <div class="flex justify-between items-center pl-[8px]">
             <div class="px-[24px] py-[8px]">
               <img
                 src="/assets/icons/blue.png"
@@ -246,7 +254,7 @@
           </div>
           <div class="h-[64px] w-[375px] py-[12px] px-[20px] bottom-b-1">
             <div
-              class="w-[335px] h-[40px] flex bg-[#F7F9FC] justify-center items-center py-[10px] px-[12px] gap-[8px] rounded-[8px]"
+              class="w-[335px] h-[40px] flex bg-[#F7F9FC] justify-center items-center py-[10px] px-[12px] gap-[8px] rounded-[8px] ml-[8px]"
             >
               <img
                 src="/assets/icons/search.png"
@@ -263,9 +271,57 @@
             </div>
           </div>
         </div>
-        <div
+        <!-- <div
           class="h-[60px] w-[375px] py-[16px] px-[20px] flex gap-[8px] border-b"
-        ></div>
+        >
+          <div class="gap-[8px] flex justify-center items-center">
+            <h6 class="font-medium text-[20px] bricolage text-[#101928]">
+              Dashboard
+            </h6>
+            <div
+              @click="dateBtnClicked"
+              class="flex justify-center items-center w-[88px] h-[28px] gap-[4px] py-[4px] px-[8px] border border-[#E4E7EC] rounded-[2px]"
+            >
+              <img
+                src="/assets/icons/CalendarBlank.png"
+                alt=""
+                class="w-[12px] h-[12px]"
+              />
+              <p class="text-[#667185] text-[14px] DMSans500">Today</p>
+              <img
+                src="/assets/icons/CaretDown.png"
+                alt=""
+                class="w-[12px] h-[12px]"
+              />
+            </div>
+            <div
+              class="absolute top-[165px] left-[125px] z-10 shadow-md bg-[#FFFFFF]"
+              v-if="isDateClicked"
+            >
+              <div
+                class="w-[200px] h-[200px] border py-[6px] px-[10px] z-10 bg-[#FFFFFF]"
+              >
+                <div class="w-[180px] h-[188px] py-[4px]">
+                  <div class="h-[36px] w-[180px] py-[8px] px-[16px]">
+                    <p class="text-[14px] DMSans400">Today</p>
+                  </div>
+                  <div class="h-[36px] w-[180px] py-[8px] px-[16px]">
+                    <p class="text-[14px] DMSans400">Last 7 Days</p>
+                  </div>
+                  <div class="h-[36px] w-[180px] py-[8px] px-[16px]">
+                    <p class="text-[14px] DMSans400">Last 30 Days</p>
+                  </div>
+                  <div class="h-[36px] w-[180px] py-[8px] px-[16px]">
+                    <p class="text-[14px] DMSans400">Last 3 Month</p>
+                  </div>
+                  <div class="h-[36px] w-[180px] py-[8px] px-[16px]">
+                    <p class="text-[14px] DMSans400">Last 12 Month</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
       </div>
       <div
         class="absolute top-[140px] left-[20px] z-10 shadow-sm bg-[#FFFFFF]"
@@ -287,8 +343,8 @@
         </div>
       </div>
       <div
-        class="absolute top-[250px] left-[20px]"
-       
+        class="absolute top-[136px] left-[35px]"
+        @click="isDateClicked = false"
       >
         <slot />
       </div>
@@ -299,7 +355,10 @@
 import Notification from "~/components/Notification.vue";
 
 const isSignOutClicked = ref(false);
-
+// const isDateClicked = ref(false);
+// const dateBtnClicked = () => {
+//   isDateClicked.value = !isDateClicked.value;
+// };
 const notificationShow = ref(false);
 const notificationClicked = () => {
   notificationShow.value = true;

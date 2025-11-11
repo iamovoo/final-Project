@@ -34,6 +34,7 @@
                   type="email"
                   class="border w-[400px] p-[16px] rounded-[6px] text-sm h-[56px]"
                   placeholder="ovo@company.com"
+                  v-model="email"
                 />
               </div>
 
@@ -47,12 +48,13 @@
                     :type="showPassword ? 'text' : 'password'"
                     class="border w-[400px] p-[16px] rounded-[6px] text-sm h-[56px]"
                     placeholder="Enter Password"
+                    v-model="password"
                   />
 
                   <button
                     type="button"
                     @click="togglePassword"
-                    class="absolute right-14 top-1/3 text-gray-500 hover:text-gray-800"
+                    class="absolute right-4 top-1/3 text-gray-500 hover:text-gray-800"
                   >
                     <img
                       v-if="showPassword === true"
@@ -79,6 +81,7 @@
 
               <button
                 class="font-semibold bg-[#2F7DD0] w-[400px] h-[40px] text-center text-white rounded-[4px]"
+                @click="login"
               >
                 Continue to Zenly
               </button>
@@ -90,23 +93,16 @@
   </div>
 
   <div class="block md:hidden">
-    <div
-    class="w-lvh min-h-screen bg-white flex flex-col"
-    >
-    <div class="w-[375px] h-[504px] flex flex-col items-center justify-center gap-[32px]">
-      <div class=" flex items-center justify-center mt-[20px]">
-        <img
-          src="/assets/icons/blue.png"
-          alt=""
-          class="w-[83px] h-[24px]"
-        />
-      </div>
-        <div
-          class="bg-white w-[375px] h-[448px] px-[20px] gap-[36px]"
-        >
-          <div class="w-[335px] h-[356px] flex flex-col gap-[32px] ">
-            <div class=" h-[56px] flex gap-[4px] flex-col">
-            
+    <div class="w-lvh min-h-screen bg-white flex flex-col">
+      <div
+        class="w-[375px] h-[504px] flex flex-col items-center justify-center gap-[32px]"
+      >
+        <div class="flex items-center justify-center mt-[20px]">
+          <img src="/assets/icons/blue.png" alt="" class="w-[83px] h-[24px]" />
+        </div>
+        <div class="bg-white w-[375px] h-[448px] px-[20px] gap-[36px]">
+          <div class="w-[335px] h-[356px] flex flex-col gap-[32px]">
+            <div class="h-[56px] flex gap-[4px] flex-col">
               <h4 class="text-center font-semibold text-[20px] bricolage">
                 Login
               </h4>
@@ -117,12 +113,13 @@
               </div>
             </div>
             <div class="w-[335px] h-[356px] flex flex-col gap-[32px]">
-              <div class=" w-[335px] h-[80px] flex gap-[4px] flex-col">
-                <p class="text-[14px] font-semibold ">Work Email</p>
+              <div class="w-[335px] h-[80px] flex gap-[4px] flex-col">
+                <p class="text-[14px] font-semibold">Work Email</p>
                 <input
                   type="email"
-                  class="border w-[335px]  p-[16px] rounded-[6px] text-sm h-[56px]"
+                  class="border w-[335px] p-[16px] rounded-[6px] text-sm h-[56px]"
                   placeholder="ovo@company.com"
+                  v-model="email"
                 />
               </div>
 
@@ -136,6 +133,7 @@
                     :type="showPassword ? 'text' : 'password'"
                     class="border w-[335px] p-[16px] rounded-[6px] text-sm h-[56px]"
                     placeholder="Enter Password"
+                    v-model="password"
                   />
 
                   <button
@@ -162,12 +160,16 @@
               </div>
 
               <div class="flex gap-[15px] h-[24px]">
-                <input class="w-[24px] h-[24px] rounded-[4px]" type="checkbox" />
+                <input
+                  class="w-[24px] h-[24px] rounded-[4px]"
+                  type="checkbox"
+                />
                 <p class="font-[500] text-[14px]">Remember me for 30 days</p>
               </div>
 
               <button
                 class="font-semibold bg-[#2F7DD0] w-[335px] h-[40px] text-center text-white rounded-[4px]"
+                @click="login"
               >
                 Continue to Zenly
               </button>
@@ -182,8 +184,41 @@
 definePageMeta({
   layout: false,
 });
+const baseURL = useRuntimeConfig().public.baseURL;
+const password = ref("");
+const email = ref("");
 const showPassword = ref(false);
 const togglePassword = () => {
   showPassword.value = !showPassword.value;
+};
+const user = ref("");
+const userDetails = useState("userDetails", () => "");
+const login = async () => {
+  const { data, error } = await useFetch(`${baseURL}/auth/sign-in`, {
+    method: "POST",
+    body: {
+      email: email.value,
+      password: password.value,
+    },
+  });
+  if (data.value) {
+    console.log(data.value);
+    user.value = data.value;
+    userDetails.value = user.value;
+    localStorage.setItem("userDetails", JSON.stringify(userDetails.value));
+    console.log(user.value);
+
+    const team = data.value.user.team;
+
+    if (data.value.user.role === "admin") {
+      navigateTo("/admin");
+    } 
+    else if ( data.value.user.role === "member" && data.value.user.team === team) {
+      navigateTo(`/${team}/member`);
+    } 
+    else {
+      navigateTo(`${team}/teamLead`);
+    }
+  } else console.error(error.value);
 };
 </script>

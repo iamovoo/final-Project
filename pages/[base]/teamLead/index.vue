@@ -1,9 +1,57 @@
 <template>
   <div class="hidden md:block">
+    <div
+      class="h-[64px] w-[1171px] py-[16px] flex gap-[20px] border-b items-center mb-[30px]"
+    >
+      <p class="text-[24px] bricolage">Dashboard</p>
+      <div
+        @click="dateBtnClicked"
+        class="py-[4px] px-[8px] w-[88px] h-[28px] rounded-[2px] flex items-center gap-[4px] text-[#F9FAFB] border border-[#E4E7EC]"
+      >
+        <img
+          src="/assets/icons/CalendarBlank.png"
+          alt=""
+          class="w-[12px] h-[12px]"
+        />
+        <p class="border-none DMSans500 text-[14px] text-[#667185]">Today</p>
+        <img
+          src="/assets/icons/CaretDown.png"
+          alt=""
+          class="w-[12px] h-[12px]"
+        />
+      </div>
+
+      <div
+        class="absolute top-[50px] left-[138px] z-10 shadow-md bg-[#FFFFFF] rounded-[8px]"
+        v-if="isDateClicked"
+      >
+        <div
+          class="w-[240px] h-[200px] border py-[6px] px-[10px] z-10 bg-[#FFFFFF] rounded-[8px]"
+        >
+          <div class="w-[220px] h-[188px] py-[4px]">
+            <div class="h-[36px] w-[240px] py-[8px] px-[16px]">
+              <p class="text-[14px] DMSans400">Today</p>
+            </div>
+            <div class="h-[36px] w-[240px] py-[8px] px-[16px]">
+              <p class="text-[14px] DMSans400">Last 7 Days</p>
+            </div>
+            <div class="h-[36px] w-[240px] py-[8px] px-[16px]">
+              <p class="text-[14px] DMSans400">Last 30 Days</p>
+            </div>
+            <div class="h-[36px] w-[240px] py-[8px] px-[16px]">
+              <p class="text-[14px] DMSans400">Last 3 Month</p>
+            </div>
+            <div class="h-[36px] w-[240px] py-[8px] px-[16px]">
+              <p class="text-[14px] DMSans400">Last 12 Month</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="w-[1107px] h-[1139px] flex flex-col gap-[24px]">
       <div class="w-[1107px] h-[176px] flex flex-col gap-[16px]">
         <div class="w-[1107px] h-[28px]">
-          <p class="text-[20px] bricolage">Design team statistics</p>
+          <p class="text-[20px] bricolage">{{id}} team statistics</p>
         </div>
         <div class="flex justify-between">
           <div
@@ -487,6 +535,55 @@
     </div>
   </div>
   <div class="block md:hidden">
+    <div class="h-[60px] w-[375px] py-[16px] flex gap-[8px] border-b mb-[30px]">
+      <div class="gap-[8px] flex justify-center items-center">
+        <h6 class="font-medium text-[20px] bricolage text-[#101928]">
+          Dashboard
+        </h6>
+        <div
+          @click="dateBtnClicked"
+          class="flex justify-center items-center w-[88px] h-[28px] gap-[4px] py-[4px] px-[8px] border border-[#E4E7EC] rounded-[2px]"
+        >
+          <img
+            src="/assets/icons/CalendarBlank.png"
+            alt=""
+            class="w-[12px] h-[12px]"
+          />
+          <p class="text-[#667185] text-[14px] DMSans500">Today</p>
+          <img
+            src="/assets/icons/CaretDown.png"
+            alt=""
+            class="w-[12px] h-[12px]"
+          />
+        </div>
+        <div
+          class="absolute top-[51px] left-[108px] z-10 shadow-md bg-[#FFFFFF]"
+          v-if="isDateClicked"
+        >
+          <div
+            class="w-[200px] h-[200px] border py-[6px] px-[10px] z-10 bg-[#FFFFFF] rounded-[8px]"
+          >
+            <div class="w-[180px] h-[188px] py-[4px]">
+              <div class="h-[36px] w-[180px] py-[8px] px-[16px]">
+                <p class="text-[14px] DMSans400">Today</p>
+              </div>
+              <div class="h-[36px] w-[180px] py-[8px] px-[16px]">
+                <p class="text-[14px] DMSans400">Last 7 Days</p>
+              </div>
+              <div class="h-[36px] w-[180px] py-[8px] px-[16px]">
+                <p class="text-[14px] DMSans400">Last 30 Days</p>
+              </div>
+              <div class="h-[36px] w-[180px] py-[8px] px-[16px]">
+                <p class="text-[14px] DMSans400">Last 3 Month</p>
+              </div>
+              <div class="h-[36px] w-[180px] py-[8px] px-[16px]">
+                <p class="text-[14px] DMSans400">Last 12 Month</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="h-[3128px] w-[335px] flex-col gap-[24px]">
       <section class="h-[640px] w-[335px] flex flex-col gap-[24px]">
         <p class="text-[16px] text-[#101928]">Design team statistics</p>
@@ -580,7 +677,7 @@
           class="w-[335px] h-[408px] flex flex-col justify-between border pb-[24px]"
         >
           <div
-            class="h-[296px] w-[348px] p-[24px] flex flex-col items-center gap-[24px]"
+            class="h-[292px] w-[335px] p-[24px] flex flex-col justify-center items-center gap-[24px]"
           >
             <div class="h-[20px] w-[300px] text-[16px] DMSans500">
               Burnout Report
@@ -719,254 +816,235 @@
           >
             Team task status
           </div>
-            <div class="w-[295px] h-[341px] flex flex-col gap-[16px]">
-              <div
-                class="w-[295px] h-[56px] py-[16px]"
-                :class="isCaretUp ? 'border-b' : 'border'"
-              >
-                <div class="w-[295px] h-[24px] flex justify-between px-[16px]">
-                  <div class="flex gap-[12px]">
-                    <div
-                      class="bg-[#D7E6F6] rounded-full h-[24px] w-[24px] flex justify-center items-center"
-                    >
-                      O
-                    </div>
-                    <div>Olamide Akintan</div>
-                  </div>
+          <div class="w-[295px] h-[341px] flex flex-col gap-[16px]">
+            <div
+              class="w-[295px] h-[56px] py-[16px]"
+              :class="isCaretUp ? 'border-b' : 'border'"
+            >
+              <div class="w-[295px] h-[24px] flex justify-between px-[16px]">
+                <div class="flex gap-[12px]">
                   <div
-                    class="h-[20px] w-[20px]"
-                    @click="isCaretUpClicked('Olamide Akintan')"
+                    class="bg-[#D7E6F6] rounded-full h-[24px] w-[24px] flex justify-center items-center"
                   >
-                    <img
-                      v-if="isCaretUp === false"
-                      src="/assets/icons/CaretUp.png"
-                      alt=""
-                      class="h-[20px] w-[20px]"
-                    />
-                    <img
-                      v-else
-                      src="/assets/icons/CaretDown.png"
-                      alt=""
-                      class="h-[20px] w-[20px]"
-                    />
+                    O
                   </div>
+                  <div>Olamide Akintan</div>
                 </div>
-              </div>
-              <div v-if="isCaretUp">
                 <div
-                  class="h-[108px] w-[295px] px-[16px] flex flex-col gap-[12px]"
+                  class="h-[20px] w-[20px]"
+                  @click="isCaretUpClicked('Olamide Akintan')"
                 >
-                  <div
-                    class="flex justify-between items-center h-[20px] w-[284px]"
-                  >
-                    <div class="text-[#667185] text-[14px]">Task</div>
-                    <div
-                      class="text-[#1D2739] font-medium text-[14px] DMSans500"
-                    >
-                      Design left navigation
-                    </div>
-                  </div>
-                  <div
-                    class="flex justify-between items-center h-[20px] w-[284px]"
-                  >
-                    <div class="text-[#667185] text-[14px]">
-                      Difficulty level
-                    </div>
-                    <div
-                      class="text-[#1D2739] font-medium text-[14px] DMSans500"
-                    >
-                      02
-                    </div>
-                  </div>
-                  <div
-                    class="flex justify-between items-center h-[20px] w-[284px]"
-                  >
-                    <div class="text-[#667185] text-[14px]">Status</div>
-                    <div
-                      class="text-[#04802E] font-medium text-[14px] DMSans500 bg-[#ECFDF3]"
-                    >
-                      in progress
-                    </div>
-                  </div>
-                  <div
-                    class="flex justify-between items-center h-[20px] w-[284px]"
-                  >
-                    <div class="text-[#667185] text-[14px]">Burnout points</div>
-                    <div
-                      class="text-[#1D2739] font-medium text-[14px] DMSans500"
-                    >
-                      4
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="w-[295px] h-[56px] py-[16px]"
-                :class="isCaretUp1 ? 'border-b' : 'border'"
-              >
-                <div class="w-[295px] h-[24px] flex justify-between px-[16px]">
-                  <div class="flex gap-[12px]">
-                    <div
-                      class="bg-[#D7E6F6] rounded-full h-[24px] w-[24px] flex justify-center items-center"
-                    >
-                      A
-                    </div>
-                    <div>Temitope Ige</div>
-                  </div>
-                  <div
+                  <img
+                    v-if="isCaretUp === false"
+                    src="/assets/icons/CaretUp.png"
+                    alt=""
                     class="h-[20px] w-[20px]"
-                    @click="isCaretUpClicked('Temitope Ige')"
-                  >
-                    <img
-                      v-if="isCaretUp1 === false"
-                      src="/assets/icons/CaretUp.png"
-                      alt=""
-                      class="h-[20px] w-[20px]"
-                    />
-                    <img
-                      v-else
-                      src="/assets/icons/CaretDown.png"
-                      alt=""
-                      class="h-[20px] w-[20px]"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div v-if="isCaretUp1">
-                <div
-                  class="h-[108px] w-[295px] px-[16px] flex flex-col gap-[12px]"
-                >
-                  <div
-                    class="flex justify-between items-center h-[20px] w-[284px]"
-                  >
-                    <div class="text-[#667185] text-[14px]">Task</div>
-                    <div
-                      class="text-[#1D2739] font-medium text-[14px] DMSans500"
-                    >
-                      Design left navigation
-                    </div>
-                  </div>
-                  <div
-                    class="flex justify-between items-center h-[20px] w-[284px]"
-                  >
-                    <div class="text-[#667185] text-[14px]">
-                      Difficulty level
-                    </div>
-                    <div
-                      class="text-[#1D2739] font-medium text-[14px] DMSans500"
-                    >
-                      02
-                    </div>
-                  </div>
-                  <div
-                    class="flex justify-between items-center h-[20px] w-[284px]"
-                  >
-                    <div class="text-[#667185] text-[14px]">Status</div>
-                    <div
-                      class="text-[#04802E] font-medium text-[14px] DMSans500 bg-[#ECFDF3]"
-                    >
-                      in progress
-                    </div>
-                  </div>
-                  <div
-                    class="flex justify-between items-center h-[20px] w-[284px]"
-                  >
-                    <div class="text-[#667185] text-[14px]">Burnout points</div>
-                    <div
-                      class="text-[#1D2739] font-medium text-[14px] DMSans500"
-                    >
-                      4
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="w-[295px] h-[56px] py-[16px]"
-                :class="isCaretUp2 ? 'border-b' : 'border'"
-              >
-                <div class="w-[295px] h-[24px] flex justify-between px-[16px]">
-                  <div class="flex gap-[12px]">
-                    <div
-                      class="bg-[#D7E6F6] rounded-full h-[24px] w-[24px] flex justify-center items-center"
-                    >
-                      M
-                    </div>
-                    <div>Chinwe Okeke</div>
-                  </div>
-                  <div
+                  />
+                  <img
+                    v-else
+                    src="/assets/icons/CaretDown.png"
+                    alt=""
                     class="h-[20px] w-[20px]"
-                    @click="isCaretUpClicked('Chinwe Okeke')"
-                  >
-                    <img
-                      v-if="isCaretUp2 === false"
-                      src="/assets/icons/CaretUp.png"
-                      alt=""
-                      class="h-[20px] w-[20px]"
-                    />
-                    <img
-                      v-else
-                      src="/assets/icons/CaretDown.png"
-                      alt=""
-                      class="h-[20px] w-[20px]"
-                    />
-                  </div>
+                  />
                 </div>
               </div>
-              <div v-if="isCaretUp2">
+            </div>
+            <div v-if="isCaretUp">
+              <div
+                class="h-[108px] w-[295px] px-[16px] flex flex-col gap-[12px]"
+              >
                 <div
-                  class="h-[108px] w-[295px] px-[16px] flex flex-col gap-[12px]"
+                  class="flex justify-between items-center h-[20px] w-[284px]"
                 >
-                  <div
-                    class="flex justify-between items-center h-[20px] w-[284px]"
-                  >
-                    <div class="text-[#667185] text-[14px]">Task</div>
-                    <div
-                      class="text-[#1D2739] font-medium text-[14px] DMSans500"
-                    >
-                      Design left navigation
-                    </div>
+                  <div class="text-[#667185] text-[14px]">Task</div>
+                  <div class="text-[#1D2739] font-medium text-[14px] DMSans500">
+                    Design left navigation
                   </div>
-                  <div
-                    class="flex justify-between items-center h-[20px] w-[284px]"
-                  >
-                    <div class="text-[#667185] text-[14px]">
-                      Difficulty level
-                    </div>
-                    <div
-                      class="text-[#1D2739] font-medium text-[14px] DMSans500"
-                    >
-                      02
-                    </div>
+                </div>
+                <div
+                  class="flex justify-between items-center h-[20px] w-[284px]"
+                >
+                  <div class="text-[#667185] text-[14px]">Difficulty level</div>
+                  <div class="text-[#1D2739] font-medium text-[14px] DMSans500">
+                    02
                   </div>
+                </div>
+                <div
+                  class="flex justify-between items-center h-[20px] w-[284px]"
+                >
+                  <div class="text-[#667185] text-[14px]">Status</div>
                   <div
-                    class="flex justify-between items-center h-[20px] w-[284px]"
+                    class="text-[#04802E] font-medium text-[14px] DMSans500 bg-[#ECFDF3]"
                   >
-                    <div class="text-[#667185] text-[14px]">Status</div>
-                    <div
-                      class="text-[#04802E] font-medium text-[14px] DMSans500 bg-[#ECFDF3]"
-                    >
-                      in progress
-                    </div>
+                    in progress
                   </div>
-                  <div
-                    class="flex justify-between items-center h-[20px] w-[284px]"
-                  >
-                    <div class="text-[#667185] text-[14px]">Burnout points</div>
-                    <div
-                      class="text-[#1D2739] font-medium text-[14px] DMSans500"
-                    >
-                      4
-                    </div>
+                </div>
+                <div
+                  class="flex justify-between items-center h-[20px] w-[284px]"
+                >
+                  <div class="text-[#667185] text-[14px]">Burnout points</div>
+                  <div class="text-[#1D2739] font-medium text-[14px] DMSans500">
+                    4
                   </div>
                 </div>
               </div>
             </div>
+            <div
+              class="w-[295px] h-[56px] py-[16px]"
+              :class="isCaretUp1 ? 'border-b' : 'border'"
+            >
+              <div class="w-[295px] h-[24px] flex justify-between px-[16px]">
+                <div class="flex gap-[12px]">
+                  <div
+                    class="bg-[#D7E6F6] rounded-full h-[24px] w-[24px] flex justify-center items-center"
+                  >
+                    A
+                  </div>
+                  <div>Temitope Ige</div>
+                </div>
+                <div
+                  class="h-[20px] w-[20px]"
+                  @click="isCaretUpClicked('Temitope Ige')"
+                >
+                  <img
+                    v-if="isCaretUp1 === false"
+                    src="/assets/icons/CaretUp.png"
+                    alt=""
+                    class="h-[20px] w-[20px]"
+                  />
+                  <img
+                    v-else
+                    src="/assets/icons/CaretDown.png"
+                    alt=""
+                    class="h-[20px] w-[20px]"
+                  />
+                </div>
+              </div>
+            </div>
+            <div v-if="isCaretUp1">
+              <div
+                class="h-[108px] w-[295px] px-[16px] flex flex-col gap-[12px]"
+              >
+                <div
+                  class="flex justify-between items-center h-[20px] w-[284px]"
+                >
+                  <div class="text-[#667185] text-[14px]">Task</div>
+                  <div class="text-[#1D2739] font-medium text-[14px] DMSans500">
+                    Design left navigation
+                  </div>
+                </div>
+                <div
+                  class="flex justify-between items-center h-[20px] w-[284px]"
+                >
+                  <div class="text-[#667185] text-[14px]">Difficulty level</div>
+                  <div class="text-[#1D2739] font-medium text-[14px] DMSans500">
+                    02
+                  </div>
+                </div>
+                <div
+                  class="flex justify-between items-center h-[20px] w-[284px]"
+                >
+                  <div class="text-[#667185] text-[14px]">Status</div>
+                  <div
+                    class="text-[#04802E] font-medium text-[14px] DMSans500 bg-[#ECFDF3]"
+                  >
+                    in progress
+                  </div>
+                </div>
+                <div
+                  class="flex justify-between items-center h-[20px] w-[284px]"
+                >
+                  <div class="text-[#667185] text-[14px]">Burnout points</div>
+                  <div class="text-[#1D2739] font-medium text-[14px] DMSans500">
+                    4
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="w-[295px] h-[56px] py-[16px]"
+              :class="isCaretUp2 ? 'border-b' : 'border'"
+            >
+              <div class="w-[295px] h-[24px] flex justify-between px-[16px]">
+                <div class="flex gap-[12px]">
+                  <div
+                    class="bg-[#D7E6F6] rounded-full h-[24px] w-[24px] flex justify-center items-center"
+                  >
+                    M
+                  </div>
+                  <div>Chinwe Okeke</div>
+                </div>
+                <div
+                  class="h-[20px] w-[20px]"
+                  @click="isCaretUpClicked('Chinwe Okeke')"
+                >
+                  <img
+                    v-if="isCaretUp2 === false"
+                    src="/assets/icons/CaretUp.png"
+                    alt=""
+                    class="h-[20px] w-[20px]"
+                  />
+                  <img
+                    v-else
+                    src="/assets/icons/CaretDown.png"
+                    alt=""
+                    class="h-[20px] w-[20px]"
+                  />
+                </div>
+              </div>
+            </div>
+            <div v-if="isCaretUp2">
+              <div
+                class="h-[108px] w-[295px] px-[16px] flex flex-col gap-[12px]"
+              >
+                <div
+                  class="flex justify-between items-center h-[20px] w-[284px]"
+                >
+                  <div class="text-[#667185] text-[14px]">Task</div>
+                  <div class="text-[#1D2739] font-medium text-[14px] DMSans500">
+                    Design left navigation
+                  </div>
+                </div>
+                <div
+                  class="flex justify-between items-center h-[20px] w-[284px]"
+                >
+                  <div class="text-[#667185] text-[14px]">Difficulty level</div>
+                  <div class="text-[#1D2739] font-medium text-[14px] DMSans500">
+                    02
+                  </div>
+                </div>
+                <div
+                  class="flex justify-between items-center h-[20px] w-[284px]"
+                >
+                  <div class="text-[#667185] text-[14px]">Status</div>
+                  <div
+                    class="text-[#04802E] font-medium text-[14px] DMSans500 bg-[#ECFDF3]"
+                  >
+                    in progress
+                  </div>
+                </div>
+                <div
+                  class="flex justify-between items-center h-[20px] w-[284px]"
+                >
+                  <div class="text-[#667185] text-[14px]">Burnout points</div>
+                  <div class="text-[#1D2739] font-medium text-[14px] DMSans500">
+                    4
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
+      <div v-if="showBurnOutModal">
+        <AlmostBurnoutModal @closeModal="closeModal" />
+      </div>
+      <BurnOutStats />
     </div>
   </div>
 </template>
 <script setup>
+const {id} = useRoute().params
 const isCaretUp = ref(false);
 const isCaretUp1 = ref(false);
 const isCaretUp2 = ref(false);
@@ -995,4 +1073,9 @@ const showBurnOut = () => {
 const closeModal = (value) => {
   showBurnOutModal.value = value;
 };
+const isDateClicked = ref(false);
+const dateBtnClicked = () => {
+  isDateClicked.value = !isDateClicked.value;
+};
+const baseURL = useRuntimeConfig().public.baseURL
 </script>
