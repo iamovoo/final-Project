@@ -8,65 +8,81 @@
         <div
           class="w-[221px] h-[184px] absolute top-[128px] left-[24px] flex flex-col gap-[10px]"
         >
-        <nuxt-link to="">
-          <div
-            class="flex w-[221px] h-[40px] rounded-[8px] items-center gap-[10px] active text-center text-[16px] pl-5"
-          >
-            <div class="w-[20px] overflow-hidden">
-              <img
-                src="/assets/icons/ChartBar.png"
-                alt=""
-                class="object-contain"
-              />
+          <nuxt-link :to="team ? `/${team}/${role}` : `/${role}`">
+            <div
+              @click="clickedMenu('Dashboard')"
+              :class="isActive('Dashboard')"
+              class="flex w-[221px] h-[40px] rounded-[8px] items-center gap-[10px] text-center text-[16px] pl-5"
+            >
+              <div class="w-[20px] overflow-hidden">
+                <img
+                  src="/assets/icons/ChartBar.png"
+                  alt=""
+                  class="object-contain"
+                />
+              </div>
+              <div class="w-[82px] h-[24px]">
+                <p class="DMSans text-center">Dashboard</p>
+              </div>
             </div>
-            <div class="w-[82px] h-[24px]">
-              <p class="DMSans text-center">Dashboard</p>
-            </div>
-          </div>
           </nuxt-link>
-          <nuxt-link to="">
-          <div
-            class="flex w-[221px] h-[40px] rounded-[8px] items-center gap-[10px] text-center text-[16px] pl-5"
-          >
-            <div class="w-[20px] overflow-hidden">
-              <img
-                src="/assets/icons/Users.png"
-                alt=""
-                class="object-contain"
-              />
+          <nuxt-link :to="team ? `/${team}/${role}/teams` : `/${role}/teams`">
+            <div
+              @click="clickedMenu('teams')"
+              :class="isActive('teams')"
+              class="flex w-[221px] h-[40px] rounded-[8px] items-center gap-[10px] text-center text-[16px] pl-5"
+            >
+              <div class="w-[20px] overflow-hidden">
+                <img
+                  src="/assets/icons/Users.png"
+                  alt=""
+                  class="object-contain"
+                />
+              </div>
+              <div class="w-[49px] h-[24px]">
+                <p class="DMSans text-center">Teams</p>
+              </div>
             </div>
-            <div class="w-[49px] h-[24px]">
-              <p class="DMSans text-center">Teams</p>
-            </div>
-          </div>
           </nuxt-link>
-          <nuxt-link to="">
-          <div
-            class="flex w-[221px] h-[40px] rounded-[8px] items-center gap-[10px] text-center text-[16px] pl-5"
+          <nuxt-link
+            :to="team ? `/${team}/${role}/teams` : `/${role}/settings`"
           >
-            <div class="w-[20px] overflow-hidden">
-              <img src="/assets/icons/Gear.png" alt="" class="object-contain" />
+            <div
+              @click="clickedMenu('Settings')"
+              :class="isActive('Settings')"
+              class="flex w-[221px] h-[40px] rounded-[8px] items-center gap-[10px] text-center text-[16px] pl-5"
+            >
+              <div class="w-[20px] overflow-hidden">
+                <img
+                  src="/assets/icons/Gear.png"
+                  alt=""
+                  class="object-contain"
+                />
+              </div>
+              <div class="w-[63px] h-[24px]">
+                <p class="DMSans text-center">Settings</p>
+              </div>
             </div>
-            <div class="w-[63px] h-[24px]">
-              <p class="DMSans text-center">Settings</p>
-            </div>
-          </div>
           </nuxt-link>
-          <nuxt-link to="">
-          <div
-            class="flex w-[221px] h-[40px] rounded-[8px] items-center gap-[10px] text-center text-[16px] pl-5"
+          <nuxt-link
+            :to="team ? `/${team}/${role}/teams` : `/${role}/HelpAndSupport`"
           >
-            <div class="w-[20px] overflow-hidden">
-              <img
-                src="/assets/icons/Question.png"
-                alt=""
-                class="object-contain"
-              />
+            <div
+              @click="clickedMenu('Help & support')"
+              :class="isActive('Help & support')"
+              class="flex w-[221px] h-[40px] rounded-[8px] items-center gap-[10px] text-center text-[16px] pl-5"
+            >
+              <div class="w-[20px] overflow-hidden">
+                <img
+                  src="/assets/icons/Question.png"
+                  alt=""
+                  class="object-contain"
+                />
+              </div>
+              <div class="w-[115px] h-[24px]">
+                <p class="DMSans text-center">Help & support</p>
+              </div>
             </div>
-            <div class="w-[115px] h-[24px]">
-              <p class="DMSans text-center">Help & support</p>
-            </div>
-          </div>
           </nuxt-link>
         </div>
         <div class="w-[269px] h-[80px] py-[8px] absolute top-[920px]">
@@ -107,41 +123,41 @@
         </div>
       </div>
       <!-- <div class="h-[1344px]"> -->
-        <div class="w-[1171px] h-[64px] px-[32px] border-b">
-          <div class="py-[12px]">
-            <div class="w-[1107px] h-[40px] flex justify-between items-center">
-              <div
-                class="bg-[#F7F9FC] h-[40px] w-[629px] py-[10px] px-[12px] flex items-center gap-[8px]"
-              >
-                <div class="w-[20px] h-[20px]">
-                  <img
-                    src="/assets/icons/search.png"
-                    alt=""
-                    class="object-contain"
-                  />
-                </div>
-                <input
-                  type="search"
-                  name=""
-                  id=""
-                  placeholder="Search here ..."
-                  class="bg-[#F7F9FC] w-[629px] border-[#F7F9FC] focus:outline-none"
-                />
-              </div>
-              <div
-                class="w-[40px] h-[40px] overflow-hidden flex items-center justify-center bg-[#F0F2F5] rounded-[20px]"
-                @click="notificationClicked"
-              >
+      <div class="w-[1171px] h-[64px] px-[32px] border-b">
+        <div class="py-[12px]">
+          <div class="w-[1107px] h-[40px] flex justify-between items-center">
+            <div
+              class="bg-[#F7F9FC] h-[40px] w-[629px] py-[10px] px-[12px] flex items-center gap-[8px]"
+            >
+              <div class="w-[20px] h-[20px]">
                 <img
-                  src="/assets/icons/Notification bell + badge.png"
+                  src="/assets/icons/search.png"
                   alt=""
                   class="object-contain"
                 />
               </div>
+              <input
+                type="search"
+                name=""
+                id=""
+                placeholder="Search here ..."
+                class="bg-[#F7F9FC] w-[629px] border-[#F7F9FC] focus:outline-none"
+              />
+            </div>
+            <div
+              class="w-[40px] h-[40px] overflow-hidden flex items-center justify-center bg-[#F0F2F5] rounded-[20px]"
+              @click="notificationClicked"
+            >
+              <img
+                src="/assets/icons/Notification bell + badge.png"
+                alt=""
+                class="object-contain"
+              />
             </div>
           </div>
         </div>
-        <!-- <div
+      </div>
+      <!-- <div
           class="h-[64px] w-[1171px] py-[16px] px-[32px] flex gap-[20px] border-b items-center"
         >
           <p class="text-[24px] bricolage">Dashboard</p>
@@ -204,9 +220,14 @@
       >
         <Notification @closeNotification="closeNotification" />
       </div>
+      <div
+        class="fixed top-0 bottom-0 left-0 right-0 bg-[#00000040] z-10 flex justify-center items-center"
+      >
+        <NotificationExpandModal/>
+      </div>
       <div v-if="isSignOutClicked">
         <div
-          class="fixed top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10 flex justify-center items-center"
+          class="fixed top-0 bottom-0 left-0 right-0 bg-[#00000040] z-10 flex justify-center items-center"
         >
           <SignoutModal @closeSignoutModal="closeSignoutModal" />
         </div>
@@ -353,6 +374,7 @@
 </template>
 <script setup>
 import Notification from "~/components/Notification.vue";
+import NotificationExpandModal from "~/pages/[base]/teamLead/NotificationExpandModal.vue";
 
 const isSignOutClicked = ref(false);
 // const isDateClicked = ref(false);
@@ -372,13 +394,26 @@ const closeSignoutModal = (value) => {
 const signOutClicked = () => {
   isSignOutClicked.value = true;
 };
+const userTeam = useCookie("userTeam");
+console.log(userTeam.value);
+const team = ref(userTeam.value[0]);
+const role = ref(userTeam.value[1]);
+console.log(role.value, team.value);
+const activeTab = ref("Dashboard");
+const clickedMenu = (name) => {
+  activeTab.value = name;
+  console.log(name, activeTab.value);
+};
+const isActive = (name) => {
+  if (name === activeTab.value) return "bg-[#d7e6f6]";
+};
 </script>
 <style>
 .layout {
   display: grid;
   grid-template-columns: 269px 1fr;
 }
-.active {
+/* .active {
   background-color: #d7e6f6;
-}
+} */
 </style>

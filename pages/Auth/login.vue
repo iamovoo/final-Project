@@ -193,6 +193,7 @@ const togglePassword = () => {
 };
 const user = ref("");
 const userDetails = useState("userDetails", () => "");
+const userTeam = useCookie('userTeam',{default:()=>[]})
 const login = async () => {
   const { data, error } = await useFetch(`${baseURL}/auth/sign-in`, {
     method: "POST",
@@ -209,7 +210,7 @@ const login = async () => {
     console.log(user.value);
 
     const team = data.value.user.team;
-
+     userTeam.value = [data.value.user.team , data.value.user.role ]
     if (data.value.user.role === "admin") {
       navigateTo("/admin");
     } 
