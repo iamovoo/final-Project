@@ -218,12 +218,16 @@
         class="absolute top-[60px] left-[948px] z-10 shadow-sm bg-[#FFFFFF]"
         v-if="notificationShow"
       >
-        <Notification @closeNotification="closeNotification" />
+        <Notification
+          @closeNotification="closeNotification"
+          @showAllNotifiction="showAllNotifiction"
+        />
       </div>
       <div
-        class="fixed top-0 bottom-0 left-0 right-0 bg-[#00000040] z-10 flex justify-center items-center"
+        v-if="showAllNotifictionBtnClicked"
+        class="fixed top-0 bottom-0 left-0 right-0 bg-[#00000040] z-10 flex justify-center items-center sm:items-center"
       >
-        <NotificationExpandModal/>
+        <NotificationExpandModal @closeNotificationExpandModal="closeNotificationExpandModal" />
       </div>
       <div v-if="isSignOutClicked">
         <div
@@ -374,14 +378,17 @@
 </template>
 <script setup>
 import Notification from "~/components/Notification.vue";
-import NotificationExpandModal from "~/pages/[base]/teamLead/NotificationExpandModal.vue";
-
+import NotificationExpandModal from "~/components/NotificationExpandModal.vue";
+const showAllNotifictionBtnClicked = ref(false);
+const showAllNotifiction = (value) => {
+  showAllNotifictionBtnClicked.value = value;
+  notificationShow.value = false;
+};
 const isSignOutClicked = ref(false);
-// const isDateClicked = ref(false);
-// const dateBtnClicked = () => {
-//   isDateClicked.value = !isDateClicked.value;
-// };
 const notificationShow = ref(false);
+const closeNotificationExpandModal = (value)=>{
+showAllNotifictionBtnClicked.value = value
+}
 const notificationClicked = () => {
   notificationShow.value = true;
 };

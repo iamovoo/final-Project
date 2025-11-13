@@ -61,19 +61,22 @@
         >
           Mark all as read
         </button>
-                <button
+        <button
+        @click="showAllNotifiction"
           class="w-[186px] h-[40px] flex items-center justify-center bg-[#2F7DD0] font-semibold text-[16px] text-white border-[#ACCBEC] rounded-[4px]"
         >
-          Mark all as read
+          See all notifications
         </button>
       </div>
     </div>
   </div>
-  
 </template>
 <script setup>
-const emit = defineEmits(['closeNotification'])
-const closeNotification = ()=>{
- emit('closeNotification',false)
-}
+const emit = defineEmits(["closeNotification",'showAllNotifiction']);
+const closeNotification = () => {
+  emit("closeNotification", false);
+};
+const showAllNotifiction = () => {
+  emit("showAllNotifiction", true);
+};
 </script>

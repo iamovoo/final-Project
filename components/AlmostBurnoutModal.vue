@@ -267,7 +267,7 @@
             </div>
           </div>
           <div
-            class="w-[36px] h-[36px] flex justify-center items-center border-[#F0F2F5] border"
+            class="w-[36px] h-[36px] flex justify-center items-center border-[#F0F2F5] border font-bold"
             @click="closeModal"
           >
             x

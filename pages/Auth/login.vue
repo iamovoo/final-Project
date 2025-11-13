@@ -1,5 +1,5 @@
 <template>
-  <div class="hidden md:block">
+ 
     <div
       class="w-lvh min-h-screen bg-[#D7E6F6] flex items-center justify-center"
     >
@@ -90,9 +90,9 @@
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="block md:hidden">
+
+  <!-- <div class="block md:hidden">
     <div class="w-lvh min-h-screen bg-white flex flex-col">
       <div
         class="w-[375px] h-[504px] flex flex-col items-center justify-center gap-[32px]"
@@ -178,7 +178,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 <script setup>
 definePageMeta({

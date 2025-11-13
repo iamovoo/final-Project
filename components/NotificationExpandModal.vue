@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class=" hidden md:block">
     <div
       class="w-[600px] h-[752px] rounded-[12px] border bg-[#FFFFFF] border-[#F0F2F5]"
     >
@@ -10,6 +10,7 @@
               Notifications
             </h6>
             <div
+              @click="closeModal"
               class="w-[36px] h-[36px] flex justify-center items-center font-bold"
             >
               x
@@ -198,6 +199,9 @@
       />
     </div>
   </div>
+  <div  class=" block md:hidden">
+
+  </div>
 </template>
 <script setup>
 const isNotificationDeleted = ref(false);
@@ -240,5 +244,9 @@ const activeTab = (value) => {
   if (slide.value === value) {
     return "border-b-2 border-[#2F7DD0]";
   }
+};
+const emit = defineEmits(["closeNotificationExpandModal"]);
+const closeModal = () => {
+  emit("closeNotificationExpandModal", false);
 };
 </script>
