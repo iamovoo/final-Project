@@ -16,10 +16,10 @@
           </div>
           <div class="w-[184px] h-[44px] flex flex-col justify-between">
             <p class="text-[#101928] text-[16px] DMSans600 font-semibold">
-              {{fullname}}
+              Bolaji Folarin
             </p>
             <p class="text-[#475367] text-[14px] DMSans400">
-              {{userEmail}}
+              bolajifolarin@check-dc.com
             </p>
           </div>
         </div>
@@ -40,34 +40,33 @@
             <p class="text-[#667185] text-[14px] DMSans400 font-medium">
               First Name
             </p>
-            <p class="text-[#101928] text-[16px] DMSans400 font-semibold">
-              {{firstName}}
+            <p class="text-[#101928] text-[18px] DMSans400 font-semibold">
+              Bolaji
             </p>
           </div>
           <div class="w-[525.5px] h-[52px] flex flex-col gap-[8px]">
             <p class="text-[#667185] text-[14px] DMSans400 font-medium">
               Last Name
             </p>
-            <p class="text-[#101928] text-[16px] DMSans400 font-semibold">
-              {{lastName}}
+            <p class="text-[#101928] text-[18px] DMSans400 font-semibold">
+              Folarin
             </p>
           </div>
         </div>
         <div class="w-[1059px] h-[52px] flex gap-[8px]">
           <div class="w-[525.5px] h-[52px] flex flex-col gap-[8px]">
             <p class="text-[#667185] text-[14px] DMSans400 font-medium">Role</p>
-            <p class="text-[#101928] text-[16px] DMSans400 font-semibold uppercase">
-              {{role}}
+            <p class="text-[#101928] text-[18px] DMSans400 font-semibold">
+              Team Lead
             </p>
           </div>
-          <div class=" h-[52px] flex flex-col gap-[8px]">
+          <div class="w-[525.5px] h-[52px] flex flex-col gap-[8px]">
             <p class="text-[#667185] text-[14px] DMSans400 font-medium">Team</p>
             <div class="text-[12px] DMSans400">
               <p
-                class=" text-[12px] DMSans400 font-semibold  py-[4px] px-[10px] rounded-[16px] "
-                :class="team === 'Design'? 'bg-[#F6EDF8] text-[#853C90] ': team === 'Engineering'? 'bg-blue-200 text-blue-700 ': 'bg-green-200 text-green-700 '"
+                class="text-[#853C90] text-[12px] DMSans400 font-semibold bg-[#F6EDF8] py-[4px] px-[10px] rounded-[16px] w-[58px]"
               >
-               {{team}}
+                Design
               </p>
             </div>
           </div>
@@ -90,15 +89,6 @@
   </div>
 </template>
 <script setup>
-const userTeamDetails = useCookie("userTeamDetails");
-console.log(userTeamDetails.value);
-const userEmail = userTeamDetails.value.user.email
-const fullname = userTeamDetails.value.user.full_name
-const team = userTeamDetails.value.user.team
-
-const role = userTeamDetails.value.user.role
-const firstName = fullname.split(' ')[0] || 'No First Name'
-const lastName = fullname.split(' ')[1] || 'No Last Name'
 const isChangePasswordClicked = ref(false)
 const changePasswordBtn = ()=>{
 isChangePasswordClicked.value = true
@@ -107,3 +97,4 @@ const closeChangePasswordModal =(value)=>{
 isChangePasswordClicked.value = value
 }
 </script>
+

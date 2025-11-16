@@ -188,7 +188,7 @@
               </div>
             </div>
           </div>
-          <div class="w-[1107px] h-[986px] flex flex-col gap-[8px]">
+          <div class="w-[1107px] h-[986px] flex flex-col gap-[8px]  border border-[#E4E7EC]">
             <table class="w-[1107px]">
               <tr class="border-b bg-[#F9FAFB]">
                 <th
@@ -218,7 +218,7 @@
                 </th>
               </tr>
               <div>
-                <tr class="border-btext-start">
+                <tr class="border-b text-start">
                   <td
                     class="text-[14px] w-[281px] h-[58px] px-[20px] py-[12px] text-start font-medium DMSans500 text-[#475467]"
                   >

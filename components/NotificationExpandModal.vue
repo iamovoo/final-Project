@@ -1,7 +1,7 @@
 <template>
   <div class=" hidden md:block">
     <div
-      class="w-[600px] h-[752px] rounded-[12px] border bg-[#FFFFFF] border-[#F0F2F5]"
+      class="w-[600px] h-[552px] rounded-[12px] border bg-[#FFFFFF] border-[#F0F2F5]"
     >
       <div class="w-[600px] h-[104] pt-[20px] px-[32px]">
         <div class="h-[84px] w-[536px] gap-[8px] flex flex-col">
@@ -50,7 +50,7 @@
       <div
         class="w-[600px] h-[648px] border-b-[2px] pb-[36px] flex flex-col gap-[32px]"
       >
-        <div class="w-[600px] h-[540px] border-b overflow-y-auto">
+        <div class="w-[600px] h-[340px] border-b overflow-y-auto">
           <div v-if="slide === 'All'">
             <div
               class="w-[600px] h-[108px] py-[28px] px-[32px] flex gap-[10px]"
@@ -238,7 +238,11 @@ const deleteNotification = (value) => {
 const showSlide = (value) => {
   slide.value = value;
   isSelectClicked.value = false;
+  isClicked.value = false
+  selectAndCancel.value = "Select";
   console.log(slide.value);
+
+
 };
 const activeTab = (value) => {
   if (slide.value === value) {

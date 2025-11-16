@@ -45,7 +45,7 @@
             </div>
           </nuxt-link>
           <nuxt-link
-            :to="team ? `/${team}/${role}/teams` : `/${role}/settings`"
+            :to="team ? `/${team}/${role}/settings` : `/${role}/settings`"
           >
             <div
               @click="clickedMenu('Settings')"
@@ -65,7 +65,7 @@
             </div>
           </nuxt-link>
           <nuxt-link
-            :to="team ? `/${team}/${role}/teams` : `/${role}/HelpAndSupport`"
+            :to="team ? `/${team}/${role}/HelpAndSupport` : `/${role}/HelpAndSupport`"
           >
             <div
               @click="clickedMenu('Help & support')"
@@ -157,57 +157,6 @@
           </div>
         </div>
       </div>
-      <!-- <div
-          class="h-[64px] w-[1171px] py-[16px] px-[32px] flex gap-[20px] border-b items-center"
-        >
-          <p class="text-[24px] bricolage">Dashboard</p>
-          <div
-            @click="dateBtnClicked"
-            class="py-[4px] px-[8px] w-[88px] h-[28px] rounded-[2px] flex items-center gap-[4px] text-[#F9FAFB] border border-[#E4E7EC]"
-          >
-            <img
-              src="/assets/icons/CalendarBlank.png"
-              alt=""
-              class="w-[12px] h-[12px]"
-            />
-            <p class="border-none DMSans500 text-[14px] text-[#667185]">
-              Today
-            </p>
-            <img
-              src="/assets/icons/CaretDown.png"
-              alt=""
-              class="w-[12px] h-[12px]"
-            />
-          </div>
-
-          <div
-            class="absolute top-[114px] left-[437px] z-10 shadow-md bg-[#FFFFFF]"
-            v-if="isDateClicked"
-          >
-            <div
-              class="w-[240px] h-[200px] border py-[6px] px-[10px] z-10 bg-[#FFFFFF]"
-            >
-              <div class="w-[220px] h-[188px] py-[4px]">
-                <div class="h-[36px] w-[240px] py-[8px] px-[16px]">
-                  <p class="text-[14px] DMSans400">Today</p>
-                </div>
-                <div class="h-[36px] w-[240px] py-[8px] px-[16px]">
-                  <p class="text-[14px] DMSans400">Last 7 Days</p>
-                </div>
-                <div class="h-[36px] w-[240px] py-[8px] px-[16px]">
-                  <p class="text-[14px] DMSans400">Last 30 Days</p>
-                </div>
-                <div class="h-[36px] w-[240px] py-[8px] px-[16px]">
-                  <p class="text-[14px] DMSans400">Last 3 Month</p>
-                </div>
-                <div class="h-[36px] w-[240px] py-[8px] px-[16px]">
-                  <p class="text-[14px] DMSans400">Last 12 Month</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-      <!-- </div> -->
       <div
         class="absolute top-[56px] left-[301px] z-10 shadow-sm bg-[#FFFFFF]"
         v-if="false"
@@ -296,57 +245,6 @@
             </div>
           </div>
         </div>
-        <!-- <div
-          class="h-[60px] w-[375px] py-[16px] px-[20px] flex gap-[8px] border-b"
-        >
-          <div class="gap-[8px] flex justify-center items-center">
-            <h6 class="font-medium text-[20px] bricolage text-[#101928]">
-              Dashboard
-            </h6>
-            <div
-              @click="dateBtnClicked"
-              class="flex justify-center items-center w-[88px] h-[28px] gap-[4px] py-[4px] px-[8px] border border-[#E4E7EC] rounded-[2px]"
-            >
-              <img
-                src="/assets/icons/CalendarBlank.png"
-                alt=""
-                class="w-[12px] h-[12px]"
-              />
-              <p class="text-[#667185] text-[14px] DMSans500">Today</p>
-              <img
-                src="/assets/icons/CaretDown.png"
-                alt=""
-                class="w-[12px] h-[12px]"
-              />
-            </div>
-            <div
-              class="absolute top-[165px] left-[125px] z-10 shadow-md bg-[#FFFFFF]"
-              v-if="isDateClicked"
-            >
-              <div
-                class="w-[200px] h-[200px] border py-[6px] px-[10px] z-10 bg-[#FFFFFF]"
-              >
-                <div class="w-[180px] h-[188px] py-[4px]">
-                  <div class="h-[36px] w-[180px] py-[8px] px-[16px]">
-                    <p class="text-[14px] DMSans400">Today</p>
-                  </div>
-                  <div class="h-[36px] w-[180px] py-[8px] px-[16px]">
-                    <p class="text-[14px] DMSans400">Last 7 Days</p>
-                  </div>
-                  <div class="h-[36px] w-[180px] py-[8px] px-[16px]">
-                    <p class="text-[14px] DMSans400">Last 30 Days</p>
-                  </div>
-                  <div class="h-[36px] w-[180px] py-[8px] px-[16px]">
-                    <p class="text-[14px] DMSans400">Last 3 Month</p>
-                  </div>
-                  <div class="h-[36px] w-[180px] py-[8px] px-[16px]">
-                    <p class="text-[14px] DMSans400">Last 12 Month</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
       </div>
       <div
         class="absolute top-[140px] left-[20px] z-10 shadow-sm bg-[#FFFFFF]"
@@ -401,16 +299,24 @@ const closeSignoutModal = (value) => {
 const signOutClicked = () => {
   isSignOutClicked.value = true;
 };
-const userTeam = useCookie("userTeam");
-console.log(userTeam.value);
-const team = ref(userTeam.value[0]);
-const role = ref(userTeam.value[1]);
+const userTeamDetails = useCookie("userTeamDetails");
+console.log(userTeamDetails.value);
+const team = ref(userTeamDetails.value.user.team);
+const role = ref(userTeamDetails.value.user.role);
 console.log(role.value, team.value);
-const activeTab = ref("Dashboard");
-const clickedMenu = (name) => {
-  activeTab.value = name;
-  console.log(name, activeTab.value);
-};
+const route = useRoute();
+
+const activeTab = computed(() => {
+  if (route.path.includes("/teams")) return "teams";
+  if (route.path.includes("/settings")) return "Settings";
+  if (route.path.includes("/HelpAndSupport")) return "Help & support";
+  else return "Dashboard";
+});
+
+// const clickedMenu = (name) => {
+//   activeTab.value = name;
+//   console.log(name, activeTab.value);
+// };
 const isActive = (name) => {
   if (name === activeTab.value) return "bg-[#d7e6f6]";
 };

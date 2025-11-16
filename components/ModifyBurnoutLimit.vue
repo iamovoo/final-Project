@@ -79,7 +79,7 @@
             </p>
           </div>
           <!-- <div class="w-[473px] h-[56px] px-[32px]"> -->
-            <input type="text" name="" id="" class="w-[473px] h-[56px] border-[#E4E7EC] border rounded-[8px] focus:outline-none" />
+            <input v-model="burnOutLimitValue" type="number" name="" id="" class="w-[473px] h-[56px] border-[#E4E7EC] border rounded-[8px] focus:outline-none pl-4" />
           <!-- </div> -->
         </div>
         <div class="w-[537px] h-[104px] pt-[28px] px-[32px] pb-[36px]">
@@ -91,6 +91,7 @@
               Cancel
             </button>
             <button
+            @click=" saveChanges"
               class="text-[16px] bg-[#2F7DD0] text-[#F9FAFB] font-semibold DMSans500 h-[40px] flex justify-center items-center w-[224.5px] z-10"
             >
               Save Changes
@@ -102,11 +103,22 @@
   </div>
 </template>
 <script setup>
+import { useToast } from 'vue-toastification';
+
+const toast = useToast()
+const burnOutLimitValue= ref('')
 const showConfirmationPrompt = ref(false);
 const emit = defineEmits(["closeModal"]);
 const closeModal = () => {
   emit("closeModal", false);
 };
+const saveChanges = ()=>{
+if(burnOutLimitValue.value){
+  toast.success('Burnout Limit Reset')
+  burnOutLimitValue.value = ''
+  closeModal()
+}
+}
 const editLimitChanges = ()=>{
   showConfirmationPrompt.value = true
 }

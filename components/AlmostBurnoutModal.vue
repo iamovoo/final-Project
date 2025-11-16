@@ -30,9 +30,11 @@
           </div>
         </div>
 
-        <div class="overflow-y-auto flex flex-col gap-[16px] h-[344px]">
+        <div
+          class="overflow-y-scroll overflow-x-hidden flex flex-col gap-[16px] h-[344px] w-[478px]"
+        >
           <div
-            class="w-[478px] h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
+            class="w-full h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
           >
             <p class="text-[#667185] text-[14px] DMSans400">
               Oluwaseun Adebayo
@@ -58,7 +60,7 @@
             </div>
           </div>
           <div
-            class="w-[478px] h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
+            class="w-full h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
           >
             <p class="text-[#667185] text-[14px] DMSans400">
               Oluwaseun Adebayo
@@ -84,7 +86,7 @@
             </div>
           </div>
           <div
-            class="w-[478px] h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
+            class="w-full h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
           >
             <p class="text-[#667185] text-[14px] DMSans400">
               Oluwaseun Adebayo
@@ -110,7 +112,7 @@
             </div>
           </div>
           <div
-            class="w-[478px] h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
+            class="w-full h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
           >
             <p class="text-[#667185] text-[14px] DMSans400">
               Oluwaseun Adebayo
@@ -136,7 +138,7 @@
             </div>
           </div>
           <div
-            class="w-[478px] h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
+            class="w-full h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
           >
             <p class="text-[#667185] text-[14px] DMSans400">
               Oluwaseun Adebayo
@@ -162,7 +164,7 @@
             </div>
           </div>
           <div
-            class="w-[478px] h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
+            class="w-full h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
           >
             <p class="text-[#667185] text-[14px] DMSans400">
               Oluwaseun Adebayo
@@ -188,7 +190,7 @@
             </div>
           </div>
           <div
-            class="w-[478px] h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
+            class="w-full h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
           >
             <p class="text-[#667185] text-[14px] DMSans400">
               Oluwaseun Adebayo
@@ -214,7 +216,7 @@
             </div>
           </div>
           <div
-            class="w-[478px] h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
+            class="w-full h-[44px] flex justify-between items-center border-b border-[#F0F2F5] mb-[10px]"
           >
             <p class="text-[#667185] text-[14px] DMSans400">
               Oluwaseun Adebayo
@@ -278,11 +280,9 @@
           class="overflow-y-auto flex flex-col gap-[16px] h-[296px] w-[335px]"
         >
           <div
-            class="w-[335px] h-[65px] flex flex-col  gap-[8px] items-center border-b border-[#F0F2F5]"
+            class="w-[335px] h-[65px] flex flex-col gap-[8px] items-center border-b border-[#F0F2F5]"
           >
-            <div
-              class="h-[25px] w-[335px] flex justify-between items-center"
-            >
+            <div class="h-[25px] w-[335px] flex justify-between items-center">
               <p class="text-[#667185] text-[14px] DMSans400">
                 Oluwaseun Adebayo
               </p>
@@ -304,11 +304,9 @@
             </button>
           </div>
           <div
-            class="w-[335px] h-[65px] flex flex-col  gap-[8px] items-center border-b border-[#F0F2F5]"
+            class="w-[335px] h-[65px] flex flex-col gap-[8px] items-center border-b border-[#F0F2F5]"
           >
-            <div
-              class="h-[25px] w-[335px] flex justify-between items-center"
-            >
+            <div class="h-[25px] w-[335px] flex justify-between items-center">
               <p class="text-[#667185] text-[14px] DMSans400">
                 Oluwaseun Adebayo
               </p>
@@ -330,11 +328,9 @@
             </button>
           </div>
           <div
-            class="w-[335px] h-[65px] flex flex-col  gap-[8px] items-center border-b border-[#F0F2F5]"
+            class="w-[335px] h-[65px] flex flex-col gap-[8px] items-center border-b border-[#F0F2F5]"
           >
-            <div
-              class="h-[25px] w-[335px] flex justify-between items-center"
-            >
+            <div class="h-[25px] w-[335px] flex justify-between items-center">
               <p class="text-[#667185] text-[14px] DMSans400">
                 Oluwaseun Adebayo
               </p>
@@ -356,11 +352,9 @@
             </button>
           </div>
           <div
-            class="w-[335px] h-[65px] flex flex-col  gap-[8px] items-center border-b border-[#F0F2F5]"
+            class="w-[335px] h-[65px] flex flex-col gap-[8px] items-center border-b border-[#F0F2F5]"
           >
-            <div
-              class="h-[25px] w-[335px] flex justify-between items-center"
-            >
+            <div class="h-[25px] w-[335px] flex justify-between items-center">
               <p class="text-[#667185] text-[14px] DMSans400">
                 Oluwaseun Adebayo
               </p>
@@ -382,11 +376,9 @@
             </button>
           </div>
           <div
-            class="w-[335px] h-[65px] flex flex-col  gap-[8px] items-center border-b border-[#F0F2F5]"
+            class="w-[335px] h-[65px] flex flex-col gap-[8px] items-center border-b border-[#F0F2F5]"
           >
-            <div
-              class="h-[25px] w-[335px] flex justify-between items-center"
-            >
+            <div class="h-[25px] w-[335px] flex justify-between items-center">
               <p class="text-[#667185] text-[14px] DMSans400">
                 Oluwaseun Adebayo
               </p>
@@ -408,11 +400,9 @@
             </button>
           </div>
           <div
-            class="w-[335px] h-[65px] flex flex-col  gap-[8px] items-center border-b border-[#F0F2F5]"
+            class="w-[335px] h-[65px] flex flex-col gap-[8px] items-center border-b border-[#F0F2F5]"
           >
-            <div
-              class="h-[25px] w-[335px] flex justify-between items-center"
-            >
+            <div class="h-[25px] w-[335px] flex justify-between items-center">
               <p class="text-[#667185] text-[14px] DMSans400">
                 Oluwaseun Adebayo
               </p>
@@ -434,11 +424,9 @@
             </button>
           </div>
           <div
-            class="w-[335px] h-[65px] flex flex-col  gap-[8px] items-center border-b border-[#F0F2F5]"
+            class="w-[335px] h-[65px] flex flex-col gap-[8px] items-center border-b border-[#F0F2F5]"
           >
-            <div
-              class="h-[25px] w-[335px] flex justify-between items-center"
-            >
+            <div class="h-[25px] w-[335px] flex justify-between items-center">
               <p class="text-[#667185] text-[14px] DMSans400">
                 Oluwaseun Adebayo
               </p>
@@ -460,11 +448,9 @@
             </button>
           </div>
           <div
-            class="w-[335px] h-[65px] flex flex-col  gap-[8px] items-center border-b border-[#F0F2F5]"
+            class="w-[335px] h-[65px] flex flex-col gap-[8px] items-center border-b border-[#F0F2F5]"
           >
-            <div
-              class="h-[25px] w-[335px] flex justify-between items-center"
-            >
+            <div class="h-[25px] w-[335px] flex justify-between items-center">
               <p class="text-[#667185] text-[14px] DMSans400">
                 Oluwaseun Adebayo
               </p>

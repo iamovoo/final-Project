@@ -154,33 +154,33 @@
             <div class="w-[348px] h-[104] px-[24px] flex flex-col gap-[8px]">
               <div class="w-[300px] h-[20px] flex justify-between items-center">
                 <div
-                  class="w-[158px] h-[20px] text-[#667185] text-[14px] DMSans400"
+                  class="w-[158px] h-[20px] text-[#667185] text-[14px] DMSans400 flex gap-[4px] items-center"
                 >
-                  Charged
+                  <span class="text-[30px] text-[#04802E]">&#8226;</span> Charged
                 </div>
                 <div class="w-[89px] h-[20px]">58 members</div>
               </div>
               <div class="w-[300px] h-[20px] flex justify-between items-center">
                 <div
-                  class="w-[163px] h-[20px] text-[#667185] text-[14px] DMSans400"
+                  class="w-[163px] h-[20px] text-[#667185] text-[14px] DMSans400  flex gap-[4px] items-center"
                 >
-                  About to be Burnt Out
+                 <span class="text-[30px] text-[#E67F4C]">&#8226;</span>  About to be Burnt Out
                 </div>
                 <div class="w-[89px] h-[20px]">58 members</div>
               </div>
               <div class="w-[300px] h-[20px] flex justify-between items-center">
                 <div
-                  class="w-[156px] h-[20px] text-[#667185] text-[14px] DMSans400"
+                  class="w-[156px] h-[20px] text-[#667185] text-[14px] DMSans400  flex gap-[4px] items-center"
                 >
-                  Burnout Break
+                  <span class="text-[30px] text-[#667185]">&#8226;</span>  Burnout Break
                 </div>
                 <div class="w-[89px] h-[20px]">58 members</div>
               </div>
               <div class="w-[300px] h-[20px] flex justify-between items-center">
                 <div
-                  class="w-[156px] h-[20px] text-[#667185] text-[14px] DMSans400"
+                  class="w-[156px] h-[20px] text-[#667185] text-[14px] DMSans400  flex gap-[4px] items-center"
                 >
-                  Burnt Out
+                 <span class="text-[30px] text-[#D42620]">&#8226;</span> Burnt Out
                 </div>
                 <div class="w-[89px] h-[20px]">58 members</div>
               </div>
@@ -534,7 +534,7 @@
       <BurnOutStats />
     </div>
   </div>
-  <div class="block md:hidden">
+  <!-- <div class="block md:hidden">
     <div class="h-[60px] w-[375px] py-[16px] flex gap-[8px] border-b mb-[30px]">
       <div class="gap-[8px] flex justify-center items-center">
         <h6 class="font-medium text-[20px] bricolage text-[#101928]">
@@ -1041,7 +1041,7 @@
       </div>
       <BurnOutStats />
     </div>
-  </div>
+  </div> -->
 </template>
 <script setup>
 const {id} = useRoute().params

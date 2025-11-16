@@ -1,5 +1,5 @@
 <template>
-  <div class="hidden md:block">
+
     <div class="backgroundLayout">
       <div class="overflow-hidden w-[600px] h-[1024px]">
         <img
@@ -102,7 +102,7 @@
             <p class="text-[14px] text-[#1D2739] DMSans500">
               Already have an account?
             </p>
-            <p class="DMSans500 text-[14px] text-[#2F7DD0]">Sign in</p>
+            <p class="DMSans500 text-[14px] text-[#2F7DD0] cursor-pointer"><nuxt-link to="/Auth/login">Sign In</nuxt-link></p>
           </div>
         </div>
         <div
@@ -133,18 +133,17 @@
               Go to Mail
             </button>
           </div>
-          <div class="flex gap-[4px] DMSans">
+          <div class="flex gap-[4px] DMSans cursor-pointer ">
             <p class="text-[14px] text-[#1D2739] DMSans500">
               Already have an account?
             </p>
-            <p class="DMSans500 text-[14px] text-[#2F7DD0]">Sign in</p>
+            <div class="DMSans500 text-[14px] text-[#2F7DD0] cursor-pointer"><nuxt-link to="/Auth/login">Log In</nuxt-link></div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="block md:hidden">
+  <!-- <div class="block md:hidden">
     <div v-if="detailsSubmitted === false">
       <div class="w-[375px] h-[560px] flex flex-col gap-[32px] mx-auto">
         <div class="mt-5 px-[20px]">
@@ -291,20 +290,12 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 <script setup>
 definePageMeta({
   layout: false,
 });
-// const activePage =(page)=>{
-//   if (page === 1){
-//     'bg-[#2F7DD0]'
-//   }
-//     else if (page === 2){
-//     'bg-[#2F7DD0]'
-//   }
-// }
 const baseURL = useRuntimeConfig().public.baseURL
 const detailsSubmitted = ref(false);
 const showPassword = ref(false);
