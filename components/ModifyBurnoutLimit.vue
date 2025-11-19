@@ -46,7 +46,7 @@
               Cancel
             </button>
             <button
-            @click="editLimitChanges"
+              @click="editLimitChanges"
               class="text-[16px] bg-[#2F7DD0] text-[#F9FAFB] font-semibold DMSans500 h-[40px] flex justify-center items-center w-[224.5px] z-10"
             >
               Yes, I understand
@@ -56,8 +56,12 @@
       </div>
     </div>
     <div v-if="showConfirmationPrompt">
-      <div class="border bg-[#FFFFFF] w-[537px] h-[278px] rounded-[12px] flex flex-col">
-        <div class="w-[537px] h-[166px] pt-[20px] px-[32px] pb-[6px] flex flex-col gap-[24px] justify-center items-center">
+      <div
+        class="border bg-[#FFFFFF] w-[537px] h-[278px] rounded-[12px] flex flex-col"
+      >
+        <div
+          class="w-[537px] h-[166px] pt-[20px] px-[32px] pb-[6px] flex flex-col gap-[24px] justify-center items-center"
+        >
           <div class="w-[473px] flex flex-col gap-[4px] h-[86px]">
             <div class="flex justify-between">
               <p
@@ -79,7 +83,13 @@
             </p>
           </div>
           <!-- <div class="w-[473px] h-[56px] px-[32px]"> -->
-            <input v-model="burnOutLimitValue" type="number" name="" id="" class="w-[473px] h-[56px] border-[#E4E7EC] border rounded-[8px] focus:outline-none pl-4" />
+          <input
+            v-model="burnOutLimitValue"
+            type="number"
+            name=""
+            id=""
+            class="w-[473px] h-[56px] border-[#E4E7EC] border-2 rounded-[8px] focus:outline-none pl-4"
+          />
           <!-- </div> -->
         </div>
         <div class="w-[537px] h-[104px] pt-[28px] px-[32px] pb-[36px]">
@@ -91,7 +101,7 @@
               Cancel
             </button>
             <button
-            @click=" saveChanges"
+              @click="saveChanges"
               class="text-[16px] bg-[#2F7DD0] text-[#F9FAFB] font-semibold DMSans500 h-[40px] flex justify-center items-center w-[224.5px] z-10"
             >
               Save Changes
@@ -103,23 +113,47 @@
   </div>
 </template>
 <script setup>
-import { useToast } from 'vue-toastification';
+import { useToast } from "vue-toastification";
 
-const toast = useToast()
-const burnOutLimitValue= ref('')
+const toast = useToast();
+const burnOutLimitValue = ref("");
 const showConfirmationPrompt = ref(false);
 const emit = defineEmits(["closeModal"]);
 const closeModal = () => {
   emit("closeModal", false);
 };
-const saveChanges = ()=>{
-if(burnOutLimitValue.value){
-  toast.success('Burnout Limit Reset')
-  burnOutLimitValue.value = ''
-  closeModal()
-}
-}
-const editLimitChanges = ()=>{
-  showConfirmationPrompt.value = true
-}
+
+const editLimitChanges = () => {
+  showConfirmationPrompt.value = true;
+};
+const props = defineProps({
+  teamId: {
+    type: String,
+  },
+});
+const userTeamDetails = useCookie("userTeamDetails");
+const baseURL = useRuntimeConfig().public.baseURL;
+const teamID = computed(() => props.teamId);
+const saveChanges = async () => {
+  if (burnOutLimitValue.value) {
+    const { data } = await useFetch(
+      `${baseURL}/teams/${teamID.value}/burnout-limit`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${userTeamDetails.value.access_token}`,
+        },
+        body: {
+          burnout_limit: Number(burnOutLimitValue.value),
+        },
+      }
+    );
+    console.log(data.value, burnOutLimitValue.value);
+    toast.success("Burnout Limit Reset");
+    burnOutLimitValue.value = "";
+    closeModal();
+  } else {
+    toast.error("kindly input a value to Modify");
+  }
+};
 </script>

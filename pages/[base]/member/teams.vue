@@ -29,51 +29,95 @@
       </div>
     </div>
     <div class="w-[1119px] h-[986px] rounded-[8px] border border-[#E4E7EC]">
-      <table>
-        <tr
-          class="bg-[#F9FAFB] text-[14px] text-[#475467] font-medium text-start"
-        >
-          <th class="w-[326px] h-[58px] text-start px-[20px] py-[12px]">
-            Name
-          </th>
-          <th class="w-[326px] h-[58px] text-start px-[20px] py-[12px]">
-            Burnout Status
-          </th>
-          <th class="w-[257px] h-[58px] text-start px-[20px] py-[12px]">
-            Tasks Completed
-          </th>
-          <th class="w-[266px] h-[58px] text-start px-[20px] py-[12px]">
-            On Leave ?
-          </th>
-        </tr>
-        <tr class="border-b text-start">
-          <td
-            class="text-[14px] w-[326px] h-[58px] px-[20px] py-[12px] text-start font-medium DMSans500 text-[#475467]"
+        <table>
+          <tr
+            class="bg-[#F9FAFB] text-[14px] text-[#475467] font-medium text-start"
           >
-            Oluwaseun Adebayo
-          </td>
-          <td
-            class="text-[14px] w-[326px] h-[58px] px-[20px] py-[12px] text-start font-medium DMSans500 text-[#475467]"
+            <th class="w-[326px] h-[58px] text-start px-[20px] py-[12px]">
+              Name
+            </th>
+            <th class="w-[326px] h-[58px] text-start px-[20px] py-[12px]">
+              Burnout Status
+            </th>
+            <th class="w-[257px] h-[58px] text-start px-[20px] py-[12px]">
+              Tasks Completed
+            </th>
+            <th class="w-[266px] h-[58px] text-start px-[20px] py-[12px]">
+              Cumulative Burnout Points
+            </th>
+            <th class="w-[266px] h-[58px] text-start px-[20px] py-[12px]">
+              Burnout Meter
+            </th>
+            <th class="w-[266px] h-[58px] text-start px-[20px] py-[12px]">
+              Burnout Breaks Taken
+            </th>
+            <th class="w-[266px] h-[58px] text-start px-[20px] py-[12px]">
+              On Leave ?
+            </th>
+          </tr>
+          <tr
+            class="border-b text-start"
+            v-for="members in teamMembers"
+            :key="members.full_name"
           >
-            <div
-              class="flex gap-[8px] h-[21px] w-[76px] rounded-[16px] justify-center items-center text-[#04802E] DMSans500 text-[12px] px-3 bg-[#ECFDF3]"
+            <td
+              class="text-[14px] w-[326px] h-[58px] px-[20px] py-[12px] text-start font-medium DMSans500 text-[#475467]"
             >
-              <span class="text-[30px] text-[#04802E]">&#8226;</span>
-              Charged
-            </div>
-          </td>
-          <td
-            class="text-[14px] w-[257px] h-[58px] px-[20px] py-[12px] text-start font-medium DMSans500 text-[#667185]"
-          >
-            50
-          </td>
-          <td
-            class="text-[14px] w-[266px] h-[58px] px-[20px] py-[12px] text-start font-medium DMSans500 text-[#475467]"
-          >
-            <input type="checkbox" name="" id="" class="w-[16px] h-[16px]" />
-          </td>
-        </tr>
-      </table>
+              {{ members.full_name }}
+            </td>
+            <td
+              class="text-[14px] w-[326px] h-[58px] px-[20px] py-[12px] text-start font-medium DMSans500 text-[#475467]"
+            >
+              <div
+                :class="
+                  members.burnout_status === 'charged'
+                    ? 'bg-[#ECFDF3] text-[#04802E]'
+                    : members.burnout_status === 'About to be Burnt Out'
+                      ? 'bg-orange-200 text-orange-700'
+                      : members.burnout_status === 'Burnt Out'
+                        ? 'bg-red-200 text-red-700'
+                        : 'bg-gray-200 text-gray-700'
+                "
+                class="flex gap-[8px] h-[21px] w-[76px] rounded-[16px] justify-center items-center DMSans500 text-[12px] px-3"
+              >
+                <span class="text-[30px]">&#8226;</span>
+                {{ members.burnout_status }}
+              </div>
+            </td>
+            <td
+              class="text-[14px] w-[257px] h-[58px] px-[20px] py-[12px] text-start font-medium DMSans500 text-[#667185]"
+            >
+              {{ members.number_of_done_tasks }}
+            </td>
+            <td
+              class="text-[14px] w-[257px] h-[58px] px-[20px] py-[12px] text-start font-medium DMSans500 text-[#667185]"
+            >
+              {{ members.cumulative_burnout_point }}
+            </td>
+            <td
+              class="text-[14px] w-[257px] h-[58px] px-[20px] py-[12px] text-start font-medium DMSans500 text-[#667185]"
+            >
+              {{ (members.cumulative_burnout_point / teamBurnOutLimit) * 100 }}
+            </td>
+            <td
+              class="text-[14px] w-[257px] h-[58px] px-[20px] py-[12px] text-start font-medium DMSans500 text-[#667185]"
+            >
+              {{ members.burnout_breaks_taken }}
+            </td>
+            <td
+              class="text-[14px] w-[266px] h-[58px] px-[20px] py-[12px] text-start font-medium DMSans500 text-[#475467]"
+            >
+              <input
+                v-model="members.on_leave"
+                type="checkbox"
+                name=""
+                id=""
+                class="w-[16px] h-[16px]"
+                disabled
+              />
+            </td>
+          </tr>
+        </table>
     </div>
     <div>
                 <div
@@ -97,8 +141,32 @@
   </div>
 </template>
 <script setup>
+const baseURL = useRuntimeConfig().public.baseURL;
 const IsFilterClicked = ref(false);
 const filterClicked = () => {
   IsFilterClicked.value = !IsFilterClicked.value;
 };
+const userTeamDetails = useCookie("userTeamDetails");
+const team = ref(userTeamDetails.value.user.team);
+const id = ref(userTeamDetails.value.user.id);
+const teamId = ref(null);
+const teamMembers = ref([]);
+const userData = ref();
+const teamBurnOutLimit = ref();
+const { data: user } = await useFetch(`${baseURL}/users/${id.value}`, {
+  method: "get",
+  headers: {
+    Authorization: `Bearer ${userTeamDetails.value.access_token}`,
+  },
+});
+userData.value = user.value;
+// console.log(userData.value);
+teamId.value = userData.value?.teams[0]?.id;
+const { data: members } = await useFetch(
+  `${baseURL}/teams/members/${teamId.value}`
+);
+teamMembers.value = members.value?.data
+const { data, error } = await useFetch(`${baseURL}/teams/${teamId.value}`);
+teamBurnOutLimit.value = data.value?.burnout_limit.burnout_limit;
+// });
 </script>

@@ -56,21 +56,29 @@
             class="w-[352px] h-[32px] flex justify-between items-start border-b"
           >
             <p class="text-[#667185] text-[14px] DMSans400">Breaks Taken</p>
-            <p class="text-[#1D2739] text-[14px] DMSans400">120</p>
+            <p class="text-[#1D2739] text-[14px] DMSans400">
+              {{ burnoutBreaksTaken }}
+            </p>
           </div>
           <div
             class="w-[352px] h-[32px] flex justify-between items-start border-b"
           >
             <p class="text-[#667185] text-[14px] DMSans400">Tasks Completed</p>
-            <p class="text-[#1D2739] text-[14px] DMSans400">4</p>
+            <p class="text-[#1D2739] text-[14px] DMSans400">
+              {{ mondayTask?.length }}
+            </p>
           </div>
           <div class="w-[352px] h-[25px] flex justify-between items-start">
             <p class="text-[#667185] text-[14px] DMSans400">Leave Status</p>
             <div
-              class="bg-[#FEF3CD] text-[#967403] text-[12px] DMSans500 rounded-[16px] h-[25px] px-[10px] py-[4px] flex gap-[4px] items-center"
+              :class="
+                userLeave === 'Present'
+                  ? 'bg-green-200 text-green-700'
+                  : 'bg-gray-200 text-gray-700'
+              "
+              class="text-[12px] DMSans500 rounded-[16px] h-[25px] px-[10px] py-[4px] flex gap-[4px] items-center"
             >
-              <span class="text-[30px] text-[#967403]">&#8226;</span> Due for
-              leave
+              <span class="text-[30px]">&#8226;</span>{{ userLeave }}
             </div>
           </div>
         </div>
@@ -83,10 +91,19 @@
                 Burnout Meter
               </p>
               <div
-                class="flex gap-[8px] h-[21px] px-[8px] py-[2px] rounded-[16px] justify-center items-center text-[#B34C19] DMSans500 text-[12px] bg-[#FCEFE9]"
+                :class="
+                  burntoutMeterStatus === 'Charged'
+                    ? 'bg-[#ECFDF3] text-[#04802E]'
+                    : burntoutMeterStatus === 'About to be Burnt Out'
+                      ? 'bg-orange-200 text-orange-700'
+                      : burntoutMeterStatus === 'Burnt Out'
+                        ? 'bg-red-200 text-red-700'
+                        : 'bg-gray-200 text-gray-700'
+                "
+                class="flex gap-[8px] h-[21px] px-[8px] py-[2px] rounded-[16px] justify-center items-center DMSans500 text-[12px]"
               >
-                <span class="text-[30px] text-[#B34C19]">&#8226;</span>
-                Almost Burnt Out
+                <span class="text-[30px]">&#8226;</span>
+                {{ burntoutMeterStatus }}
               </div>
             </div>
             <p class="text-[#667185] text-[14px] text-start">
@@ -94,7 +111,15 @@
               toward reaching your burnout limit.
             </p>
           </div>
-          <div class="w-[232.59px] h-[162.48806762695312px] border"></div>
+          <div class="w-[232.59px] h-[162.48806762695312px]">
+            <apexchart
+              width="100%"
+              height="100%"
+              type="radialBar"
+              :options="chartOptions"
+              :series="series"
+            />
+          </div>
         </div>
         <div
           class="w-[310px] h-[310px] text-[20px] text-[#101828] flex flex-col justify-between rounded-[8px] border p-[20px] items-center"
@@ -107,17 +132,13 @@
             </p>
           </div>
           <div class="w-[258px] h-[76px]">
-            <!-- <apexchart
-              width="100%"
-              height="100%"
-              type="radialBar"
-              :options="chartOptions"
-              :series="series"
-            /> -->
-            <div class="w-full bg-gray-200 rounded overflow-hidden">
+            <div
+              class="w-full bg-gray-200 rounded overflow-hidden"
+              v-if="teamBurnOutLimit"
+            >
               <div
                 class="bg-green-500 p-2 text-center text-xs font-medium leading-none text-white"
-                :style="{ width: teamBurnOutLimit + '%' }"
+                :style="{ width: `${teamBurnOutLimit}%` }"
               >
                 {{ teamBurnOutLimit }}%
               </div>
@@ -131,16 +152,18 @@
         <div class="flex justify-between">
           <p class="font-medium text-[#101828] text-[20px]">Team members</p>
           <div class="w-[316px] h-[40px] flex justify-end">
-            <button
-              class="border-[#ACCBEC] text-[#2F7DD0] w-[115px] h-[40px] font-semibold flex items-center justify-center gap-[8px] rounded-[4px] border"
-            >
-              <img
-                src="/assets/icons/ArrowUpRight.png"
-                alt=""
-                class="h-[16px] w-[16px]"
-              />
-              View all
-            </button>
+            <nuxt-link :to="`/${team}/member/teams`">
+              <button
+                class="border-[#ACCBEC] text-[#2F7DD0] w-[115px] h-[40px] font-semibold flex items-center justify-center gap-[8px] rounded-[4px] border"
+              >
+                <img
+                  src="/assets/icons/ArrowUpRight.png"
+                  alt=""
+                  class="h-[16px] w-[16px]"
+                />
+                View all
+              </button>
+            </nuxt-link>
           </div>
         </div>
         <div class="w-[1107px] h-[44px] flex gap-[12px]">
@@ -156,13 +179,15 @@
               class="w-[380px] focus:outline-none"
             />
           </div>
-          <div
-            @click="filterClicked"
-            class="w-[101px] h-[44px] border rounded-[8px] flex justify-center items-center relative"
-          >
-            Filter
+          <div class="relative">
+            <div
+              @click="filterClicked"
+              class="w-[101px] h-[44px] border rounded-[8px] flex justify-center items-center"
+            >
+              Filter
+            </div>
             <div class="absolute left-0 top-[55px]" v-if="IsFilterClicked">
-              <Filter />
+              <Filter @filterByValue="filter" />
             </div>
           </div>
         </div>
@@ -264,52 +289,76 @@
 <script setup>
 const baseURL = useRuntimeConfig().public.baseURL;
 const userTeamDetails = useCookie("userTeamDetails");
-console.log(userTeamDetails.value);
+
 const team = ref(userTeamDetails.value.user.team);
 const id = ref(userTeamDetails.value.user.id);
 const teamId = ref(null);
-const teamMembers = ref("");
-const userData = ref("");
+const teamMembers = ref([]);
+const userData = ref({});
 const teamBurnOutLimit = ref(null);
-onMounted(async () => {
-  const { data: user } = await useFetch(`${baseURL}/users/${id.value}`, {
-    method: "get",
-    headers: {
-      Authorization: `Bearer ${userTeamDetails.value.access_token}`,
-    },
-  });
-  userData.value = user.value;
-  console.log(user.value);
-  teamId.value = user.value?.teams[0]?.id;
-
-  const { data, error } = await useFetch(`${baseURL}/teams/${teamId}`);
-  base.value = await data.value;
-  teamBurnOutLimit.value = base.value?.burnout_limit.burnout_limit;
-
-  const { data: members } = await useFetch(
-    `${baseURL}/teams/members/${teamId}`
-  );
-  teamMembers.value = await members.value?.data;
-});
 const LastBurnOutDate = ref("");
 const cumulativeBurnoutPoints = ref("");
+const userLeave = ref("");
+const mondayTask = ref([]);
+const burnOutMeter = ref(null);
+const burnoutBreaksTaken = ref(0);
+// onMounted(async () => {
+const { data: user } = await useFetch(`${baseURL}/users/${id.value}`, {
+  method: "get",
+  headers: {
+    Authorization: `Bearer ${userTeamDetails.value.access_token}`,
+  },
+});
+userData.value = user.value;
+// console.log(userData.value);
+teamId.value = userData.value?.teams[0]?.id;
+watchEffect(() => {
+  if (userData.value) {
+    if (userData.value?.on_leave === false) {
+      userLeave.value = "Present";
+    } else if (userData.value?.on_leave === true) {
+      userLeave.value = "Burn Out Break";
+    }
+  }
+});
+mondayTask.value = userData.value?.monday_tasks;
+// });
+// console.log(teamId.value);
+const { data, error } = await useFetch(`${baseURL}/teams/${teamId.value}`);
+teamBurnOutLimit.value = data.value?.burnout_limit.burnout_limit;
 
-console.log(teamId);
+const { data: members } = await useFetch(
+  `${baseURL}/teams/members/${teamId.value}`
+);
+teamMembers.value = members.value?.data;
+burnOutMeter.value =
+  (userData.value?.cumulative_burnout_points / teamBurnOutLimit.value) * 100;
+if (userData.value?.cumulative_burnout_points >= teamBurnOutLimit.value) {
+  burnoutBreaksTaken.value++;
+}
+const series = ref([0]);
+const chartOptions = {
+  chart: {
+    type: "radialBar",
+  },
+  labels: ["Progress"],
+};
+const burntoutMeterStatus = ref("");
 
-const base = ref("");
-
-console.log(base.value);
-
-console.log(teamBurnOutLimit.value);
-
-// const series = ref([teamBurnOutLimit]);
-
-// const chartOptions = {
-//   chart: {
-//     type: "radialBar",
-//   },
-//   labels: ["Progress"],
-// };
+watchEffect(() => {
+  if (burnOutMeter.value) {
+    series.value = burnOutMeter.value;
+  }
+  if (series.value < 80 || series.value === 80) {
+    burntoutMeterStatus.value = "Charged";
+  } else if (series.value > 80 || series.value < 95) {
+    burntoutMeterStatus.value = "About to be Burnt Out";
+  } else if (series.value > 96 || series.value < 100) {
+    burntoutMeterStatus.value = "Burnt Out";
+  } else {
+    burntoutMeterStatus.value = "On a Burnout Break";
+  }
+});
 
 console.log(teamMembers.value);
 function formatDatePretty(dateString) {
@@ -333,14 +382,13 @@ function formatDatePretty(dateString) {
   return `${day}${dayWithSuffix} ${month}, ${year}`;
 }
 
-// const The Burnout Meter = (Cumulative burnout points ÷ Burnout Limit)%
 watchEffect(() => {
   if (userData.value) {
     LastBurnOutDate.value = formatDatePretty(
-      user.value?.burnout_status[0]?.updated_at
+      userData.value?.burnout_status[0]?.updated_at
     );
-    cumulativeBurnoutPoints.value = user.value?.cumulative_burnout_points;
-    console.log(LastBurnOutDate.value, cumulativeBurnoutPoints.value);
+    cumulativeBurnoutPoints.value = userData.value?.cumulative_burnout_points;
+    // console.log(LastBurnOutDate.value, cumulativeBurnoutPoints.value);
   }
 });
 
@@ -348,4 +396,31 @@ const IsFilterClicked = ref(false);
 const filterClicked = () => {
   IsFilterClicked.value = !IsFilterClicked.value;
 };
+const filterby = ref({
+  burnoutStatus: [],
+  leaveStatus: [],
+});
+const filter = (value) => {
+  filterby.value = value;
+  console.log(filterby.value);
+
+  IsFilterClicked.value = false;
+};
+
+// const filteredMembers = computed(() => {
+//   if (
+//     !filterby.value.burnoutStatus.length ||
+//     !filterby.value.leaveStatus.length
+//   ) {
+//     return teamMembers.value;
+//   }
+
+//   const bS = filterby.value.burnoutStatus.map((status) => status.toLowerCase());
+//   return teamMembers.value?.filter(
+//     (member) =>
+//       bS.includes(member.burnout_status?.toLowerCase()) &&
+//       filterby.value.leaveStatus.includes(member?.on_leave)
+//   );
+// });
+// console.log("filtered team:", filteredMembers.value);
 </script>

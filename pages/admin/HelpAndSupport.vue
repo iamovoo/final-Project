@@ -29,7 +29,7 @@
               name=""
               id=""
               class="bg-[#F9FAFB] rounded-[6px] py-[14px] px-[16px] focus:outline-none"
-              placeholder="Tola"
+               :placeholder="`${firstName}`"
             />
           </div>
           <div class="w-[260.5px] h-[84px] flex flex-col justify-between">
@@ -41,7 +41,7 @@
               name=""
               id=""
               class="bg-[#F9FAFB] rounded-[6px] py-[14px] px-[16px] focus:outline-none"
-              placeholder="Chukwuma"
+               :placeholder="`${lastName}`"
             />
           </div>
         </div>
@@ -55,7 +55,7 @@
               name=""
               id=""
               class="bg-[#F9FAFB] rounded-[6px] py-[14px] px-[16px] focus:outline-none"
-              placeholder="tolachukwuka@check-dc.com"
+              :placeholder="`${userEmail}`"
             />
           </div>
           <div class="w-[260.5px] h-[84px] flex flex-col justify-between">
@@ -67,7 +67,7 @@
               name=""
               id=""
               class="bg-[#F9FAFB] rounded-[6px] py-[14px] px-[16px] focus:outline-none"
-              placeholder="Design"
+               placeholder="ADMIN"
             />
           </div>
         </div>
@@ -99,7 +99,9 @@ const userTeamDetails = useCookie("userTeamDetails");
 console.log(userTeamDetails.value);
 const userEmail = userTeamDetails.value.user.email
 const fullname = userTeamDetails.value.user.full_name
-const team = userTeamDetails.value.user.team
-const firstName = fullname.split(' ')[0]
-const lastName = fullname.split(' ')[1]
+const firstName = ref(fullname.split(' ')[0])
+const lastName = ref(fullname.split(' ')[1])
+if(!lastName.value){
+  lastName.value = 'Null'
+}
 </script>

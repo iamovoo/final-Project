@@ -16,10 +16,10 @@
           </div>
           <div class="w-[184px] h-[44px] flex flex-col justify-between">
             <p class="text-[#101928] text-[16px] DMSans600 font-semibold">
-              Bolaji Folarin
+              {{Fname}}
             </p>
             <p class="text-[#475367] text-[14px] DMSans400">
-              bolajifolarin@check-dc.com
+              {{email}}
             </p>
           </div>
         </div>
@@ -40,16 +40,16 @@
             <p class="text-[#667185] text-[14px] DMSans400 font-medium">
               First Name
             </p>
-            <p class="text-[#101928] text-[18px] DMSans400 font-semibold">
-              Bolaji
+            <p class="text-[#101928] text-[16px] DMSans400 font-semibold">
+              {{firstName}}
             </p>
           </div>
           <div class="w-[525.5px] h-[52px] flex flex-col gap-[8px]">
             <p class="text-[#667185] text-[14px] DMSans400 font-medium">
               Last Name
             </p>
-            <p class="text-[#101928] text-[18px] DMSans400 font-semibold">
-              Folarin
+            <p class="text-[#101928] text-[16px] DMSans400 font-semibold">
+              {{lastName}}
             </p>
           </div>
         </div>
@@ -57,16 +57,16 @@
           <div class="w-[525.5px] h-[52px] flex flex-col gap-[8px]">
             <p class="text-[#667185] text-[14px] DMSans400 font-medium">Role</p>
             <p class="text-[#101928] text-[18px] DMSans400 font-semibold">
-              Team Lead
+              {{role}}
             </p>
           </div>
           <div class="w-[525.5px] h-[52px] flex flex-col gap-[8px]">
             <p class="text-[#667185] text-[14px] DMSans400 font-medium">Team</p>
             <div class="text-[12px] DMSans400">
               <p
-                class="text-[#853C90] text-[12px] DMSans400 font-semibold bg-[#F6EDF8] py-[4px] px-[10px] rounded-[16px] w-[58px]"
+                class="text-red-700 text-[12px] DMSans400 font-semibold bg-red-200 py-[4px] px-[10px] rounded-[16px] w-32"
               >
-                Design
+                ADMIN (All Teams)
               </p>
             </div>
           </div>
@@ -96,5 +96,22 @@ isChangePasswordClicked.value = true
 const closeChangePasswordModal =(value)=>{
 isChangePasswordClicked.value = value
 }
+const userTeamDetails = useCookie("userTeamDetails");
+console.log(userTeamDetails.value);
+const role = userTeamDetails.value.user.role
+const Fname = userTeamDetails.value.user.full_name
+const email = userTeamDetails.value.user.email
+const first = userTeamDetails.value.user.full_name.split(' ') 
+const firstName = ref('')
+const lastName = ref('')
+if(first?.length > 1 ){
+   firstName.value = first[0]
+   lastName.value = first[1]
+}
+else{
+   firstName.value = first[0]
+   lastName.value = 'No Last Name'
+}
+console.log(first)
 </script>
 
