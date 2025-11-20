@@ -347,11 +347,11 @@
           >
             <div
               v-if="allMembersOnLeave.length !== 0"
-              class="bg-white w-full h-full"
+              class=" w-full h-full overflow-hidden"
             >
               <div
                 v-for="member in allMembersOnLeave"
-                class="w-full h-[60px] px-[19px] py-[7px] items-start flex justify-between bg-white border-b mb-[7px]"
+                class="w-full h-[60px] px-[19px] py-[7px] items-start flex justify-between bg-white border-b mb-[7px] "
               >
                 <div class="flex gap-[4px]">
                   <img
@@ -360,7 +360,7 @@
                     class="w-[46px] h-[46px] rounded-full"
                   />
                   <div
-                    class="w-full h-[49px] flex flex-col items-start pl-[4px] "
+                    class="w-full h-[49px] flex flex-col items-start pl-[4px]"
                   >
                     <p class="text-[14px] text-[#667185] font-bold DMSans500">
                       {{ member?.full_name }}
@@ -426,7 +426,7 @@
                     alt=""
                     class="w-[46px] h-[46px] rounded-full"
                   />
-                  <div class="h-[49px] flex flex-col items-center ">
+                  <div class="h-[49px] flex flex-col items-center">
                     <p class="text-[14px] text-[#667185] font-medium DMSans500">
                       {{ member?.full_name }}
                     </p>
@@ -496,20 +496,20 @@ const cancelInviteNewMemberModal = (value) => {
   isInviteNewMember.value = value;
 };
 const userTeamDetails = useCookie("userTeamDetails");
-console.log(userTeamDetails.value);
+// console.log(userTeamDetails.value);
 const { data } = await useFetch(`${baseURL}/users/all`, {
   method: "get",
   headers: {
     Authorization: `Bearer ${userTeamDetails.value.access_token}`,
   },
 });
-console.log(data.value);
+// console.log(data.value);
 watchEffect(() => {
   if (data.value) {
     totalMembers.value = data.value?.total;
   }
 });
-console.log(totalMembers);
+// console.log(totalMembers);
 const { data: d } = await useFetch(
   `${baseURL}/teams/members/9d221e52-952e-48bd-8cb3-ab31fceee060?on_leave=true`
 );
@@ -521,9 +521,9 @@ const { data: g } = await useFetch(
   `${baseURL}/teams/members/9d221e52-bf09-4f3d-be39-82bd6fe3d921?on_leave=true`
 );
 
-console.log("d", d.value);
-console.log("e", e.value);
-console.log("g", g.value);
+// console.log("d", d.value);
+// console.log("e", e.value);
+// console.log("g", g.value);
 watchEffect(() => {
   if (d.value?.data && e.value && g.value) {
     totalMembersOnLeave.value =
@@ -533,7 +533,7 @@ watchEffect(() => {
       ...(e.value?.data || []),
       ...(g.value?.data || []),
     ];
-    console.log(allMembersOnLeave.value);
+    // console.log(allMembersOnLeave.value);
   }
 });
 const { data: teams } = await useFetch(`${baseURL}/teams/all`);

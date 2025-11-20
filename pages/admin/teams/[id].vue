@@ -170,11 +170,13 @@
               class="w-[380px] focus:outline-none"
             />
           </div>
-          <div
-            @click="filterClicked"
-            class="w-[101px] h-[44px] border rounded-[8px] flex justify-center items-center relative"
-          >
-            Filter
+          <div class="w-[101px] h-[44px] border rounded-[8px] relative">
+            <div
+              @click="filterClicked"
+              class="w-full h-full flex justify-center items-center"
+            >
+              Filter
+            </div>
             <div class="absolute left-0 top-[55px]" v-if="IsFilterClicked">
               <Filter />
             </div>
@@ -373,7 +375,7 @@ if (id === "Design") {
 } else {
   teamId.value = "9d221e52-bf09-4f3d-be39-82bd6fe3d921";
 }
-console.log(id, teamId.value);
+// console.log(id, teamId.value);
 
 const filterClicked = () => {
   IsFilterClicked.value = !IsFilterClicked.value;
@@ -399,7 +401,7 @@ watchEffect(() => {
       if (searchinput.value === "") {
         return (filterByName.value = teamMembers.value);
       } else {
-        console.log(searchinput.value);
+        // console.log(searchinput.value);
         filterByName.value = teamMembers.value.filter((member) => {
           return member.full_name
             .toLowerCase()
@@ -445,7 +447,7 @@ watchEffect(() => {
     appraochingBurnout.value = currentTeam.value[0].about_to_be_burnt_out;
     burntOut.value = currentTeam.value[0].burnt_out;
     teamLimit.value = currentTeam.value[0].burnout_limit.burnout_limit;
-    console.log(teamLimit.value);
+    // console.log(teamLimit.value);
 
     // burnOutMeter.value =
     //   (NO TASK OR CUMMULATIVE BURN OUT POINTS/ teamLimit.value) * 100;
@@ -475,7 +477,7 @@ const chartOptions = {
   chart: {
     type: "radialBar",
   },
-  labels: ["Progress"],
+  labels: ["Meter"],
 };
 const burntoutMeterStatus = ref("");
 
@@ -566,7 +568,7 @@ page2.value = pg2.value?.data;
 const userName = ref("");
 const assignLeave = (value) => {
   userName.value = value;
-  console.log(value);
+  // console.log(value);
 };
 watchEffect(() => {
   if (page1.value && page2.value) {
@@ -578,7 +580,7 @@ watchEffect(() => {
         return member.full_name === userName.value;
       });
       theUserId.value = getUserId.value[0].id;
-      console.log(theUserId.value);
+      // console.log(theUserId.value);
     }
   }
 });
@@ -594,7 +596,7 @@ watch(theUserId, async (id, oldId) => {
       },
     }
   );
-  console.log(toggle.value);
+  // console.log(toggle.value);
   toast.success(`${toggle.value.message}`);
 });
 const isselectLeadClicked = ref(false);
@@ -607,7 +609,7 @@ const closeSelectTeamLeadModal = (value) => {
 const ismodifyBurnOutDateClicked = ref(false);
 const modifyBurnOutDate = (value) => {
   ismodifyBurnOutDateClicked.value = true;
-  console.log(value);
+  // console.log(value);
 };
 const menuBarClicked = ref(false);
 const memberDetailsToChangeTeam = ref({});

@@ -93,12 +93,12 @@
             class="w-[269px] h-[64px] py-[12px] px-[24px] flex justify-between items-center"
           >
             <div class="w-[184px] h-[40px] flex gap-[12px]">
-              <div class="w-[40px] h-[40px] rounded-md">
+              <div class="w-[40px] h-[40px] rounded-full">
                 <!-- <div class="bg-[#FFE7CC]"> -->
                 <img
                   src="/avatar.png"
                   alt=""
-                  class="w-[40px] h-[40px] bg-[#FFE7CC]"
+                  class="w-[40px] h-[40px] bg-[#FFE7CC] rounded-full"
                 />
                 <!-- </div> -->
               </div>

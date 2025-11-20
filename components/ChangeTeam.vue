@@ -144,7 +144,7 @@ const prop = defineProps({
 });
 member.value = prop.memberDetailsToChangeTeam;
 memberTeam.value = prop.memberDetailsToChangeTeam.team;
-console.log(member.value);
+// console.log(member.value);
 const showConfirmationPrompt = ref(false);
 const emit = defineEmits(["closeModal"]);
 const closeModal = () => {
@@ -178,13 +178,13 @@ page2.value = pg2.value?.data;
 watchEffect(() => {
   if (page1.value && page2.value) {
     usersAll.value = [...page1.value, ...page2.value];
-    console.log(usersAll.value);
+    // console.log(usersAll.value);
 
     getUserId.value = usersAll.value.filter((m) => {
       return member.value.full_name === m.full_name;
     });
     theUserId.value = getUserId.value[0].id;
-    console.log(theUserId.value);
+    // console.log(theUserId.value);
   }
 });
 // const watchInput = () => {};

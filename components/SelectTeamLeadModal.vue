@@ -48,6 +48,7 @@
             <p class="font-semibold text-[16px] text-[#2F7DD0]">Cancel</p>
           </div>
           <div
+          @click="save"
             class="w-[224.5px] h-full flex justify-center items-center bg-[#2F7DD0]"
           >
             <p class="font-semibold text-[16px] text-[#F9FAFB]">Save Changes</p>
@@ -77,7 +78,7 @@ const members = ref([]);
 const id = ref("");
 members.value = props.teamMembers;
 id.value = props.id;
-console.log(members.value, id.value);
+// console.log(members.value, id.value);
 
 const searchInput = ref();
 const filteredMembers = ref([]);
@@ -99,7 +100,7 @@ const TeamLeadEmail = ref("");
 const selectedTeamLead = ref([]);
 const getData = async (value) => {
   Selected.value = value;
-  console.log(Selected.value);
+  // console.log(Selected.value);
 
   const { data: page1 } = await useFetch(`${baseURL}/users/all?page=1`, {
     method: "get",
@@ -118,8 +119,9 @@ const getData = async (value) => {
     return member.full_name.includes(Selected.value);
   });
   TeamLeadEmail.value = selectedTeamLead.value[0]?.email;
-  console.log(selectedTeamLead.value, TeamLeadEmail.value);
-
+  // console.log(selectedTeamLead.value, TeamLeadEmail.value);
+};
+const save = async ()=>{
   if (TeamLeadEmail.value !== "") {
     const { data } = await useFetch(`${baseURL}/invites`, {
       method: "POST",
@@ -132,7 +134,8 @@ const getData = async (value) => {
         email: `${TeamLeadEmail.value}`,
       },
     });
-    console.log(data.value, id.value, Selected.value, TeamLeadEmail.value);
+    // console.log(data.value, id.value, Selected.value, TeamLeadEmail.value);
   }
-};
+  closeModal()
+}
 </script>

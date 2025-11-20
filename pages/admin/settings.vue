@@ -97,7 +97,7 @@ const closeChangePasswordModal =(value)=>{
 isChangePasswordClicked.value = value
 }
 const userTeamDetails = useCookie("userTeamDetails");
-console.log(userTeamDetails.value);
+// console.log(userTeamDetails.value);
 const role = userTeamDetails.value.user.role
 const Fname = userTeamDetails.value.user.full_name
 const email = userTeamDetails.value.user.email
@@ -112,6 +112,6 @@ else{
    firstName.value = first[0]
    lastName.value = 'No Last Name'
 }
-console.log(first)
+// console.log(first)
 </script>
 

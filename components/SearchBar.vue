@@ -6,7 +6,7 @@
     <div v-if="data?.length !== 0">
       <div
         @click="getUserInfo(member)"
-        class="w-[629px] h-[41px] flex justify-between px-[16px] py-[8px]"
+        class="w-full h-[41px] flex justify-between px-[16px] py-[8px]"
         v-for="member in data"
         :key="member.full_name"
       >

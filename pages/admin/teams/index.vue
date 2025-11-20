@@ -228,7 +228,7 @@
 </template>
 <script setup>
 const userTeamDetails = useCookie("userTeamDetails");
-console.log(userTeamDetails.value);
+// console.log(userTeamDetails.value);
 const baseURL = useRuntimeConfig().public.baseURL;
 const engineering = ref();
 const design = ref();
