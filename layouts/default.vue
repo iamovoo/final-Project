@@ -1,7 +1,10 @@
 <template>
   <div class="hidden md:block">
     <div class="layout relative">
-      <div class="w-[269px] h-[1024px] border-r border-b relative">
+      <div
+        class="w-[269px] h-[1024px] border-r border-b relative"
+        @click="isSearchInput = false"
+      >
         <div class="mt-5 px-[24px] py-[8px]">
           <img src="/assets/icons/blue.png" alt="" class="w-[83px] h-[24px]" />
         </div>
@@ -10,7 +13,6 @@
         >
           <nuxt-link :to="team ? `/${team}/${role}` : `/${role}`">
             <div
-              @click="clickedMenu('Dashboard')"
               :class="isActive('Dashboard')"
               class="flex w-[221px] h-[40px] rounded-[8px] items-center gap-[10px] text-center text-[16px] pl-5"
             >
@@ -28,7 +30,6 @@
           </nuxt-link>
           <nuxt-link :to="team ? `/${team}/${role}/teams` : `/${role}/teams`">
             <div
-              @click="clickedMenu('teams')"
               :class="isActive('teams')"
               class="flex w-[221px] h-[40px] rounded-[8px] items-center gap-[10px] text-center text-[16px] pl-5"
             >
@@ -48,7 +49,6 @@
             :to="team ? `/${team}/${role}/settings` : `/${role}/settings`"
           >
             <div
-              @click="clickedMenu('Settings')"
               :class="isActive('Settings')"
               class="flex w-[221px] h-[40px] rounded-[8px] items-center gap-[10px] text-center text-[16px] pl-5"
             >
@@ -65,10 +65,13 @@
             </div>
           </nuxt-link>
           <nuxt-link
-            :to="team ? `/${team}/${role}/HelpAndSupport` : `/${role}/HelpAndSupport`"
+            :to="
+              team
+                ? `/${team}/${role}/HelpAndSupport`
+                : `/${role}/HelpAndSupport`
+            "
           >
             <div
-              @click="clickedMenu('Help & support')"
               :class="isActive('Help & support')"
               class="flex w-[221px] h-[40px] rounded-[8px] items-center gap-[10px] text-center text-[16px] pl-5"
             >
@@ -90,12 +93,12 @@
             class="w-[269px] h-[64px] py-[12px] px-[24px] flex justify-between items-center"
           >
             <div class="w-[184px] h-[40px] flex gap-[12px]">
-              <div class="w-[40px] h-[40px]">
+              <div class="w-[40px] h-[40px] rounded-md">
                 <!-- <div class="bg-[#FFE7CC]"> -->
                 <img
-                  src="/assets/css/avatar.png"
+                  src="/avatar.png"
                   alt=""
-                  class="object-contain bg-[#FFE7CC] rounded-[200px]"
+                  class="w-[40px] h-[40px] bg-[#FFE7CC]"
                 />
                 <!-- </div> -->
               </div>
@@ -103,12 +106,12 @@
                 <div
                   class="h-[40px] w-[132px] font-semibold text-[14px] DMSans500"
                 >
-                  Bolaji Folarin
+                  {{ fullname }}
                 </div>
                 <div
                   class="h-[40px] w-[132px] text-[#475367] text-[14px] DMSans400"
                 >
-                  Design team lead
+                  {{ role }}
                 </div>
               </div>
             </div>
@@ -116,7 +119,7 @@
               <img
                 src="/assets/icons/logout.png"
                 alt=""
-                class="object-contain"
+                class="w-[20px] h-[20px]"
               />
             </div>
           </div>
@@ -133,11 +136,13 @@
                 <img
                   src="/assets/icons/search.png"
                   alt=""
-                  class="object-contain"
+                  class="w-[20px] h-[20px]"
                 />
               </div>
               <input
-                type="search"
+                v-model="globalSearch"
+                @input="searchBy"
+                type="text"
                 name=""
                 id=""
                 placeholder="Search here ..."
@@ -159,9 +164,9 @@
       </div>
       <div
         class="absolute top-[56px] left-[301px] z-10 shadow-sm bg-[#FFFFFF]"
-        v-if="false"
+        v-if="isSearchInput"
       >
-        <SearchBar />
+        <SearchBar :searchData="filtered" />
       </div>
       <div
         class="absolute top-[60px] left-[948px] z-10 shadow-sm bg-[#FFFFFF]"
@@ -176,7 +181,9 @@
         v-if="showAllNotifictionBtnClicked"
         class="fixed top-0 bottom-0 left-0 right-0 bg-[#00000040] z-10 flex justify-center items-center sm:items-center"
       >
-        <NotificationExpandModal @closeNotificationExpandModal="closeNotificationExpandModal" />
+        <NotificationExpandModal
+          @closeNotificationExpandModal="closeNotificationExpandModal"
+        />
       </div>
       <div v-if="isSignOutClicked">
         <div
@@ -193,90 +200,11 @@
       </div>
     </div>
   </div>
-  <div class="block md:hidden">
-    <div class="relative">
-      <div class="h-[112px] w-[375px] absolute top-[35px]">
-        <div class="h-[112px] w-[375px] flex flex-col gap-[8px]">
-          <div class="flex justify-between items-center pl-[8px]">
-            <div class="px-[24px] py-[8px]">
-              <img
-                src="/assets/icons/blue.png"
-                alt=""
-                class="w-[83px] h-[24px]"
-              />
-            </div>
-            <div class="flex h-[40px] w-[88px] justify-between">
-              <div
-                class="w-[40px] h-[40px] rounded-[20px] bg-[#F0F2F5] flex justify-center items-center"
-              >
-                <img
-                  src="/assets/icons/Notification bell + badge.png"
-                  alt=""
-                  class="w-[20px] h-[20px]"
-                />
-              </div>
-              <div
-                class="w-[40px] h-[40px] rounded-[20px] bg-[#F0F2F5] flex justify-center items-center"
-              >
-                <img
-                  src="/assets/icons/hamburger.png"
-                  alt=""
-                  class="w-[20px] h-[20px]"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="h-[64px] w-[375px] py-[12px] px-[20px] bottom-b-1">
-            <div
-              class="w-[335px] h-[40px] flex bg-[#F7F9FC] justify-center items-center py-[10px] px-[12px] gap-[8px] rounded-[8px] ml-[8px]"
-            >
-              <img
-                src="/assets/icons/search.png"
-                alt=""
-                class="w-[20px] h-[20px]"
-              />
-              <input
-                type="text"
-                name=""
-                id=""
-                class="w-[335px] bg-[#F7F9FC] rounded-[8px] focus:outline-none"
-                placeholder="Search here..."
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="absolute top-[140px] left-[20px] z-10 shadow-sm bg-[#FFFFFF]"
-        v-if="false"
-      >
-        <SearchBar />
-      </div>
-      <div
-        class="absolute top-[60px] left-[948px] z-10 shadow-sm bg-[#FFFFFF]"
-        v-if="notificationShow"
-      >
-        <Notification @closeNotification="closeNotification" />
-      </div>
-      <div v-if="isSignOutClicked">
-        <div
-          class="fixed top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10 flex justify-center items-end"
-        >
-          <SignoutModal @closeSignoutModal="closeSignoutModal" />
-        </div>
-      </div>
-      <div
-        class="absolute top-[136px] left-[35px]"
-        @click="isDateClicked = false"
-      >
-        <slot />
-      </div>
-    </div>
-  </div>
 </template>
 <script setup>
 import Notification from "~/components/Notification.vue";
 import NotificationExpandModal from "~/components/NotificationExpandModal.vue";
+const baseURL = useRuntimeConfig().public.baseURL;
 const showAllNotifictionBtnClicked = ref(false);
 const showAllNotifiction = (value) => {
   showAllNotifictionBtnClicked.value = value;
@@ -284,9 +212,9 @@ const showAllNotifiction = (value) => {
 };
 const isSignOutClicked = ref(false);
 const notificationShow = ref(false);
-const closeNotificationExpandModal = (value)=>{
-showAllNotifictionBtnClicked.value = value
-}
+const closeNotificationExpandModal = (value) => {
+  showAllNotifictionBtnClicked.value = value;
+};
 const notificationClicked = () => {
   notificationShow.value = true;
 };
@@ -300,10 +228,11 @@ const signOutClicked = () => {
   isSignOutClicked.value = true;
 };
 const userTeamDetails = useCookie("userTeamDetails");
-console.log(userTeamDetails.value);
+// console.log(userTeamDetails.value);
 const team = ref(userTeamDetails.value.user.team);
 const role = ref(userTeamDetails.value.user.role);
-console.log(role.value, team.value);
+const fullname = ref(userTeamDetails.value.user.full_name);
+// console.log(role.value, team.value);
 const route = useRoute();
 
 const activeTab = computed(() => {
@@ -312,13 +241,41 @@ const activeTab = computed(() => {
   if (route.path.includes("/HelpAndSupport")) return "Help & support";
   else return "Dashboard";
 });
-
-// const clickedMenu = (name) => {
-//   activeTab.value = name;
-//   console.log(name, activeTab.value);
-// };
+const allUsers = ref([]);
 const isActive = (name) => {
   if (name === activeTab.value) return "bg-[#d7e6f6]";
+};
+const globalSearch = ref("");
+const isSearchInput = ref(false);
+const filtered = ref([]);
+const searchBy = async () => {
+  if (globalSearch.value) {
+    isSearchInput.value = true;
+    const { data: page1 } = await useFetch(`${baseURL}/users/all?page=1`, {
+      method: "get",
+      headers: {
+        Authorization: `Bearer ${userTeamDetails.value.access_token}`,
+      },
+    });
+    const { data: page2 } = await useFetch(`${baseURL}/users/all?page=2`, {
+      method: "get",
+      headers: {
+        Authorization: `Bearer ${userTeamDetails.value.access_token}`,
+      },
+    });
+    allUsers.value = [
+      ...(page1.value?.data || []),
+      ...(page2.value?.data || []),
+    ];
+    filtered.value = allUsers.value.filter((member) => {
+      return member.full_name
+        .toLowerCase()
+        .includes(globalSearch.value.toLowerCase());
+    });
+    // console.log(globalSearch.value, filtered.value);
+  } else {
+    isSearchInput.value = false;
+  }
 };
 </script>
 <style>
@@ -326,7 +283,4 @@ const isActive = (name) => {
   display: grid;
   grid-template-columns: 269px 1fr;
 }
-/* .active {
-  background-color: #d7e6f6;
-} */
 </style>

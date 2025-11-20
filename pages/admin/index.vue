@@ -3,7 +3,7 @@
     class="h-[64px] w-[1171px] py-[16px] flex gap-[20px] border-b items-center mb-[30px]"
   >
     <p class="text-[24px] bricolage">Dashboard</p>
-    <div class="relative">
+    <!-- <div class="relative">
       <div
         @click="dateBtnClicked"
         class="py-[4px] px-[8px] w-[88px] h-[28px] rounded-[2px] flex items-center gap-[4px] text-[#F9FAFB] border border-[#E4E7EC]"
@@ -21,12 +21,12 @@
         />
       </div>
       <div
-        class="absolute top-[45px] left-0 shadow-md bg-[#FFFFFF] rounded-[8px]"
         v-if="isDateClicked"
+        class="absolute top-[45px] shadow-md bg-[#FFFFFF] rounded-[8px]"
       >
         <DateModal />
       </div>
-    </div>
+    </div> -->
   </div>
 
   <div class="w-[1107px] h-[1241px] flex flex-col gap-[36px]">
@@ -268,16 +268,28 @@
             class="w-[1059px] h-[229px] border rounded-[8px] border-[#E4E7EC] grid grid-cols-3 gap-4"
           >
             <div class="border rounded-[8px] border-[#E4E7EC]">
-              <BurnoutBarChart teamName="Design" :stats="barChart('Design')" />
+              <ClientOnly>
+                <BurnoutBarChart
+                  teamName="Design"
+                  :stats="barChart('Design')"
+                />
+              </ClientOnly>
             </div>
             <div class="border rounded-[8px] border-[#E4E7EC]">
-              <BurnoutBarChart
-                teamName="Engineering"
-                :stats="barChart('Engineering')"
-              />
+              <ClientOnly>
+                <BurnoutBarChart
+                  teamName="Engineering"
+                  :stats="barChart('Engineering')"
+                />
+              </ClientOnly>
             </div>
             <div class="border rounded-[8px] border-[#E4E7EC]">
-              <BurnoutBarChart teamName="Growth" :stats="barChart('Growth')" />
+              <ClientOnly>
+                <BurnoutBarChart
+                  teamName="Growth"
+                  :stats="barChart('Growth')"
+                />
+              </ClientOnly>
             </div>
           </div>
           <div class="w-full h-[17px] border flex gap-4 items-center">
@@ -343,21 +355,23 @@
               >
                 <div class="flex gap-[4px]">
                   <img
-                    src="/assets/css/avatar.png"
+                    src="/avatar.png"
                     alt=""
                     class="w-[46px] h-[46px] rounded-full"
                   />
-                  <div class="w-full h-[49px] flex flex-col">
-                    <p class="text-[14px] text-[#667185] font-medium DMSans500">
+                  <div
+                    class="w-full h-[49px] flex flex-col items-start pl-[4px] "
+                  >
+                    <p class="text-[14px] text-[#667185] font-bold DMSans500">
                       {{ member?.full_name }}
                     </p>
-                    <!-- <div class="text-[12px] DMSans400">
-                  <p
-                    class="text-[#853C90] text-[12px] DMSans400 font-semibold bg-[#F6EDF8] py-[4px] px-[10px] rounded-[16px] w-[58px]"
-                  >
-                    {{ member.team }}
-                  </p>
-                </div> -->
+                    <div class="text-[12px] DMSans400">
+                      <p
+                        class="text-[#853C90] text-[12px] DMSans400 font-semibold py-[4px] rounded-[16px] w-[58px]"
+                      >
+                        Member
+                      </p>
+                    </div>
                   </div>
                 </div>
                 <div
@@ -408,19 +422,19 @@
               >
                 <div class="flex gap-[4px]">
                   <img
-                    src="/assets/css/avatar.png"
+                    src="/avatar.png"
                     alt=""
                     class="w-[46px] h-[46px] rounded-full"
                   />
-                  <div class="h-[49px] flex flex-col">
+                  <div class="h-[49px] flex flex-col items-center ">
                     <p class="text-[14px] text-[#667185] font-medium DMSans500">
                       {{ member?.full_name }}
                     </p>
                     <div class="text-[12px] DMSans400">
                       <p
-                        class="text-[#853C90] text-[12px] DMSans400 font-semibold bg-[#F6EDF8] py-[4px] px-[10px] rounded-[16px] w-[58px]"
+                        class="text-[#853C90] text-[12px] DMSans400 font-semibold py-[4px] rounded-[16px] w-[58px]"
                       >
-                        {{ member.team }}
+                        Member
                       </p>
                     </div>
                   </div>
@@ -472,9 +486,9 @@ const allMembersOnLeave = ref([]);
 const allMembersBurntout = ref([]);
 const modalData = ref([]);
 
-const dateBtnClicked = () => {
-  isDateClicked.value = !isDateClicked.value;
-};
+// const dateBtnClicked = () => {
+//   isDateClicked.value = !isDateClicked.value;
+// };
 const inviteMembers = () => {
   isInviteNewMember.value = true;
 };

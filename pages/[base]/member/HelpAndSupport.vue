@@ -100,11 +100,11 @@ const submitRequest = ()=>{
   }
 }
 const userTeamDetails = useCookie("userTeamDetails");
-console.log(userTeamDetails.value);
+// console.log(userTeamDetails.value);
 const userEmail = userTeamDetails.value.user.email
 const fullname = userTeamDetails.value.user.full_name
 const team = userTeamDetails.value.user.team
 const firstName = fullname.split(' ')[0]
 const lastName = fullname.split(' ')[1]
-console.log(firstName,lastName);
+// console.log(firstName,lastName);
 </script>

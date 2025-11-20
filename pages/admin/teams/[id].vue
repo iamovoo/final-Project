@@ -33,7 +33,9 @@
             <p class="text-[16px] DMSans500 font-medium">Burnout Report</p>
             <div class="w-[200px] h-[200px] flex self-center">
               <div class="w-full h-full">
-                <DonutChart :value="getData()" />
+                <ClientOnly>
+                  <DonutChart :value="getData()" />
+                </ClientOnly>
               </div>
             </div>
           </div>
@@ -101,13 +103,15 @@
             </div>
           </div>
           <div class="w-[232.6px] h-[162.49px] scale-110">
-            <apexchart
-              width="100%"
-              height="100%"
-              type="radialBar"
-              :options="chartOptions"
-              :series="series"
-            />
+            <ClientOnly>
+              <apexchart
+                width="100%"
+                height="100%"
+                type="radialBar"
+                :options="chartOptions"
+                :series="series"
+              />
+            </ClientOnly>
           </div>
         </div>
         <div
@@ -184,6 +188,7 @@
           <div class="flex justify-between h-[32px] items-center">
             <p class="text-[#101828] text-[20px] font-medium">Team Lead</p>
             <div
+              @click="selectLead"
               class="border border-[#ACCBEC] rounded-[4px] text-[#2F7DD0] text-[14px] font-medium h-[32px] flex justify-center items-center w-[149px]"
             >
               Change Team Lead
@@ -191,7 +196,7 @@
           </div>
           <div class="flex gap-[16px] items-center">
             <img
-              src="/assets/css/avatar.png"
+              src="/avatar.png"
               alt=""
               class="rounded-full w-[36px] h-[36px]"
             />
@@ -207,6 +212,9 @@
     >
       <table class="w-[1107px]">
         <tr class="border-b bg-[#F9FAFB]">
+          <th
+            class="text-[14px] w-[40px] h-[58px] px-[10px] py-[12px] text-start font-medium DMSans500 text-[#475467]"
+          ></th>
           <th
             class="text-[14px] w-[281px] h-[58px] px-[20px] py-[12px] text-start font-medium DMSans500 text-[#475467]"
           >
@@ -242,6 +250,20 @@
             :key="member.full_name"
           >
             <td
+              class="text-[14px] w-[40px] h-[58px] px-[10px] py-[12px] text-start font-medium DMSans500 text-[#475467]"
+            >
+              <div
+                @click="openMenuBar(member)"
+                class="flex justify-center items-center w-full h-full"
+              >
+                <img
+                  class="w-full h-[20px]"
+                  src="/public/menuBar.png"
+                  alt="menu-2"
+                />
+              </div>
+            </td>
+            <td
               class="text-[14px] w-[281px] h-[58px] px-[20px] py-[12px] text-start font-medium DMSans500 text-[#475467]"
             >
               {{ member.full_name }}
@@ -260,16 +282,13 @@
               class="text-[14px] w-[281px] h-[58px] px-[20px] py-[12px] text-start font-medium DMSans500 text-[#475467]"
             >
               <div
+                @click="modifyBurnOutDate(member)"
                 class="flex bg-[#F9FAFB] py-[4px] px-[8px] border items-center justify-center gap-[8px] w-[148px] h-[28px]"
               >
                 <p class="text-[14px] DMSans500 text-[#667185]">
                   {{ member.last_burnout_date }}
                 </p>
-                <img
-                  src="/assets/icons/PencilSimpleLine.png"
-                  alt=""
-                  class="w-[]"
-                />
+                <img src="/assets/icons/PencilSimpleLine.png" alt="" class="" />
               </div>
             </td>
             <td
@@ -320,8 +339,21 @@
       :teamId="teamId"
     />
   </div>
-  <div v-if="false">
-    <ModifyLastBurnoutDayModal />
+  <div v-if="ismodifyBurnOutDateClicked">
+    <ModifyLastBurnoutDayModal @close="closeModifyLastBurnoutDayModal" />
+  </div>
+  <div v-if="isselectLeadClicked">
+    <SelectTeamLeadModal
+      @close="closeSelectTeamLeadModal"
+      :teamMembers="teamMembers"
+      :id="teamId"
+    />
+  </div>
+  <div v-if="menuBarClicked">
+    <ChangeTeam
+      @closeModal="closeChangeTeamModal"
+      :memberDetailsToChangeTeam="memberDetailsToChangeTeam"
+    />
   </div>
 </template>
 <script setup>
@@ -352,8 +384,8 @@ const isModifyBurnoutLimitClicked = ref(false);
 const openModifyBurnoutLimit = () => {
   isModifyBurnoutLimitClicked.value = true;
 };
-const page = ref(1);
-const limit = 16;
+// const page = ref(1);
+// const limit = 16;
 
 const closeModifyBurnoutLimit = (value) => {
   isModifyBurnoutLimitClicked.value = value;
@@ -474,6 +506,7 @@ const { data: users } = await useFetch(`${baseURL}/users/all`, {
   },
 });
 allUsers.value = users.value?.data;
+// console.log(allUsers.value);
 // });
 // const engineering = ref([]);
 // const growth = ref([]);
@@ -552,14 +585,44 @@ watchEffect(() => {
 watch(theUserId, async (id, oldId) => {
   if (!id || id === oldId) return;
 
-  const { data:toggle } = await useFetch(`${baseURL}/users/${id}/toggle-leave`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  console.log(toggle.value)
+  const { data: toggle } = await useFetch(
+    `${baseURL}/users/${id}/toggle-leave`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  console.log(toggle.value);
   toast.success(`${toggle.value.message}`);
 });
-
+const isselectLeadClicked = ref(false);
+const selectLead = () => {
+  isselectLeadClicked.value = true;
+};
+const closeSelectTeamLeadModal = (value) => {
+  isselectLeadClicked.value = value;
+};
+const ismodifyBurnOutDateClicked = ref(false);
+const modifyBurnOutDate = (value) => {
+  ismodifyBurnOutDateClicked.value = true;
+  console.log(value);
+};
+const menuBarClicked = ref(false);
+const memberDetailsToChangeTeam = ref({});
+const openMenuBar = (value) => {
+  menuBarClicked.value = true;
+  memberDetailsToChangeTeam.value = {
+    ...value,
+    team: id,
+    team_id: teamId.value,
+  };
+};
+const closeChangeTeamModal = (value) => {
+  menuBarClicked.value = value;
+};
+const closeModifyLastBurnoutDayModal = (value) => {
+  ismodifyBurnOutDateClicked.value = value;
+};
 </script>

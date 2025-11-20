@@ -48,19 +48,19 @@
                 <button
                   type="button"
                   @click="togglePassword"
-                  class="absolute right-4 top-1/3 text-gray-500 hover:text-gray-800"
+                  class="absolute right-4 top-1/3 text-gray-500 hover:text-gray-800 w-5 h-5"
                 >
                   <img
                     v-if="showPassword === true"
-                    src="/assets/icons/eye-password-show-svgrepo-com.svg"
+                    src="/eye-password-show-svgrepo-com.svg"
                     alt="Show"
-                    class="w-5"
+                    class="object-contain"
                   />
                   <img
                     v-else
-                    src="/assets/icons/eye-password-hide-svgrepo-com.svg"
+                    src="/eye-password-hide-svgrepo-com.svg"
                     alt="Hide"
-                    class="w-5"
+                    class=" object-contain"
                   />
                 </button>
               </div>

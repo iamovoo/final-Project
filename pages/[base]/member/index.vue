@@ -112,13 +112,15 @@
             </p>
           </div>
           <div class="w-[232.59px] h-[162.48806762695312px]">
-            <apexchart
-              width="100%"
-              height="100%"
-              type="radialBar"
-              :options="chartOptions"
-              :series="series"
-            />
+            <ClientOnly>
+              <apexchart
+                width="100%"
+                height="100%"
+                type="radialBar"
+                :options="chartOptions"
+                :series="series"
+              />
+            </ClientOnly>
           </div>
         </div>
         <div
@@ -173,6 +175,7 @@
             <img src="/assets/icons/search.png" alt="" class="" />
             <input
               type="text"
+              v-model="filterBySearchInput"
               name=""
               id=""
               placeholder="Search"
@@ -221,7 +224,7 @@
           </tr>
           <tr
             class="border-b text-start"
-            v-for="members in teamMembers"
+            v-for="members in filteredTeamMembersBySearch"
             :key="members.full_name"
           >
             <td
@@ -360,7 +363,7 @@ watchEffect(() => {
   }
 });
 
-console.log(teamMembers.value);
+// console.log(teamMembers.value);
 function formatDatePretty(dateString) {
   const date = new Date(dateString);
   const day = date.getDate();
@@ -391,7 +394,17 @@ watchEffect(() => {
     // console.log(LastBurnOutDate.value, cumulativeBurnoutPoints.value);
   }
 });
-
+const filterBySearchInput = ref("");
+const filteredTeamMembersBySearch = ref([]);
+watchEffect(() => {
+  if (filterBySearchInput.value !== "" && teamMembers?.value?.length !== 0) {
+    filteredTeamMembersBySearch.value = teamMembers.value.filter((member) => {
+      return member?.full_name
+        ?.toLowerCase()
+        .includes(filterBySearchInput.value.toLowerCase());
+    });
+  } else return (filteredTeamMembersBySearch.value = teamMembers.value);
+});
 const IsFilterClicked = ref(false);
 const filterClicked = () => {
   IsFilterClicked.value = !IsFilterClicked.value;

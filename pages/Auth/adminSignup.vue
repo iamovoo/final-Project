@@ -71,21 +71,21 @@
                   placeholder="Enter your Password"
                 />
                 <div
-                  class="absolute top-[48px] right-3"
+                  class="absolute top-[48px] right-3 w-5 h-5 "
                   @click="showPasswordBtn"
                 >
                   <button v-if="showPassword === false">
                     <img
-                      src="/assets/icons/eye-password-hide-svgrepo-com.svg"
+                      src="/eye-password-hide-svgrepo-com.svg"
                       alt=""
-                      class="w-5"
+                      class=" object-contain"
                     />
                   </button>
                   <button v-else>
                     <img
-                      src="/assets/icons/eye-password-show-svgrepo-com.svg"
+                      src="/eye-password-show-svgrepo-com.svg"
                       alt=""
-                      class="w-5"
+                      class="object-contain"
                     />
                   </button>
                 </div>

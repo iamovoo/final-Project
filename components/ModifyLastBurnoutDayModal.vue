@@ -82,6 +82,7 @@
         <div class="w-[537px] h-[104px] pt-[28px] px-[32px] pb-[36px]">
           <div class="flex justify-between">
             <button
+            @click="closeModal"
               class="text-[16px] bg-[#FFFFFF] text-[#2F7DD0] font-semibold DMSans500 border border-[#ACCBEC] h-[40px] flex justify-center items-center w-[224.5px]"
             >
               Cancel
@@ -109,5 +110,9 @@ watch(selectedDate, (newDate, oldValue) => {
 const showCalenderBtn = () => {
   showCalender.value = true;
 };
+const emit = defineEmits(['close'])
+const closeModal = ()=>{
+emit('close',false)
+}
 </script>
 <style scoped></style>

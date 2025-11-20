@@ -23,29 +23,32 @@
           x
         </div>
       </div>
-
       <div
         v-if="data.length !== 0"
-        class="overflow-y-scroll overflow-x-hidden flex flex-col gap-[16px] h-[344px] w-[478px]"
+        class="overflow-y-auto flex flex-col gap-3 h-[344px] w-full pr-2"
       >
-        <div v-for="members in data" :key="members.id" class="flex gap-[4px] items-center">
-          <img
-            src="/assets/css/avatar.png"
-            alt=""
-            class="w-[46px] h-[46px] rounded-full"
-          />
-          <div class="h-[49px] flex gap-4 items-center" >
-            <p class="text-[16px] text-[#667185] font-semibold DMSans500">
-              {{ members?.full_name }}
-            </p>
+        <div
+          v-for="member in data"
+          :key="member.id"
+          class="flex items-center justify-between p-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition"
+        >
+          <div class="flex items-center gap-3">
+            <img src="/avatar.png" class="w-12 h-12 rounded-full" />
 
-            <div
-            :class="getStatusColor(members?.burnout_status)"
-              class=" text-[12px] DMSans500 rounded-[16px] h-[25px] px-[8px] py-[2px] flex gap-[4px] items-center"
-            >
-              <span class="text-[30px]">&#8226;</span>
-              {{ members?.burnout_status }}
+            <div class="flex flex-col">
+              <p class="text-[16px] text-gray-700 font-semibold">
+                {{ member.full_name }}
+              </p>
+              <p>Member</p>
             </div>
+          </div>
+
+          <div
+            :class="getStatusColor(member.burnout_status)"
+            class="px-3 py-2 rounded-full text-sm font-medium flex gap-[3px] items-center justify-center"
+          >
+            <span class="text-[30px]">&#8226;</span>
+            {{ member.burnout_status }}
           </div>
         </div>
       </div>
@@ -76,10 +79,10 @@ const closeModal = () => {
   emit("closeModal", false);
 };
 const getStatusColor = (status) => {
-  if (status == 'Burnt out') {
+  if (status == "Burnt out") {
     return "bg-red-200 text-[#DC143C]";
   }
-  if (status == ' almost Burnt out') {
+  if (status == " almost Burnt out") {
     return "bg-orange-200 text-[#FA9C1B]";
   }
   return "bg-green-200 text-[#04802E]";

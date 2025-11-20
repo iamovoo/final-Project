@@ -17,6 +17,7 @@
         Invite New Member
       </div>
       <div
+        @click="createTeam"
         class="cursor-pointer w-[205px] h-[40px] bg-[#2F7DD0] rounded-[4px] font-semibold text-[16px] text-[#F9FAFB] flex justify-center items-center gap-[8px]"
       >
         <span><img src="/assets/icons/WhiteUsers.png" alt="" /></span> Create
@@ -62,10 +63,11 @@
             Team burnout status
           </p>
           <div
-          :class="getStatusColor(designPercentage)"
-            class=" w-fit  text-[12px] DMSans500 rounded-[16px] h-[25px] px-[8px] py-[2px] flex gap-[4px] items-center"
+            :class="getStatusColor(designPercentage)"
+            class="w-fit text-[12px] DMSans500 rounded-[16px] h-[25px] px-[8px] py-[2px] flex gap-[4px] items-center"
           >
-            <span class="text-[30px] text-[#04802E]">&#8226;</span> {{getStatus(designPercentage)}}
+            <span class="text-[30px] text-[#04802E]">&#8226;</span>
+            {{ getStatus(designPercentage) }}
           </div>
         </div>
         <div
@@ -125,10 +127,11 @@
             Team burnout status
           </p>
           <div
-          :class="getStatusColor(engineeringPercentage)"
-            class=" w-fit  text-[12px] DMSans500 rounded-[16px] h-[25px] px-[8px] py-[2px] flex gap-[4px] items-center"
+            :class="getStatusColor(engineeringPercentage)"
+            class="w-fit text-[12px] DMSans500 rounded-[16px] h-[25px] px-[8px] py-[2px] flex gap-[4px] items-center"
           >
-            <span class="text-[30px] ">&#8226;</span> {{getStatus(engineeringPercentage)}}
+            <span class="text-[30px]">&#8226;</span>
+            {{ getStatus(engineeringPercentage) }}
           </div>
         </div>
         <div
@@ -188,10 +191,11 @@
             Team burnout status
           </p>
           <div
-          :class="getStatusColor(growthPercentage)"
+            :class="getStatusColor(growthPercentage)"
             class="bg-[#ECFDF3] w-fit text-[#04802E] text-[12px] DMSans500 rounded-[16px] h-[25px] px-[8px] py-[2px] flex gap-[4px] items-center"
           >
-            <span class="text-[30px] text-[#04802E]">&#8226;</span> {{getStatus(growthPercentage)}}
+            <span class="text-[30px] text-[#04802E]">&#8226;</span>
+            {{ getStatus(growthPercentage) }}
           </div>
         </div>
         <div
@@ -218,6 +222,9 @@
   <div v-if="isModifyBtnClicked">
     <ModifyBurnoutLimit @closeModal="closeModal" :teamId="teamId" />
   </div>
+  <div v-if="isCreateTeamClicked">
+    <CreateNewTeam @close="closeCreateTeamModal"/>
+  </div>
 </template>
 <script setup>
 const userTeamDetails = useCookie("userTeamDetails");
@@ -238,7 +245,7 @@ const engineeringPercentage = ref(0);
 const teamId = ref("");
 const isModifyBtnClicked = ref(false);
 const allTeams = ref([]);
-
+const isCreateTeamClicked = ref(false);
 const modifyTeamBurnoutLimit = (team) => {
   isModifyBtnClicked.value = true;
   if (team === "design") {
@@ -320,4 +327,11 @@ watchEffect(() => {
     // console.log("engineer", engineering?.value[0]);
   }
 });
+
+const createTeam = () => {
+  isCreateTeamClicked.value = true;
+};
+const closeCreateTeamModal = (value) => {
+  isCreateTeamClicked.value = value;
+};
 </script>

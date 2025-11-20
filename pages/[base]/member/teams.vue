@@ -11,6 +11,7 @@
       >
         <img src="/assets/icons/search.png" alt="" class="" />
         <input
+        v-model="filterBySearchInput"
           type="text"
           name=""
           id=""
@@ -57,7 +58,7 @@
           </tr>
           <tr
             class="border-b text-start"
-            v-for="members in teamMembers"
+            v-for="members in filteredTeamMembersBySearch"
             :key="members.full_name"
           >
             <td
@@ -169,4 +170,15 @@ teamMembers.value = members.value?.data
 const { data, error } = await useFetch(`${baseURL}/teams/${teamId.value}`);
 teamBurnOutLimit.value = data.value?.burnout_limit.burnout_limit;
 // });
+const filterBySearchInput = ref("");
+const filteredTeamMembersBySearch = ref([]);
+watchEffect(() => {
+  if (filterBySearchInput.value !== "" && teamMembers?.value?.length !== 0) {
+    filteredTeamMembersBySearch.value = teamMembers.value.filter((member) => {
+      return member?.full_name
+        ?.toLowerCase()
+        .includes(filterBySearchInput.value.toLowerCase());
+    });
+  } else return (filteredTeamMembersBySearch.value = teamMembers.value);
+});
 </script>

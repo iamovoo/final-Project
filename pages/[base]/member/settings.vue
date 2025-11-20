@@ -9,7 +9,7 @@
         <div class="w-[264px] h-[60px] flex gap-[20px] items-center">
           <div class="w-[60px] h-[60px] rounded-full">
             <img
-              src="/assets/css/avatar.png"
+              src="/avatar.png"
               alt=""
               class="w-[60px] h-[60px] rounded-full"
             />
@@ -91,7 +91,7 @@
 </template>
 <script setup>
 const userTeamDetails = useCookie("userTeamDetails");
-console.log(userTeamDetails.value);
+// console.log(userTeamDetails.value);
 const userEmail = userTeamDetails.value.user.email
 const fullname = userTeamDetails.value.user.full_name
 const team = userTeamDetails.value.user.team

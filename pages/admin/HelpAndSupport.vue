@@ -25,6 +25,7 @@
               First Name <span class="text-[#D42620]">*</span>
             </p>
             <input
+            disabled
               type="text"
               name=""
               id=""
@@ -37,6 +38,7 @@
               Last Name <span class="text-[#D42620]">*</span>
             </p>
             <input
+            disabled
               type="text"
               name=""
               id=""
@@ -51,6 +53,7 @@
               Work Email <span class="text-[#D42620]">*</span>
             </p>
             <input
+            disabled
               type="email"
               name=""
               id=""
@@ -63,6 +66,7 @@
               Team <span class="text-[#D42620]">*</span>
             </p>
             <input
+            disabled
               type="text"
               name=""
               id=""
@@ -73,7 +77,7 @@
         </div>
         <div class="w-[557px] h-[272px] flex gap-[10px] flex-col">
             <p class="text-[14px] text-[#475367] DMSans400">
-              Work Email <span class="text-[#D42620]">*</span>
+             Message <span class="text-[#D42620]">*</span>
             </p>
             <textarea name="" id=""  class="rounded-[6px] py-[18px] px-[16px] focus:outline-none h-[240px] w-[557px] border border-[#D0D5DD]" placeholder="Enter your request here" v-model="requestArea"></textarea>
         </div>
@@ -96,7 +100,7 @@ const submitRequest = ()=>{
   }
 }
 const userTeamDetails = useCookie("userTeamDetails");
-console.log(userTeamDetails.value);
+// console.log(userTeamDetails.value);
 const userEmail = userTeamDetails.value.user.email
 const fullname = userTeamDetails.value.user.full_name
 const firstName = ref(fullname.split(' ')[0])

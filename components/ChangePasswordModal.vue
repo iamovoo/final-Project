@@ -40,13 +40,13 @@
             >
               <img
                 v-if="showPassword === true"
-                src="/assets/icons/eye-password-show-svgrepo-com.svg"
+                src="/eye-password-show-svgrepo-com.svg"
                 alt="Show"
                 class="w-5"
               />
               <img
                 v-else
-                src="/assets/icons/eye-password-hide-svgrepo-com.svg"
+                src="/eye-password-hide-svgrepo-com.svg"
                 alt="Hide"
                 class="w-5"
               />
@@ -67,13 +67,13 @@
             >
               <img
                 v-if="showConfimPassword === true"
-                src="/assets/icons/eye-password-show-svgrepo-com.svg"
+                src="/eye-password-show-svgrepo-com.svg"
                 alt="Show"
                 class="w-5"
               />
               <img
                 v-else
-                src="/assets/icons/eye-password-hide-svgrepo-com.svg"
+                src="/eye-password-hide-svgrepo-com.svg"
                 alt="Hide"
                 class="w-5"
               />
