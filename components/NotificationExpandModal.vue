@@ -1,5 +1,7 @@
 <template>
-  <div class=" hidden md:block">
+  <div
+    class="fixed top-0 bottom-0 left-0 right-0 bg-[#00000040] z-10 flex justify-center items-center sm:items-center"
+  >
     <div
       class="w-[600px] h-[552px] rounded-[12px] border bg-[#FFFFFF] border-[#F0F2F5]"
     >
@@ -44,22 +46,34 @@
                 Unread
               </p>
             </div>
+            <div
+              v-if="route.includes('admin')"
+              @click="showSlide('Sent Invites')"
+              class="h-[40px] flex justify-center"
+              :class="activeTab('Sent Invites')"
+            >
+              <p class="text-[#98A2B3] text-[16px] bricolage font-semibold">
+                Pending Invites
+              </p>
+            </div>
           </div>
         </div>
       </div>
       <div
         class="w-[600px] h-[648px] border-b-[2px] pb-[36px] flex flex-col gap-[32px]"
       >
-        <div class="w-[600px] h-[340px] border-b overflow-y-auto">
-          <div v-if="slide === 'All'">
+        <div class="w-full h-[340px] border-b overflow-y-auto">
+          <div v-if="currentTabTask.length !== 0">
             <div
-              class="w-[600px] h-[108px] py-[28px] px-[32px] flex gap-[10px]"
+              v-for="task in currentTabTask"
+              class="w-full h-[108px] py-[28px] px-[32px] flex gap-[10px]"
             >
               <div v-if="isSelectClicked">
                 <input
                   v-model="isClicked"
+                  :value="task"
                   type="checkbox"
-                  name=""
+                  name="task"
                   id=""
                   class="w-[24px] h-[24px] border border-[#D0D5DD]"
                 />
@@ -69,11 +83,18 @@
                   class="h-[24px] flex justify-between"
                   :class="isSelectClicked ? 'w-[496px]' : 'w-[536px]'"
                 >
-                  <p class="text-[#2F7DD0] text-[16px] DMSans400 font-bold">
-                    New Team Member
-                  </p>
+                  <div v-if="slide === 'Sent Invites'">
+                    <p class="text-[#2F7DD0] text-[16px] DMSans400 font-bold">
+                      {{ slide }}
+                    </p>
+                  </div>
+                  <div v-else>
+                    <p class="text-[#2F7DD0] text-[16px] DMSans400 font-bold">
+                      Message
+                    </p>
+                  </div>
                   <p class="text-[#98A2B3] text-[12px] font-medium DMSans500">
-                    8:00AM, Oct 21
+                    {{ task.sent_at }}
                   </p>
                 </div>
                 <div
@@ -81,100 +102,41 @@
                   :class="isSelectClicked ? 'w-[496px]' : 'w-[536px]'"
                 >
                   <p class="text-[#667185] text-[14px] DMSans400">
-                    Jane Doe has accepted an invite to join the Design team.
+                    {{ task.name }} has accepted an invite to join the Design
+                    team.
                   </p>
                 </div>
               </div>
             </div>
           </div>
-          <div v-if="slide === 'Read'">
-            <div
-              class="w-[600px] h-[108px] py-[28px] px-[32px] flex gap-[10px]"
-            >
-              <div v-if="isSelectClicked">
-                <input
-                  v-model="isClicked"
-                  type="checkbox"
-                  name=""
-                  id=""
-                  class="w-[24px] h-[24px] border border-[#D0D5DD]"
-                />
-              </div>
-              <div class="h-[108px] flex flex-col gap-[8px]">
-                <div
-                  class="h-[24px] flex justify-between"
-                  :class="isSelectClicked ? 'w-[496px]' : 'w-[536px]'"
-                >
-                  <p class="text-[#475367] text-[16px] DMSans400 font-bold">
-                    New Team Member
-                  </p>
-                  <p class="text-[#98A2B3] text-[12px] font-medium DMSans500">
-                    8:00AM, Oct 21
-                  </p>
-                </div>
-                <div
-                  class="h-[24px]"
-                  :class="isSelectClicked ? 'w-[496px]' : 'w-[536px]'"
-                >
-                  <p class="text-[#667185] text-[14px] DMSans400">
-                    Jane Doe has accepted an invite to join the Design team.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div v-if="slide === 'Unread'">
-            <div
-              class="w-[600px] h-[108px] py-[28px] px-[32px] flex gap-[10px]"
-            >
-              <div v-if="isSelectClicked">
-                <input
-                  v-model="isClicked"
-                  type="checkbox"
-                  name=""
-                  id=""
-                  class="w-[24px] h-[24px] border border-[#D0D5DD]"
-                />
-              </div>
-              <div class="h-[108px] flex flex-col gap-[8px]">
-                <div
-                  class="h-[24px] flex justify-between"
-                  :class="isSelectClicked ? 'w-[496px]' : 'w-[536px]'"
-                >
-                  <p class="text-[#2F7DD0] text-[16px] DMSans400 font-bold">
-                    New Team Member
-                  </p>
-                  <p class="text-[#98A2B3] text-[12px] font-medium DMSans500">
-                    8:00AM, Oct 21
-                  </p>
-                </div>
-                <div
-                  class="h-[24px]"
-                  :class="isSelectClicked ? 'w-[496px]' : 'w-[536px]'"
-                >
-                  <p class="text-[#667185] text-[14px] DMSans400">
-                    Jane Doe has accepted an invite to join the Design team.
-                  </p>
-                </div>
-              </div>
+          <div v-else>
+            <div class="w-full h-[340px] flex justify-center items-center">
+              <p class="text-center text-gray-400">No Message</p>
             </div>
           </div>
         </div>
         <div class="w-[600px] h-[40px] flex justify-around">
           <div>
             <div
-              v-if="isClicked"
+              v-if="selectionValue === 'Delete'"
               @click="isdeleteNotificationBtnClicked"
               class="w-[256px] h-[40px] border-[#DD524D] flex justify-center items-center text-[#D42620] text-[16px] border font-semibold"
             >
               Delete
             </div>
             <div
-              v-if="!isClicked"
+              v-if="selectionValue === 'Select'"
               @click="selectBtn"
               class="w-[256px] h-[40px] border-[#ACCBEC] flex justify-center items-center text-[#2F7DD0] text-[16px] border font-semibold"
             >
-              {{ selectAndCancel }}
+              Select
+            </div>
+            <div
+              v-if="selectionValue === 'Cancel'"
+              @click="cancelSelect"
+              class="w-[256px] h-[40px] border-[#ACCBEC] flex justify-center items-center text-[#2F7DD0] text-[16px] border font-semibold"
+            >
+              Cancel
             </div>
           </div>
           <button
@@ -185,40 +147,54 @@
         </div>
       </div>
     </div>
+
     <div v-if="isNotificationDeleted" class="absolute bottom-[225px]">
       <div
         class="bg-[#1D2739] w-[262px] h-[41px] text-[#FFFFFF] flex justify-center items-center text-[12px]"
       >
-        3 notifications deleted successfully
+        {{ totalDelete }} notifications deleted successfully
       </div>
     </div>
-    <div v-if="isDeleteBtnClicked">
-      <DeleteNotificationModal
-        @closeModal="cancelCionfirmation"
-        @deleteNotification="deleteNotification"
-      />
-    </div>
   </div>
-  <div  class=" block md:hidden">
-
+  <div v-if="isDeleteBtnClicked">
+    <DeleteNotificationModal
+      @closeModal="cancelCionfirmation"
+      @deleteNotification="deleteNotification"
+      :total="isClicked"
+    />
   </div>
 </template>
 <script setup>
+const userTeamDetails = useCookie("userTeamDetails", { default: () => {} });
+const baseURL = useRuntimeConfig().public.baseURL;
 const isNotificationDeleted = ref(false);
+const invites = ref([]);
+const invitesNotification = ref([]);
 const slide = ref("All");
 const isDeleteBtnClicked = ref(false);
-const isClicked = ref(false);
+const pendingInvitesNotification = ref([]);
+const isClicked = ref([]);
+const totalDelete = ref(null);
+const selectionValue = ref("Select");
+const isSelectClicked = ref(false);
 watch(isClicked, (newVal, oldVal) => {
+  if (isClicked.value.length !== 0) {
+    selectionValue.value = "Delete";
+    totalDelete.value = isClicked.value.length;
+  } else if (!isClicked.value.length && isSelectClicked.value === true) {
+    selectionValue.value = "Cancel";
+  }
   console.log(newVal);
 });
-const selectAndCancel = ref("Select");
-const isSelectClicked = ref(false);
 const selectBtn = () => {
-  isSelectClicked.value = !isSelectClicked.value;
-  if (isSelectClicked.value === true) {
-    selectAndCancel.value = "Cancel";
-  } else {
-    selectAndCancel.value = "Select";
+  selectionValue.value = "Cancel";
+  isSelectClicked.value = true;
+};
+const cancelSelect = () => {
+  selectionValue.value = "Select";
+  isSelectClicked.value = false;
+  if (isClicked.value.length !== 0) {
+    isClicked.value = [];
   }
 };
 const isdeleteNotificationBtnClicked = () => {
@@ -227,30 +203,103 @@ const isdeleteNotificationBtnClicked = () => {
 const cancelCionfirmation = (value) => {
   isDeleteBtnClicked.value = value;
 };
-const deleteNotification = (value) => {
-  isNotificationDeleted.value = value;
-  selectBtn();
-  isClicked.value = false;
-  setTimeout(() => {
-    isNotificationDeleted.value = false;
-  }, 2000);
-};
+
 const showSlide = (value) => {
   slide.value = value;
-  isSelectClicked.value = false;
-  isClicked.value = false
-  selectAndCancel.value = "Select";
-  console.log(slide.value);
-
-
+  cancelSelect();
 };
+
 const activeTab = (value) => {
   if (slide.value === value) {
     return "border-b-2 border-[#2F7DD0]";
   }
 };
+const currentTabTask = ref([]);
+const readTask = ref([]);
+const unReadTask = ref([]);
 const emit = defineEmits(["closeNotificationExpandModal"]);
 const closeModal = () => {
   emit("closeNotificationExpandModal", false);
+};
+const route = useRoute().path;
+if (route.includes("member")) {
+  const id = ref("");
+  if ((userTeamDetails.value.user.team = "Design")) {
+    id.value = "9d221e52-952e-48bd-8cb3-ab31fceee060";
+  }
+  if ((userTeamDetails.value.user.team = "Engineering")) {
+    id.value = "9d221e52-b9ba-4bf1-a94b-f606fda12640";
+  } else {
+    id.value = "9d221e52-bf09-4f3d-be39-82bd6fe3d921";
+  }
+  const { data } = await useFetch(
+    `${baseURL}/teams/members/${id.value}?on_leave=true`,
+    {
+      method: "get",
+      headers: {
+        Authorization: `Bearer ${userTeamDetails.value.access_token}`,
+      },
+    }
+  );
+  const date = ` ${new Date().getDate()} ${new Date().toLocaleString("en-US", { month: "short" })}, ${new Date().getFullYear()}`;
+  console.log(data?.value?.data, date);
+  data?.value?.data?.forEach((member) => {
+    if (member.full_name === userTeamDetails.value.user.full_name) {
+      currentTabTask.value = [
+        {
+          title: "Assigned Leave",
+          message: "You have been Assigned Leave",
+          Date: date,
+        },
+      ];
+    }
+  });
+} else if (route.includes("admin")) {
+  const { data } = await useFetch(`${baseURL}/invites/all`, {
+    method: "get",
+    headers: {
+      Authorization: `Bearer ${userTeamDetails.value.access_token}`,
+    },
+  });
+  invites.value = data.value?.data;
+  invites.value = invites.value?.map((m) => ({
+    ...m,
+    isRead: false,
+  }));
+  invitesNotification.value = invites?.value?.filter(
+    (member) => member.accepted_invite === true
+  );
+  readTask.value = invitesNotification?.value?.filter(
+    (member) => member.isRead === true
+  );
+  unReadTask.value = invitesNotification?.value?.filter(
+    (member) => member.isRead === false
+  );
+  pendingInvitesNotification.value = invites?.value?.filter(
+    (member) => member.accepted_invite === false
+  );
+  console.log(invitesNotification.value, invites.value);
+}
+watchEffect(() => {
+  if (slide.value === "All") {
+    currentTabTask.value = invitesNotification.value;
+  } else if (slide.value === "Read") {
+    currentTabTask.value = readTask.value;
+  } else if (slide.value === "Unread") {
+    currentTabTask.value = unReadTask.value;
+  } else {
+    currentTabTask.value = pendingInvitesNotification.value;
+  }
+});
+const deleteNotification = (value) => {
+  isClicked.value.forEach((item) => {
+    const i = currentTabTask.value.findIndex((t) => t.id === item.id);
+    if (i !== -1) currentTabTask.value.splice(i, 1);
+  });
+  isClicked.value = [];
+  isNotificationDeleted.value = value;
+  setTimeout(() => {
+    isNotificationDeleted.value = false;
+  }, 2000);
 };
 </script>

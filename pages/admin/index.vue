@@ -469,7 +469,6 @@
 <script setup>
 import { useToast } from "vue-toastification";
 const toast = useToast();
-// const userDetails = ref("");
 const allTeams = ref([]);
 const isInviteNewMember = ref(false);
 const baseURL = useRuntimeConfig().public.baseURL;

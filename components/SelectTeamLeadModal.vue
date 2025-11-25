@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed bg-[#00000040] top-0 bottom-0 left-0 right-0 flex justify-center items-center"
+    class="fixed bg-[#00000040] top-0 bottom-0 left-0 right-0 flex justify-center items-center z-10"
   >
     <div class="bg-white h-[672px] w-[537px] border">
       <div
@@ -48,7 +48,7 @@
             <p class="font-semibold text-[16px] text-[#2F7DD0]">Cancel</p>
           </div>
           <div
-          @click="save"
+            @click="save"
             class="w-[224.5px] h-full flex justify-center items-center bg-[#2F7DD0]"
           >
             <p class="font-semibold text-[16px] text-[#F9FAFB]">Save Changes</p>
@@ -121,21 +121,27 @@ const getData = async (value) => {
   TeamLeadEmail.value = selectedTeamLead.value[0]?.email;
   // console.log(selectedTeamLead.value, TeamLeadEmail.value);
 };
-const save = async ()=>{
+const save = async () => {
   if (TeamLeadEmail.value !== "") {
-    const { data } = await useFetch(`${baseURL}/invites`, {
+    const { data, error } = await useFetch(`${baseURL}/invites`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${userTeamDetails.value.access_token}`,
       },
       body: {
-        team_id: `${id.value}`,
         name: `${Selected.value}`,
         email: `${TeamLeadEmail.value}`,
+        team_id: `${id.value}`,
       },
     });
-    // console.log(data.value, id.value, Selected.value, TeamLeadEmail.value);
+    console.log(
+      error.value,
+      data.value,
+      id.value,
+      Selected.value,
+      TeamLeadEmail.value
+    );
   }
-  closeModal()
-}
+  closeModal();
+};
 </script>

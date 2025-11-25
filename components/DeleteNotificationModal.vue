@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed bg-[#00000040] top-0 bottom-0 right-0 left-0 flex justify-center items-center"
+    class="fixed bg-[#00000040] top-0 bottom-0 right-0 left-0 flex justify-center items-center z-10"
   >
     <div class="border bg-[#FFFFFF] w-[537px] h-[230px] rounded-[12px]">
       <div class="w-[537px] h-[126px] pt-[20px] px-[32px] pb-[6px]">
@@ -24,7 +24,7 @@
             <p
               class="text-[#667185] font-medium text-[14px] DMSans500 text-start"
             >
-             Are you sure you want to delete 3 notifications?
+             Are you sure you want to delete {{total}} notifications?
 
 
             </p>
@@ -54,4 +54,10 @@ const deleteNotification = ()=>{
 emit('deleteNotification',true)
 closeModal()
 }
+const props = defineProps({
+  total:{
+    type:Array
+  }
+})
+const total = ref(props.total.length)
 </script>

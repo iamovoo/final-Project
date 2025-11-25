@@ -93,15 +93,14 @@
             class="w-[269px] h-[64px] py-[12px] px-[24px] flex justify-between items-center"
           >
             <div class="w-[184px] h-[40px] flex gap-[12px]">
-              <div class="w-[40px] h-[40px] rounded-full">
-                <!-- <div class="bg-[#FFE7CC]"> -->
-                <img
-                  src="/avatar.png"
-                  alt=""
-                  class="w-[40px] h-[40px] bg-[#FFE7CC] rounded-full"
-                />
-                <!-- </div> -->
-              </div>
+              <img
+                src="/avatar.png"
+                alt=""
+                width="40"
+                height="40"
+                class="w-[40px] h-[40px] bg-[#FFE7CC] rounded-full object-contain"
+              />
+
               <div class="w-[132px] h-[40px] flex flex-col">
                 <div
                   class="h-[40px] w-[132px] font-semibold text-[14px] DMSans500"
@@ -119,7 +118,9 @@
               <img
                 src="/assets/icons/logout.png"
                 alt=""
-                class="w-[20px] h-[20px]"
+                 width="20"
+                height="20"
+                class="w-[20px] h-[20px] object-contain"
               />
             </div>
           </div>
@@ -177,10 +178,7 @@
           @showAllNotifiction="showAllNotifiction"
         />
       </div>
-      <div
-        v-if="showAllNotifictionBtnClicked"
-        class="fixed top-0 bottom-0 left-0 right-0 bg-[#00000040] z-10 flex justify-center items-center sm:items-center"
-      >
+      <div v-if="showAllNotifictionBtnClicked">
         <NotificationExpandModal
           @closeNotificationExpandModal="closeNotificationExpandModal"
         />

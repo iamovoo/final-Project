@@ -1,13 +1,13 @@
 <template>
   <div
     :class="data?.length !== 0 ? 'overflow-y-scroll' : 'overflow-hidden'"
-    class="w-[629px] h-[249px] border shadow-sm rounded-[8px]"
+    class="w-[629px] border shadow-sm rounded-[8px]"
   >
     <div v-if="data?.length !== 0">
       <div
         @click="getUserInfo(member)"
         class="w-full h-[41px] flex justify-between px-[16px] py-[8px]"
-        v-for="member in data"
+        v-for="member in data.slice(0, 7)"
         :key="member.full_name"
       >
         <div class="flex gap-[12px]">
@@ -38,7 +38,10 @@
     <div
       class="fixed bg-[#00000040] top-0 bottom-0 left-0 right-0 flex justify-center items-center"
     >
-      <TeamMemberModal @close="closeTeamMemberDetails" :userDetails="userDetails"/>
+      <TeamMemberModal
+        @close="closeTeamMemberDetails"
+        :userDetails="userDetails"
+      />
     </div>
   </div>
 </template>
@@ -64,7 +67,7 @@ const getTeamColor = (value) => {
 };
 const userDetails = ref({});
 const getUserInfo = (member) => {
-  userDetails.value = member
+  userDetails.value = member;
   isMemberClicked.value = true;
   // console.log(value);
 };
