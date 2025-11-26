@@ -78,33 +78,59 @@
                   class="w-[24px] h-[24px] border border-[#D0D5DD]"
                 />
               </div>
-              <div class="h-[108px] flex flex-col gap-[8px]">
-                <div
-                  class="h-[24px] flex justify-between"
-                  :class="isSelectClicked ? 'w-[496px]' : 'w-[536px]'"
-                >
-                  <div v-if="slide === 'Sent Invites'">
+              <div v-if="route.includes('member')">
+                <div class="h-[108px] flex flex-col gap-[8px]">
+                  <div
+                    class="h-[24px] flex justify-between"
+                    :class="isSelectClicked ? 'w-[496px]' : 'w-[536px]'"
+                  >
                     <p class="text-[#2F7DD0] text-[16px] DMSans400 font-bold">
-                      {{ slide }}
+                      {{ task.title }}
+                    </p>
+
+                    <p class="text-[#98A2B3] text-[12px] font-medium DMSans500">
+                      {{ task.Date }}
                     </p>
                   </div>
-                  <div v-else>
-                    <p class="text-[#2F7DD0] text-[16px] DMSans400 font-bold">
-                      Message
+                  <div
+                    class="h-[24px]"
+                    :class="isSelectClicked ? 'w-[496px]' : 'w-[536px]'"
+                  >
+                    <p class="text-[#667185] text-[14px] DMSans400">
+                      {{ task.message }}
                     </p>
                   </div>
-                  <p class="text-[#98A2B3] text-[12px] font-medium DMSans500">
-                    {{ task.sent_at }}
-                  </p>
                 </div>
-                <div
-                  class="h-[24px]"
-                  :class="isSelectClicked ? 'w-[496px]' : 'w-[536px]'"
-                >
-                  <p class="text-[#667185] text-[14px] DMSans400">
-                    {{ task.name }} has accepted an invite to join the Design
-                    team.
-                  </p>
+              </div>
+              <div v-else>
+                <div class="h-[108px] flex flex-col gap-[8px]">
+                  <div
+                    class="h-[24px] flex justify-between"
+                    :class="isSelectClicked ? 'w-[496px]' : 'w-[536px]'"
+                  >
+                    <div v-if="slide === 'Sent Invites'">
+                      <p class="text-[#2F7DD0] text-[16px] DMSans400 font-bold">
+                        {{ slide }}
+                      </p>
+                    </div>
+                    <div v-else>
+                      <p class="text-[#2F7DD0] text-[16px] DMSans400 font-bold">
+                        Message
+                      </p>
+                    </div>
+                    <p class="text-[#98A2B3] text-[12px] font-medium DMSans500">
+                      {{ task.sent_at }}
+                    </p>
+                  </div>
+                  <div
+                    class="h-[24px]"
+                    :class="isSelectClicked ? 'w-[496px]' : 'w-[536px]'"
+                  >
+                    <p class="text-[#667185] text-[14px] DMSans400">
+                      {{ task.name }} has accepted an invite to join the Design
+                      team.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -224,10 +250,10 @@ const closeModal = () => {
 const route = useRoute().path;
 if (route.includes("member")) {
   const id = ref("");
-  if ((userTeamDetails.value.user.team = "Design")) {
+  if ((userTeamDetails.value.user.team === "Design")) {
     id.value = "9d221e52-952e-48bd-8cb3-ab31fceee060";
   }
-  if ((userTeamDetails.value.user.team = "Engineering")) {
+  if ((userTeamDetails.value.user.team === "Engineering")) {
     id.value = "9d221e52-b9ba-4bf1-a94b-f606fda12640";
   } else {
     id.value = "9d221e52-bf09-4f3d-be39-82bd6fe3d921";
@@ -253,6 +279,7 @@ if (route.includes("member")) {
         },
       ];
     }
+    console.log(currentTabTask.value)
   });
 } else if (route.includes("admin")) {
   const { data } = await useFetch(`${baseURL}/invites/all`, {
@@ -281,6 +308,7 @@ if (route.includes("member")) {
   console.log(invitesNotification.value, invites.value);
 }
 watchEffect(() => {
+  if (!route.includes("admin")) return;
   if (slide.value === "All") {
     currentTabTask.value = invitesNotification.value;
   } else if (slide.value === "Read") {

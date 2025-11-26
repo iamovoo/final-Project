@@ -103,14 +103,15 @@ if (route.includes("admin")) {
   );
 } else if (route.includes("member")) {
   const id = ref("");
-  if ((userTeamDetails.value.user.team = "Design")) {
+  if ((userTeamDetails.value.user.team === "Design")) {
     id.value = "9d221e52-952e-48bd-8cb3-ab31fceee060";
   }
-  if ((userTeamDetails.value.user.team = "Engineering")) {
+  if ((userTeamDetails.value.user.team === "Engineering")) {
     id.value = "9d221e52-b9ba-4bf1-a94b-f606fda12640";
   } else {
     id.value = "9d221e52-bf09-4f3d-be39-82bd6fe3d921";
   }
+  console.log(id.value)
   const { data } = await useFetch(
     `${baseURL}/teams/members/${id.value}?on_leave=true`,
     {
