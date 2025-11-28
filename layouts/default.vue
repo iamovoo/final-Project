@@ -2,7 +2,7 @@
   <div class="hidden md:block">
     <div class="layout relative">
       <div
-        class="w-[269px] h-[1024px] border-r border-b relative"
+        class="w-[269px] h-[1024px] border-r border-b fixed"
         @click="isSearchInput = false"
       >
         <div class="mt-5 px-[24px] py-[8px]">
@@ -88,7 +88,7 @@
             </div>
           </nuxt-link>
         </div>
-        <div class="w-[269px] h-[80px] py-[8px] absolute top-[920px]">
+        <div class="w-[269px] h-[80px] py-[8px] absolute top-[600px]">
           <div
             class="w-[269px] h-[64px] py-[12px] px-[24px] flex justify-between items-center"
           >
@@ -118,7 +118,7 @@
               <img
                 src="/assets/icons/logout.png"
                 alt=""
-                 width="20"
+                width="20"
                 height="20"
                 class="w-[20px] h-[20px] object-contain"
               />
@@ -127,7 +127,9 @@
         </div>
       </div>
       <!-- <div class="h-[1344px]"> -->
-      <div class="w-[1171px] h-[64px] px-[32px] border-b">
+      <div
+        class="w-[1171px] h-[64px] px-[32px] border-b fixed left-[270px] z-10 bg-white"
+      >
         <div class="py-[12px]">
           <div class="w-[1107px] h-[40px] flex justify-between items-center">
             <div
@@ -150,15 +152,27 @@
                 class="bg-[#F7F9FC] w-[629px] border-[#F7F9FC] focus:outline-none"
               />
             </div>
-            <div
-              class="w-[40px] h-[40px] overflow-hidden flex items-center justify-center bg-[#F0F2F5] rounded-[20px]"
-              @click="notificationClicked"
-            >
-              <img
-                src="/assets/icons/Notification bell + badge.png"
-                alt=""
-                class="object-contain"
-              />
+            <div class="relative">
+              <div
+                class="w-[40px] h-[40px] overflow-hidden flex items-center justify-center bg-[#F0F2F5] rounded-[20px]"
+                @click="notificationClicked"
+              >
+                <img
+                  src="/assets/icons/Notification bell + badge.png"
+                  alt=""
+                  class="object-contain"
+                />
+              </div>
+
+              <div
+                class="absolute bottom-[-15px] right-0 translate-y-full z-10 shadow-sm bg-[#FFFFFF]"
+                v-if="notificationShow"
+              >
+                <Notification
+                  @closeNotification="closeNotification"
+                  @showAllNotifiction="showAllNotifiction"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -169,15 +183,7 @@
       >
         <SearchBar :searchData="filtered" />
       </div>
-      <div
-        class="absolute top-[60px] left-[948px] z-10 shadow-sm bg-[#FFFFFF]"
-        v-if="notificationShow"
-      >
-        <Notification
-          @closeNotification="closeNotification"
-          @showAllNotifiction="showAllNotifiction"
-        />
-      </div>
+
       <div v-if="showAllNotifictionBtnClicked">
         <NotificationExpandModal
           @closeNotificationExpandModal="closeNotificationExpandModal"

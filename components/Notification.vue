@@ -6,7 +6,7 @@
           <h6 class="text-[20px] font-medium bricolage">Notifications</h6>
         </div>
         <div
-          class="h-[36px] w-[36px] border border-[#F0F2F5] font-bold flex justify-center items-center"
+          class="h-[36px] w-[36px] cursor-pointer border border-[#F0F2F5] font-bold flex justify-center items-center"
           @click="closeNotification"
         >
           x
@@ -88,6 +88,7 @@ const closeNotification = () => {
 };
 const showAllNotifiction = () => {
   emit("showAllNotifiction", true);
+  // closeNotification()
 };
 const route = useRoute().path;
 if (route.includes("admin")) {

@@ -1,7 +1,7 @@
 <template>
   <!-- <div class="hidden md:block"> -->
   <div
-    class="fixed bg-[#00000040] top-0 left-0 right-0 bottom-0 flex justify-center items-center"
+    class="fixed bg-[#00000040] top-0 left-0 right-0 bottom-0 flex justify-center items-center z-10"
   >
     <div class="bg-white w-[553px] h-[424px] py-[20px] px-[24px] flex flex-col gap-[28px] items-center rounded-[8px]">
       <!-- <div class="h-[390px] w-[400px] flex flex-col gap-[32px] justify-center"> -->
@@ -14,7 +14,7 @@
             </p>
             <div
               @click="closeModal"
-              class=" w-[36px] h-[36px] flex justify-center items-center pb-[5px] border rounded-[4px] border-[#F0F2F5] font-bold"
+              class=" w-[36px] h-[36px] flex justify-center items-center pb-[5px] border rounded-[4px] border-[#F0F2F5] font-bold cursor-pointer"
             >
               x
             </div>

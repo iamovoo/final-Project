@@ -3,9 +3,9 @@
     class="fixed bg-[#00000040] top-0 bottom-0 right-0 left-0 flex justify-center items-center"
   >
     <div v-if="!showConfirmationPrompt">
-      <div class="border bg-[#FFFFFF] w-[537px] h-[278px] rounded-[12px]">
-        <div class="w-[537px] h-[174px] pt-[20px] px-[32px] pb-[6px]">
-          <div class="w-[473px] flex flex-col gap-[4px] h-[148px]">
+      <div class="border bg-[#FFFFFF] w-[537px] h-[258px] rounded-[12px]">
+        <div class="w-[537px] h-[154px] pt-[20px] px-[32px] pb-[6px]">
+          <div class="w-[473px] flex flex-col gap-[4px] h-[148px] ">
             <div class="flex justify-between">
               <p
                 class="text-[#101928] text-[20px] font-medium flex justify-center items-center"
@@ -19,19 +19,14 @@
                 x
               </div>
             </div>
-            <div class="w-[473px] h-[112px] flex flex-col justify-between">
+            <div class="w-[473px] h-[80px] flex flex-col justify-center">
               <p
-                class="text-[#667185] font-medium text-[14px] DMSans500 text-start"
+                class="text-[#667185] font-medium text-[18px] DMSans500 text-start"
               >
                 Please confirm you wish to Change this Members Team as
-                <br />
+                
                 this would tranfer him out of his current team
-                <br />
-              </p>
-              <p
-                class="text-[#667185] font-medium text-[14px] DMSans500 text-start"
-              >
-                This action is not reversible.
+              
               </p>
             </div>
           </div>
@@ -56,10 +51,10 @@
     </div>
     <div v-if="showConfirmationPrompt">
       <div
-        class="border bg-[#FFFFFF] w-[537px] h-[378px] rounded-[12px] flex flex-col"
+        class="border bg-[#FFFFFF] w-[537px] h-[396px] rounded-[12px] flex flex-col justify-between"
       >
         <div
-          class="w-[537px] pt-[20px] px-[32px] pb-[6px] flex flex-col gap-[24px] justify-center items-center"
+          class="w-[537px] pt-[20px] px-[32px] pb-[6px] flex flex-col gap-[18px] justify-center items-center"
         >
           <div class="w-[473px] flex flex-col gap-[4px]">
             <div class="flex justify-between">
@@ -97,7 +92,7 @@
             >
               Enter Team
             </p>
-            <input
+            <!-- <input
               @input="watchInput"
               :placeholder="memberTeam"
               v-model="newMemberTeam"
@@ -105,7 +100,13 @@
               name=""
               id=""
               class="w-[473px] h-[56px] border-[#E4E7EC] border-2 rounded-[8px] focus:outline-none pl-4"
-            />
+            /> -->
+            <select v-model="newMemberTeam" class="text-[#667185] font-medium text-[14px] DMSans500 text-start border border-gray-400 py-2 rounded-md focus:outline-none pl-3">
+              <option value="" disabled selected >Select Team</option>
+              <option value="Design">Design Team</option>
+              <option value="Engineering">Engineering Team</option>
+              <option value="Growth">Growth Team</option>
+            </select>
           </div>
         </div>
         <div class="w-[537px] h-[104px] pt-[28px] px-[32px] pb-[36px]">
@@ -135,7 +136,6 @@ const userTeamDetails = useCookie("userTeamDetails");
 const baseURL = useRuntimeConfig().public.baseURL;
 const member = ref();
 const memberTeam = ref("");
-const newMemberTeam = ref("");
 const toast = useToast();
 const prop = defineProps({
   memberDetailsToChangeTeam: {
@@ -144,7 +144,8 @@ const prop = defineProps({
 });
 member.value = prop.memberDetailsToChangeTeam;
 memberTeam.value = prop.memberDetailsToChangeTeam.team;
-// console.log(member.value);
+const newMemberTeam = ref(memberTeam.value);
+console.log(memberTeam.value);
 const showConfirmationPrompt = ref(false);
 const emit = defineEmits(["closeModal"]);
 const closeModal = () => {
@@ -213,7 +214,7 @@ const saveChanges = async () => {
         }
       );
       // console.log(data.value);
-      toast.success(`${data?.value?.message}`)
+      toast.success(`${data?.value?.message}`);
     }
   }
   closeModal();

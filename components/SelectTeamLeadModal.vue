@@ -7,7 +7,7 @@
         class="flex justify-between border-b-2 border pt-[20px] px-[32px] pb-[16px]"
       >
         <h4 class="text-[20px] text-[#101928] font-medium">Select Team Lead</h4>
-        <div @click="closeModal" class="font-bold text-[20px]">x</div>
+        <div @click="closeModal" class="font-bold text-[20px] cursor-pointer">x</div>
       </div>
       <div
         class="h-[600px] w-full pt-[24px] pb-[28px] px-[32px] flex flex-col gap-[16px]"

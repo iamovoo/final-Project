@@ -11,7 +11,7 @@
             </p>
             <div
               @click="cancelModal"
-              class="flex justify-center items-center border font-bold w-[36px] h-[36px]"
+              class="flex justify-center items-center border font-bold w-[36px] h-[36px] cursor-pointer"
             >
               x
             </div>

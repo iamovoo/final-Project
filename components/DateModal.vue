@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-[240px] h-[200px] border py-[6px] px-[10px] z-10 bg-[#FFFFFF] rounded-[8px]"
+    class="w-[240px] h-[200px] border py-[6px] px-[10px] z-10 bg-[#FFFFFF] rounded-[8px] cursor-pointer"
   >
     <div class="w-[220px] h-[188px] py-[4px]">
       <div class="h-[36px] w-[240px] py-[8px] px-[16px]">

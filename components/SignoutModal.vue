@@ -9,7 +9,7 @@
             Sign out of your account?
           </p>
           <div
-            class="w-[36px] h-[36px] flex justify-center items-center font-bold"
+            class="w-[36px] h-[36px] flex justify-center items-center font-bold cursor-pointer"
             @click="closeSignoutModal"
           >
             x

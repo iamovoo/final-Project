@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed bg-[#00000040] top-0 bottom-0 left-0 right-0 flex justify-center items-center"
+    class="fixed bg-[#00000040] top-0 bottom-0 left-0 right-0 flex justify-center items-center z-10"
   >
     <div
       class="border bg-[#FFFFFF] w-[537px] h-[278px] rounded-[12px] flex flex-col"
@@ -17,7 +17,7 @@
             </p>
             <div
               @click="closeModal"
-              class="font-bold w-[36px] h-[36px] flex justify-center items-center pb-[5px] border rounded-[4px] border-[#F0F2F5]"
+              class="font-bold w-[36px] h-[36px] flex justify-center items-center pb-[5px] border rounded-[4px] border-[#F0F2F5] cursor-pointer"
             >
               x
             </div>

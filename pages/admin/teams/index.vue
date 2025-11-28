@@ -29,7 +29,7 @@
     <div class="h-[188px] w-[1107px] flex flex-col gap-[20px]">
       <div class="flex gap-[8px]">
         <h4 class="text-[20px] bricolage text-[#101928] font font-medium">
-          Design Teams
+          Design Team
         </h4>
         <nuxt-link to="/admin/teams/Design">
           <div

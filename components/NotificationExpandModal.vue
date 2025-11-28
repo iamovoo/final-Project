@@ -13,7 +13,7 @@
             </h6>
             <div
               @click="closeModal"
-              class="w-[36px] h-[36px] flex justify-center items-center font-bold"
+              class="w-[36px] h-[36px] flex justify-center items-center font-bold cursor-pointer"
             >
               x
             </div>

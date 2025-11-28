@@ -1,7 +1,7 @@
 <template>
   <div
     :class="data?.length !== 0 ? 'overflow-y-scroll' : 'overflow-hidden'"
-    class="w-[629px] border shadow-sm rounded-[8px]"
+    class="w-[629px] border shadow-sm rounded-[8px] cursor-pointer"
   >
     <div v-if="data?.length !== 0">
       <div

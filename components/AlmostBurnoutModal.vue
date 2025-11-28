@@ -2,7 +2,7 @@
  
     <!-- <div class="relative w-[1440px] h-[1024px]"> -->
     <div
-      class="fixed top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 flex justify-center items-center"
+      class="fixed top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 flex justify-center items-center z-10"
     >
       <div
         class="w-[518px] h-[448px] bg-[#FFFFFF] rounded-[8px] p-[20px] flex flex-col gap-[16px]"
@@ -23,7 +23,7 @@
             </div>
           </div>
           <div
-            class="w-[36px] h-[36px] flex justify-center items-center border-[#F0F2F5] border"
+            class="w-[36px] h-[36px] flex justify-center items-center border-[#F0F2F5] border cursor-pointer"
             @click="closeModal"
           >
             x

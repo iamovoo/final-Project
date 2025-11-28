@@ -14,7 +14,7 @@
               </p>
               <div
                 @click="closeModal"
-                class="font-bold w-[36px] h-[36px] flex justify-center items-center pb-[5px] border rounded-[4px] border-[#F0F2F5]"
+                class="font-bold w-[36px] h-[36px] flex justify-center items-center pb-[5px] border rounded-[4px] cursor-pointer border-[#F0F2F5]"
               >
                 x
               </div>

@@ -17,7 +17,7 @@
           </h6>
         </div>
         <div
-          class="w-[36px] h-[36px] flex justify-center items-center border-[#F0F2F5] border font-bold"
+          class="w-[36px] h-[36px] flex justify-center items-center border-[#F0F2F5] border font-bold cursor-pointer"
           @click="closeModal"
         >
           x
